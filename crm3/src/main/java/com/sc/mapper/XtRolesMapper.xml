@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sc.mapper.XtRolesMapper" >
+  <resultMap id="BaseResultMap" type="com.sc.entity.XtRoles" >
+    <constructor >
+      <idArg column="ROLE_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="ROLE_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ROLE_DES" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UP_ROLE_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="OPERATOR" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ROLE_ID, ROLE_NAME, ROLE_DES, UP_ROLE_ID, OPERATOR, LAST_MODIFY_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.entity.XtRolesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XT_ROLES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XT_ROLES
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from XT_ROLES
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sc.entity.XtRolesExample" >
+    delete from XT_ROLES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sc.entity.XtRoles" >
+    insert into XT_ROLES (ROLE_ID, ROLE_NAME, ROLE_DES, 
+      UP_ROLE_ID, OPERATOR, LAST_MODIFY_DATE
+      )
+    values (#{roleId,jdbcType=DECIMAL}, #{roleName,jdbcType=VARCHAR}, #{roleDes,jdbcType=VARCHAR}, 
+      #{upRoleId,jdbcType=DECIMAL}, #{operator,jdbcType=VARCHAR}, #{lastModifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.entity.XtRoles" >
+    insert into XT_ROLES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="roleName != null" >
+        ROLE_NAME,
+      </if>
+      <if test="roleDes != null" >
+        ROLE_DES,
+      </if>
+      <if test="upRoleId != null" >
+        UP_ROLE_ID,
+      </if>
+      <if test="operator != null" >
+        OPERATOR,
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDes != null" >
+        #{roleDes,jdbcType=VARCHAR},
+      </if>
+      <if test="upRoleId != null" >
+        #{upRoleId,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sc.entity.XtRolesExample" resultType="java.lang.Integer" >
+    select count(*) from XT_ROLES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update XT_ROLES
+    <set >
+      <if test="record.roleId != null" >
+        ROLE_ID = #{record.roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.roleName != null" >
+        ROLE_NAME = #{record.roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleDes != null" >
+        ROLE_DES = #{record.roleDes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upRoleId != null" >
+        UP_ROLE_ID = #{record.upRoleId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operator != null" >
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update XT_ROLES
+    set ROLE_ID = #{record.roleId,jdbcType=DECIMAL},
+      ROLE_NAME = #{record.roleName,jdbcType=VARCHAR},
+      ROLE_DES = #{record.roleDes,jdbcType=VARCHAR},
+      UP_ROLE_ID = #{record.upRoleId,jdbcType=DECIMAL},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.entity.XtRoles" >
+    update XT_ROLES
+    <set >
+      <if test="roleName != null" >
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDes != null" >
+        ROLE_DES = #{roleDes,jdbcType=VARCHAR},
+      </if>
+      <if test="upRoleId != null" >
+        UP_ROLE_ID = #{upRoleId,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.entity.XtRoles" >
+    update XT_ROLES
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      ROLE_DES = #{roleDes,jdbcType=VARCHAR},
+      UP_ROLE_ID = #{upRoleId,jdbcType=DECIMAL},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </update>
+</mapper>

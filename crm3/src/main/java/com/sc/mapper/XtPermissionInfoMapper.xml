@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sc.mapper.XtPermissionInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sc.entity.XtPermissionInfo" >
+    <constructor >
+      <idArg column="PERMISSON_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="PERMISSON_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PERMISSION" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PERMISSION_COLUMNS_ID" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="REMARKS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PERMISSON_ID, PERMISSON_NAME, PERMISSION, PERMISSION_COLUMNS_ID, REMARKS, LAST_MODIFY_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.entity.XtPermissionInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XT_PERMISSION_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from XT_PERMISSION_INFO
+    where PERMISSON_ID = #{permissonId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from XT_PERMISSION_INFO
+    where PERMISSON_ID = #{permissonId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sc.entity.XtPermissionInfoExample" >
+    delete from XT_PERMISSION_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sc.entity.XtPermissionInfo" >
+    insert into XT_PERMISSION_INFO (PERMISSON_ID, PERMISSON_NAME, PERMISSION, 
+      PERMISSION_COLUMNS_ID, REMARKS, LAST_MODIFY_DATE
+      )
+    values (#{permissonId,jdbcType=DECIMAL}, #{permissonName,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{permissionColumnsId,jdbcType=DECIMAL}, #{remarks,jdbcType=VARCHAR}, #{lastModifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.entity.XtPermissionInfo" >
+    insert into XT_PERMISSION_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="permissonId != null" >
+        PERMISSON_ID,
+      </if>
+      <if test="permissonName != null" >
+        PERMISSON_NAME,
+      </if>
+      <if test="permission != null" >
+        PERMISSION,
+      </if>
+      <if test="permissionColumnsId != null" >
+        PERMISSION_COLUMNS_ID,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="permissonId != null" >
+        #{permissonId,jdbcType=DECIMAL},
+      </if>
+      <if test="permissonName != null" >
+        #{permissonName,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionColumnsId != null" >
+        #{permissionColumnsId,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sc.entity.XtPermissionInfoExample" resultType="java.lang.Integer" >
+    select count(*) from XT_PERMISSION_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update XT_PERMISSION_INFO
+    <set >
+      <if test="record.permissonId != null" >
+        PERMISSON_ID = #{record.permissonId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.permissonName != null" >
+        PERMISSON_NAME = #{record.permissonName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permission != null" >
+        PERMISSION = #{record.permission,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permissionColumnsId != null" >
+        PERMISSION_COLUMNS_ID = #{record.permissionColumnsId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remarks != null" >
+        REMARKS = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update XT_PERMISSION_INFO
+    set PERMISSON_ID = #{record.permissonId,jdbcType=DECIMAL},
+      PERMISSON_NAME = #{record.permissonName,jdbcType=VARCHAR},
+      PERMISSION = #{record.permission,jdbcType=VARCHAR},
+      PERMISSION_COLUMNS_ID = #{record.permissionColumnsId,jdbcType=DECIMAL},
+      REMARKS = #{record.remarks,jdbcType=VARCHAR},
+      LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.entity.XtPermissionInfo" >
+    update XT_PERMISSION_INFO
+    <set >
+      <if test="permissonName != null" >
+        PERMISSON_NAME = #{permissonName,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        PERMISSION = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionColumnsId != null" >
+        PERMISSION_COLUMNS_ID = #{permissionColumnsId,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PERMISSON_ID = #{permissonId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.entity.XtPermissionInfo" >
+    update XT_PERMISSION_INFO
+    set PERMISSON_NAME = #{permissonName,jdbcType=VARCHAR},
+      PERMISSION = #{permission,jdbcType=VARCHAR},
+      PERMISSION_COLUMNS_ID = #{permissionColumnsId,jdbcType=DECIMAL},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where PERMISSON_ID = #{permissonId,jdbcType=DECIMAL}
+  </update>
+</mapper>

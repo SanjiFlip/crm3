@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sc.mapper.CgStockPurchaseOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.sc.entity.CgStockPurchaseOrder" >
+    <constructor >
+      <idArg column="PURCHASE_ORDER_ID" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="PURCHASE_SUBJECT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PURCHASE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="SUPPLIER_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="LOAN_AMOUNT" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="INVOICE NUMBER" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="PAYMENT_STATUS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PURCHASE_PROGRESS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DELIVERY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="DELIVERY_PLACE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DELIVERY_MODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OPERATER_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="NOTE_INFORMATION" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMPANY_ID" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PURCHASE_ORDER_ID, PURCHASE_SUBJECT, PURCHASE_DATE, SUPPLIER_ID, LOAN_AMOUNT, "INVOICE NUMBER", 
+    PAYMENT_STATUS, PURCHASE_PROGRESS, DELIVERY_DATE, DELIVERY_PLACE, DELIVERY_MODE, 
+    OPERATER_ID, NOTE_INFORMATION, COMPANY_ID, LAST_MODIFY_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.entity.CgStockPurchaseOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from CG_STOCK_PURCHASE_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from CG_STOCK_PURCHASE_ORDER
+    where PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from CG_STOCK_PURCHASE_ORDER
+    where PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sc.entity.CgStockPurchaseOrderExample" >
+    delete from CG_STOCK_PURCHASE_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sc.entity.CgStockPurchaseOrder" >
+    insert into CG_STOCK_PURCHASE_ORDER (PURCHASE_ORDER_ID, PURCHASE_SUBJECT, 
+      PURCHASE_DATE, SUPPLIER_ID, LOAN_AMOUNT, 
+      "INVOICE NUMBER", PAYMENT_STATUS, PURCHASE_PROGRESS, 
+      DELIVERY_DATE, DELIVERY_PLACE, DELIVERY_MODE, 
+      OPERATER_ID, NOTE_INFORMATION, COMPANY_ID, 
+      LAST_MODIFY_DATE)
+    values (#{purchaseOrderId,jdbcType=DECIMAL}, #{purchaseSubject,jdbcType=VARCHAR}, 
+      #{purchaseDate,jdbcType=TIMESTAMP}, #{supplierId,jdbcType=DECIMAL}, #{loanAmount,jdbcType=DECIMAL}, 
+      #{invoiceNumber,jdbcType=DECIMAL}, #{paymentStatus,jdbcType=VARCHAR}, #{purchaseProgress,jdbcType=VARCHAR}, 
+      #{deliveryDate,jdbcType=TIMESTAMP}, #{deliveryPlace,jdbcType=VARCHAR}, #{deliveryMode,jdbcType=VARCHAR}, 
+      #{operaterId,jdbcType=DECIMAL}, #{noteInformation,jdbcType=VARCHAR}, #{companyId,jdbcType=DECIMAL}, 
+      #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.entity.CgStockPurchaseOrder" >
+    insert into CG_STOCK_PURCHASE_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="purchaseOrderId != null" >
+        PURCHASE_ORDER_ID,
+      </if>
+      <if test="purchaseSubject != null" >
+        PURCHASE_SUBJECT,
+      </if>
+      <if test="purchaseDate != null" >
+        PURCHASE_DATE,
+      </if>
+      <if test="supplierId != null" >
+        SUPPLIER_ID,
+      </if>
+      <if test="loanAmount != null" >
+        LOAN_AMOUNT,
+      </if>
+      <if test="invoiceNumber != null" >
+        "INVOICE NUMBER",
+      </if>
+      <if test="paymentStatus != null" >
+        PAYMENT_STATUS,
+      </if>
+      <if test="purchaseProgress != null" >
+        PURCHASE_PROGRESS,
+      </if>
+      <if test="deliveryDate != null" >
+        DELIVERY_DATE,
+      </if>
+      <if test="deliveryPlace != null" >
+        DELIVERY_PLACE,
+      </if>
+      <if test="deliveryMode != null" >
+        DELIVERY_MODE,
+      </if>
+      <if test="operaterId != null" >
+        OPERATER_ID,
+      </if>
+      <if test="noteInformation != null" >
+        NOTE_INFORMATION,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="purchaseOrderId != null" >
+        #{purchaseOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseSubject != null" >
+        #{purchaseSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null" >
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="loanAmount != null" >
+        #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceNumber != null" >
+        #{invoiceNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentStatus != null" >
+        #{paymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseProgress != null" >
+        #{purchaseProgress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryPlace != null" >
+        #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMode != null" >
+        #{deliveryMode,jdbcType=VARCHAR},
+      </if>
+      <if test="operaterId != null" >
+        #{operaterId,jdbcType=DECIMAL},
+      </if>
+      <if test="noteInformation != null" >
+        #{noteInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sc.entity.CgStockPurchaseOrderExample" resultType="java.lang.Integer" >
+    select count(*) from CG_STOCK_PURCHASE_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CG_STOCK_PURCHASE_ORDER
+    <set >
+      <if test="record.purchaseOrderId != null" >
+        PURCHASE_ORDER_ID = #{record.purchaseOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purchaseSubject != null" >
+        PURCHASE_SUBJECT = #{record.purchaseSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseDate != null" >
+        PURCHASE_DATE = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.supplierId != null" >
+        SUPPLIER_ID = #{record.supplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.loanAmount != null" >
+        LOAN_AMOUNT = #{record.loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceNumber != null" >
+        "INVOICE NUMBER" = #{record.invoiceNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentStatus != null" >
+        PAYMENT_STATUS = #{record.paymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseProgress != null" >
+        PURCHASE_PROGRESS = #{record.purchaseProgress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryDate != null" >
+        DELIVERY_DATE = #{record.deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deliveryPlace != null" >
+        DELIVERY_PLACE = #{record.deliveryPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryMode != null" >
+        DELIVERY_MODE = #{record.deliveryMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operaterId != null" >
+        OPERATER_ID = #{record.operaterId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.noteInformation != null" >
+        NOTE_INFORMATION = #{record.noteInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CG_STOCK_PURCHASE_ORDER
+    set PURCHASE_ORDER_ID = #{record.purchaseOrderId,jdbcType=DECIMAL},
+      PURCHASE_SUBJECT = #{record.purchaseSubject,jdbcType=VARCHAR},
+      PURCHASE_DATE = #{record.purchaseDate,jdbcType=TIMESTAMP},
+      SUPPLIER_ID = #{record.supplierId,jdbcType=DECIMAL},
+      LOAN_AMOUNT = #{record.loanAmount,jdbcType=DECIMAL},
+      "INVOICE NUMBER" = #{record.invoiceNumber,jdbcType=DECIMAL},
+      PAYMENT_STATUS = #{record.paymentStatus,jdbcType=VARCHAR},
+      PURCHASE_PROGRESS = #{record.purchaseProgress,jdbcType=VARCHAR},
+      DELIVERY_DATE = #{record.deliveryDate,jdbcType=TIMESTAMP},
+      DELIVERY_PLACE = #{record.deliveryPlace,jdbcType=VARCHAR},
+      DELIVERY_MODE = #{record.deliveryMode,jdbcType=VARCHAR},
+      OPERATER_ID = #{record.operaterId,jdbcType=DECIMAL},
+      NOTE_INFORMATION = #{record.noteInformation,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.entity.CgStockPurchaseOrder" >
+    update CG_STOCK_PURCHASE_ORDER
+    <set >
+      <if test="purchaseSubject != null" >
+        PURCHASE_SUBJECT = #{purchaseSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null" >
+        PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplierId != null" >
+        SUPPLIER_ID = #{supplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="loanAmount != null" >
+        LOAN_AMOUNT = #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceNumber != null" >
+        "INVOICE NUMBER" = #{invoiceNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentStatus != null" >
+        PAYMENT_STATUS = #{paymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseProgress != null" >
+        PURCHASE_PROGRESS = #{purchaseProgress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        DELIVERY_DATE = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryPlace != null" >
+        DELIVERY_PLACE = #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMode != null" >
+        DELIVERY_MODE = #{deliveryMode,jdbcType=VARCHAR},
+      </if>
+      <if test="operaterId != null" >
+        OPERATER_ID = #{operaterId,jdbcType=DECIMAL},
+      </if>
+      <if test="noteInformation != null" >
+        NOTE_INFORMATION = #{noteInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.entity.CgStockPurchaseOrder" >
+    update CG_STOCK_PURCHASE_ORDER
+    set PURCHASE_SUBJECT = #{purchaseSubject,jdbcType=VARCHAR},
+      PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      SUPPLIER_ID = #{supplierId,jdbcType=DECIMAL},
+      LOAN_AMOUNT = #{loanAmount,jdbcType=DECIMAL},
+      "INVOICE NUMBER" = #{invoiceNumber,jdbcType=DECIMAL},
+      PAYMENT_STATUS = #{paymentStatus,jdbcType=VARCHAR},
+      PURCHASE_PROGRESS = #{purchaseProgress,jdbcType=VARCHAR},
+      DELIVERY_DATE = #{deliveryDate,jdbcType=TIMESTAMP},
+      DELIVERY_PLACE = #{deliveryPlace,jdbcType=VARCHAR},
+      DELIVERY_MODE = #{deliveryMode,jdbcType=VARCHAR},
+      OPERATER_ID = #{operaterId,jdbcType=DECIMAL},
+      NOTE_INFORMATION = #{noteInformation,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=DECIMAL},
+      LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where PURCHASE_ORDER_ID = #{purchaseOrderId,jdbcType=DECIMAL}
+  </update>
+</mapper>

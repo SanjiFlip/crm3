@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sc.mapper.CgStockSupplierInformationMapper" >
+  <resultMap id="BaseResultMap" type="com.sc.entity.CgStockSupplierInformation" >
+    <constructor >
+      <idArg column="SUPPLIER_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="SUPPLIER_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SUPPLIER_ABBREVIATION" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LIAISONS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FIXED_PHONE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MOBILE_PHONE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="CONTACT_FAX" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="CONTACT_ADDRESS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CONTACT_POSTCODE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MAILBOX" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BANK_OF_DEPOSIT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ACCOUNT_NUMBER" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="COMPANY_HOMEPAGE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ISNOT_EFFECTIVE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OPERATER_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="NOTE_INFORMATION" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMPANY_ID" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SUPPLIER_ID, SUPPLIER_NAME, SUPPLIER_ABBREVIATION, LIAISONS, FIXED_PHONE, MOBILE_PHONE, 
+    CONTACT_FAX, CONTACT_ADDRESS, CONTACT_POSTCODE, MAILBOX, BANK_OF_DEPOSIT, ACCOUNT_NUMBER, 
+    COMPANY_HOMEPAGE, ISNOT_EFFECTIVE, OPERATER_ID, NOTE_INFORMATION, COMPANY_ID, LAST_MODIFY_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.entity.CgStockSupplierInformationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from CG_STOCK_SUPPLIER_INFORMATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from CG_STOCK_SUPPLIER_INFORMATION
+    where SUPPLIER_ID = #{supplierId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from CG_STOCK_SUPPLIER_INFORMATION
+    where SUPPLIER_ID = #{supplierId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sc.entity.CgStockSupplierInformationExample" >
+    delete from CG_STOCK_SUPPLIER_INFORMATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sc.entity.CgStockSupplierInformation" >
+    insert into CG_STOCK_SUPPLIER_INFORMATION (SUPPLIER_ID, SUPPLIER_NAME, SUPPLIER_ABBREVIATION, 
+      LIAISONS, FIXED_PHONE, MOBILE_PHONE, 
+      CONTACT_FAX, CONTACT_ADDRESS, CONTACT_POSTCODE, 
+      MAILBOX, BANK_OF_DEPOSIT, ACCOUNT_NUMBER, 
+      COMPANY_HOMEPAGE, ISNOT_EFFECTIVE, OPERATER_ID, 
+      NOTE_INFORMATION, COMPANY_ID, LAST_MODIFY_DATE
+      )
+    values (#{supplierId,jdbcType=DECIMAL}, #{supplierName,jdbcType=VARCHAR}, #{supplierAbbreviation,jdbcType=VARCHAR}, 
+      #{liaisons,jdbcType=VARCHAR}, #{fixedPhone,jdbcType=DECIMAL}, #{mobilePhone,jdbcType=DECIMAL}, 
+      #{contactFax,jdbcType=DECIMAL}, #{contactAddress,jdbcType=VARCHAR}, #{contactPostcode,jdbcType=DECIMAL}, 
+      #{mailbox,jdbcType=VARCHAR}, #{bankOfDeposit,jdbcType=VARCHAR}, #{accountNumber,jdbcType=DECIMAL}, 
+      #{companyHomepage,jdbcType=VARCHAR}, #{isnotEffective,jdbcType=VARCHAR}, #{operaterId,jdbcType=DECIMAL}, 
+      #{noteInformation,jdbcType=VARCHAR}, #{companyId,jdbcType=DECIMAL}, #{lastModifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.entity.CgStockSupplierInformation" >
+    insert into CG_STOCK_SUPPLIER_INFORMATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplierId != null" >
+        SUPPLIER_ID,
+      </if>
+      <if test="supplierName != null" >
+        SUPPLIER_NAME,
+      </if>
+      <if test="supplierAbbreviation != null" >
+        SUPPLIER_ABBREVIATION,
+      </if>
+      <if test="liaisons != null" >
+        LIAISONS,
+      </if>
+      <if test="fixedPhone != null" >
+        FIXED_PHONE,
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE,
+      </if>
+      <if test="contactFax != null" >
+        CONTACT_FAX,
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS,
+      </if>
+      <if test="contactPostcode != null" >
+        CONTACT_POSTCODE,
+      </if>
+      <if test="mailbox != null" >
+        MAILBOX,
+      </if>
+      <if test="bankOfDeposit != null" >
+        BANK_OF_DEPOSIT,
+      </if>
+      <if test="accountNumber != null" >
+        ACCOUNT_NUMBER,
+      </if>
+      <if test="companyHomepage != null" >
+        COMPANY_HOMEPAGE,
+      </if>
+      <if test="isnotEffective != null" >
+        ISNOT_EFFECTIVE,
+      </if>
+      <if test="operaterId != null" >
+        OPERATER_ID,
+      </if>
+      <if test="noteInformation != null" >
+        NOTE_INFORMATION,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierName != null" >
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAbbreviation != null" >
+        #{supplierAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisons != null" >
+        #{liaisons,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPhone != null" >
+        #{fixedPhone,jdbcType=DECIMAL},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=DECIMAL},
+      </if>
+      <if test="contactFax != null" >
+        #{contactFax,jdbcType=DECIMAL},
+      </if>
+      <if test="contactAddress != null" >
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPostcode != null" >
+        #{contactPostcode,jdbcType=DECIMAL},
+      </if>
+      <if test="mailbox != null" >
+        #{mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOfDeposit != null" >
+        #{bankOfDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="companyHomepage != null" >
+        #{companyHomepage,jdbcType=VARCHAR},
+      </if>
+      <if test="isnotEffective != null" >
+        #{isnotEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="operaterId != null" >
+        #{operaterId,jdbcType=DECIMAL},
+      </if>
+      <if test="noteInformation != null" >
+        #{noteInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sc.entity.CgStockSupplierInformationExample" resultType="java.lang.Integer" >
+    select count(*) from CG_STOCK_SUPPLIER_INFORMATION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update CG_STOCK_SUPPLIER_INFORMATION
+    <set >
+      <if test="record.supplierId != null" >
+        SUPPLIER_ID = #{record.supplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.supplierName != null" >
+        SUPPLIER_NAME = #{record.supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierAbbreviation != null" >
+        SUPPLIER_ABBREVIATION = #{record.supplierAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liaisons != null" >
+        LIAISONS = #{record.liaisons,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fixedPhone != null" >
+        FIXED_PHONE = #{record.fixedPhone,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mobilePhone != null" >
+        MOBILE_PHONE = #{record.mobilePhone,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contactFax != null" >
+        CONTACT_FAX = #{record.contactFax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contactAddress != null" >
+        CONTACT_ADDRESS = #{record.contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPostcode != null" >
+        CONTACT_POSTCODE = #{record.contactPostcode,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mailbox != null" >
+        MAILBOX = #{record.mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankOfDeposit != null" >
+        BANK_OF_DEPOSIT = #{record.bankOfDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNumber != null" >
+        ACCOUNT_NUMBER = #{record.accountNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.companyHomepage != null" >
+        COMPANY_HOMEPAGE = #{record.companyHomepage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isnotEffective != null" >
+        ISNOT_EFFECTIVE = #{record.isnotEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operaterId != null" >
+        OPERATER_ID = #{record.operaterId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.noteInformation != null" >
+        NOTE_INFORMATION = #{record.noteInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update CG_STOCK_SUPPLIER_INFORMATION
+    set SUPPLIER_ID = #{record.supplierId,jdbcType=DECIMAL},
+      SUPPLIER_NAME = #{record.supplierName,jdbcType=VARCHAR},
+      SUPPLIER_ABBREVIATION = #{record.supplierAbbreviation,jdbcType=VARCHAR},
+      LIAISONS = #{record.liaisons,jdbcType=VARCHAR},
+      FIXED_PHONE = #{record.fixedPhone,jdbcType=DECIMAL},
+      MOBILE_PHONE = #{record.mobilePhone,jdbcType=DECIMAL},
+      CONTACT_FAX = #{record.contactFax,jdbcType=DECIMAL},
+      CONTACT_ADDRESS = #{record.contactAddress,jdbcType=VARCHAR},
+      CONTACT_POSTCODE = #{record.contactPostcode,jdbcType=DECIMAL},
+      MAILBOX = #{record.mailbox,jdbcType=VARCHAR},
+      BANK_OF_DEPOSIT = #{record.bankOfDeposit,jdbcType=VARCHAR},
+      ACCOUNT_NUMBER = #{record.accountNumber,jdbcType=DECIMAL},
+      COMPANY_HOMEPAGE = #{record.companyHomepage,jdbcType=VARCHAR},
+      ISNOT_EFFECTIVE = #{record.isnotEffective,jdbcType=VARCHAR},
+      OPERATER_ID = #{record.operaterId,jdbcType=DECIMAL},
+      NOTE_INFORMATION = #{record.noteInformation,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.entity.CgStockSupplierInformation" >
+    update CG_STOCK_SUPPLIER_INFORMATION
+    <set >
+      <if test="supplierName != null" >
+        SUPPLIER_NAME = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAbbreviation != null" >
+        SUPPLIER_ABBREVIATION = #{supplierAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisons != null" >
+        LIAISONS = #{liaisons,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedPhone != null" >
+        FIXED_PHONE = #{fixedPhone,jdbcType=DECIMAL},
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE = #{mobilePhone,jdbcType=DECIMAL},
+      </if>
+      <if test="contactFax != null" >
+        CONTACT_FAX = #{contactFax,jdbcType=DECIMAL},
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPostcode != null" >
+        CONTACT_POSTCODE = #{contactPostcode,jdbcType=DECIMAL},
+      </if>
+      <if test="mailbox != null" >
+        MAILBOX = #{mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOfDeposit != null" >
+        BANK_OF_DEPOSIT = #{bankOfDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        ACCOUNT_NUMBER = #{accountNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="companyHomepage != null" >
+        COMPANY_HOMEPAGE = #{companyHomepage,jdbcType=VARCHAR},
+      </if>
+      <if test="isnotEffective != null" >
+        ISNOT_EFFECTIVE = #{isnotEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="operaterId != null" >
+        OPERATER_ID = #{operaterId,jdbcType=DECIMAL},
+      </if>
+      <if test="noteInformation != null" >
+        NOTE_INFORMATION = #{noteInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SUPPLIER_ID = #{supplierId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.entity.CgStockSupplierInformation" >
+    update CG_STOCK_SUPPLIER_INFORMATION
+    set SUPPLIER_NAME = #{supplierName,jdbcType=VARCHAR},
+      SUPPLIER_ABBREVIATION = #{supplierAbbreviation,jdbcType=VARCHAR},
+      LIAISONS = #{liaisons,jdbcType=VARCHAR},
+      FIXED_PHONE = #{fixedPhone,jdbcType=DECIMAL},
+      MOBILE_PHONE = #{mobilePhone,jdbcType=DECIMAL},
+      CONTACT_FAX = #{contactFax,jdbcType=DECIMAL},
+      CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      CONTACT_POSTCODE = #{contactPostcode,jdbcType=DECIMAL},
+      MAILBOX = #{mailbox,jdbcType=VARCHAR},
+      BANK_OF_DEPOSIT = #{bankOfDeposit,jdbcType=VARCHAR},
+      ACCOUNT_NUMBER = #{accountNumber,jdbcType=DECIMAL},
+      COMPANY_HOMEPAGE = #{companyHomepage,jdbcType=VARCHAR},
+      ISNOT_EFFECTIVE = #{isnotEffective,jdbcType=VARCHAR},
+      OPERATER_ID = #{operaterId,jdbcType=DECIMAL},
+      NOTE_INFORMATION = #{noteInformation,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=DECIMAL},
+      LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where SUPPLIER_ID = #{supplierId,jdbcType=DECIMAL}
+  </update>
+</mapper>

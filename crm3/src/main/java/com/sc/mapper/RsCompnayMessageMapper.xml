@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sc.mapper.RsCompnayMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.sc.entity.RsCompnayMessage" >
+    <constructor >
+      <idArg column="COMPNAY_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="COMPNAY_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMPNAY_CODE" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="MAILBOX" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CONTACTS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMPNAY_ADDRESS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="FIXED_TELEPHONE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="MOBILE_PHONE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="FAX" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BANK_OF_DEPOSIT" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="BANK_ACCOUNT" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="ENABLED" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="REMARKS" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    COMPNAY_ID, COMPNAY_NAME, COMPNAY_CODE, MAILBOX, CONTACTS, COMPNAY_ADDRESS, FIXED_TELEPHONE, 
+    MOBILE_PHONE, FAX, BANK_OF_DEPOSIT, BANK_ACCOUNT, ENABLED, REMARKS, LAST_MODIFY_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.entity.RsCompnayMessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from RS_COMPNAY_MESSAGE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from RS_COMPNAY_MESSAGE
+    where COMPNAY_ID = #{compnayId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from RS_COMPNAY_MESSAGE
+    where COMPNAY_ID = #{compnayId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sc.entity.RsCompnayMessageExample" >
+    delete from RS_COMPNAY_MESSAGE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sc.entity.RsCompnayMessage" >
+    insert into RS_COMPNAY_MESSAGE (COMPNAY_ID, COMPNAY_NAME, COMPNAY_CODE, 
+      MAILBOX, CONTACTS, COMPNAY_ADDRESS, 
+      FIXED_TELEPHONE, MOBILE_PHONE, FAX, 
+      BANK_OF_DEPOSIT, BANK_ACCOUNT, ENABLED, 
+      REMARKS, LAST_MODIFY_DATE)
+    values (#{compnayId,jdbcType=DECIMAL}, #{compnayName,jdbcType=VARCHAR}, #{compnayCode,jdbcType=DECIMAL}, 
+      #{mailbox,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{compnayAddress,jdbcType=VARCHAR}, 
+      #{fixedTelephone,jdbcType=DECIMAL}, #{mobilePhone,jdbcType=DECIMAL}, #{fax,jdbcType=VARCHAR}, 
+      #{bankOfDeposit,jdbcType=DECIMAL}, #{bankAccount,jdbcType=DECIMAL}, #{enabled,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.entity.RsCompnayMessage" >
+    insert into RS_COMPNAY_MESSAGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="compnayId != null" >
+        COMPNAY_ID,
+      </if>
+      <if test="compnayName != null" >
+        COMPNAY_NAME,
+      </if>
+      <if test="compnayCode != null" >
+        COMPNAY_CODE,
+      </if>
+      <if test="mailbox != null" >
+        MAILBOX,
+      </if>
+      <if test="contacts != null" >
+        CONTACTS,
+      </if>
+      <if test="compnayAddress != null" >
+        COMPNAY_ADDRESS,
+      </if>
+      <if test="fixedTelephone != null" >
+        FIXED_TELEPHONE,
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="bankOfDeposit != null" >
+        BANK_OF_DEPOSIT,
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT,
+      </if>
+      <if test="enabled != null" >
+        ENABLED,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="compnayId != null" >
+        #{compnayId,jdbcType=DECIMAL},
+      </if>
+      <if test="compnayName != null" >
+        #{compnayName,jdbcType=VARCHAR},
+      </if>
+      <if test="compnayCode != null" >
+        #{compnayCode,jdbcType=DECIMAL},
+      </if>
+      <if test="mailbox != null" >
+        #{mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="compnayAddress != null" >
+        #{compnayAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedTelephone != null" >
+        #{fixedTelephone,jdbcType=DECIMAL},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=DECIMAL},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOfDeposit != null" >
+        #{bankOfDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sc.entity.RsCompnayMessageExample" resultType="java.lang.Integer" >
+    select count(*) from RS_COMPNAY_MESSAGE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update RS_COMPNAY_MESSAGE
+    <set >
+      <if test="record.compnayId != null" >
+        COMPNAY_ID = #{record.compnayId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.compnayName != null" >
+        COMPNAY_NAME = #{record.compnayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compnayCode != null" >
+        COMPNAY_CODE = #{record.compnayCode,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mailbox != null" >
+        MAILBOX = #{record.mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contacts != null" >
+        CONTACTS = #{record.contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compnayAddress != null" >
+        COMPNAY_ADDRESS = #{record.compnayAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fixedTelephone != null" >
+        FIXED_TELEPHONE = #{record.fixedTelephone,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mobilePhone != null" >
+        MOBILE_PHONE = #{record.mobilePhone,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fax != null" >
+        FAX = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankOfDeposit != null" >
+        BANK_OF_DEPOSIT = #{record.bankOfDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bankAccount != null" >
+        BANK_ACCOUNT = #{record.bankAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.enabled != null" >
+        ENABLED = #{record.enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        REMARKS = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update RS_COMPNAY_MESSAGE
+    set COMPNAY_ID = #{record.compnayId,jdbcType=DECIMAL},
+      COMPNAY_NAME = #{record.compnayName,jdbcType=VARCHAR},
+      COMPNAY_CODE = #{record.compnayCode,jdbcType=DECIMAL},
+      MAILBOX = #{record.mailbox,jdbcType=VARCHAR},
+      CONTACTS = #{record.contacts,jdbcType=VARCHAR},
+      COMPNAY_ADDRESS = #{record.compnayAddress,jdbcType=VARCHAR},
+      FIXED_TELEPHONE = #{record.fixedTelephone,jdbcType=DECIMAL},
+      MOBILE_PHONE = #{record.mobilePhone,jdbcType=DECIMAL},
+      FAX = #{record.fax,jdbcType=VARCHAR},
+      BANK_OF_DEPOSIT = #{record.bankOfDeposit,jdbcType=DECIMAL},
+      BANK_ACCOUNT = #{record.bankAccount,jdbcType=DECIMAL},
+      ENABLED = #{record.enabled,jdbcType=VARCHAR},
+      REMARKS = #{record.remarks,jdbcType=VARCHAR},
+      LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.entity.RsCompnayMessage" >
+    update RS_COMPNAY_MESSAGE
+    <set >
+      <if test="compnayName != null" >
+        COMPNAY_NAME = #{compnayName,jdbcType=VARCHAR},
+      </if>
+      <if test="compnayCode != null" >
+        COMPNAY_CODE = #{compnayCode,jdbcType=DECIMAL},
+      </if>
+      <if test="mailbox != null" >
+        MAILBOX = #{mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        CONTACTS = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="compnayAddress != null" >
+        COMPNAY_ADDRESS = #{compnayAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedTelephone != null" >
+        FIXED_TELEPHONE = #{fixedTelephone,jdbcType=DECIMAL},
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE = #{mobilePhone,jdbcType=DECIMAL},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOfDeposit != null" >
+        BANK_OF_DEPOSIT = #{bankOfDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="bankAccount != null" >
+        BANK_ACCOUNT = #{bankAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="enabled != null" >
+        ENABLED = #{enabled,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where COMPNAY_ID = #{compnayId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.entity.RsCompnayMessage" >
+    update RS_COMPNAY_MESSAGE
+    set COMPNAY_NAME = #{compnayName,jdbcType=VARCHAR},
+      COMPNAY_CODE = #{compnayCode,jdbcType=DECIMAL},
+      MAILBOX = #{mailbox,jdbcType=VARCHAR},
+      CONTACTS = #{contacts,jdbcType=VARCHAR},
+      COMPNAY_ADDRESS = #{compnayAddress,jdbcType=VARCHAR},
+      FIXED_TELEPHONE = #{fixedTelephone,jdbcType=DECIMAL},
+      MOBILE_PHONE = #{mobilePhone,jdbcType=DECIMAL},
+      FAX = #{fax,jdbcType=VARCHAR},
+      BANK_OF_DEPOSIT = #{bankOfDeposit,jdbcType=DECIMAL},
+      BANK_ACCOUNT = #{bankAccount,jdbcType=DECIMAL},
+      ENABLED = #{enabled,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where COMPNAY_ID = #{compnayId,jdbcType=DECIMAL}
+  </update>
+</mapper>

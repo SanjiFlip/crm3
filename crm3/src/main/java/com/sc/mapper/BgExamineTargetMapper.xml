@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sc.mapper.BgExamineTargetMapper" >
+  <resultMap id="BaseResultMap" type="com.sc.entity.BgExamineTarget" >
+    <constructor >
+      <idArg column="TARGET_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="EXAMINE_TARGET" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="REMARKS_EXPLAIN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMPANY_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TARGET_ID, EXAMINE_TARGET, REMARKS_EXPLAIN, COMPANY_ID, LAST_MODIFY_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.entity.BgExamineTargetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from BG_EXAMINE_TARGET
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BG_EXAMINE_TARGET
+    where TARGET_ID = #{targetId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from BG_EXAMINE_TARGET
+    where TARGET_ID = #{targetId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sc.entity.BgExamineTargetExample" >
+    delete from BG_EXAMINE_TARGET
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sc.entity.BgExamineTarget" >
+    insert into BG_EXAMINE_TARGET (TARGET_ID, EXAMINE_TARGET, REMARKS_EXPLAIN, 
+      COMPANY_ID, LAST_MODIFY_DATE)
+    values (#{targetId,jdbcType=DECIMAL}, #{examineTarget,jdbcType=VARCHAR}, #{remarksExplain,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=DECIMAL}, #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.entity.BgExamineTarget" >
+    insert into BG_EXAMINE_TARGET
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="targetId != null" >
+        TARGET_ID,
+      </if>
+      <if test="examineTarget != null" >
+        EXAMINE_TARGET,
+      </if>
+      <if test="remarksExplain != null" >
+        REMARKS_EXPLAIN,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="targetId != null" >
+        #{targetId,jdbcType=DECIMAL},
+      </if>
+      <if test="examineTarget != null" >
+        #{examineTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksExplain != null" >
+        #{remarksExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sc.entity.BgExamineTargetExample" resultType="java.lang.Integer" >
+    select count(*) from BG_EXAMINE_TARGET
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BG_EXAMINE_TARGET
+    <set >
+      <if test="record.targetId != null" >
+        TARGET_ID = #{record.targetId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.examineTarget != null" >
+        EXAMINE_TARGET = #{record.examineTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarksExplain != null" >
+        REMARKS_EXPLAIN = #{record.remarksExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BG_EXAMINE_TARGET
+    set TARGET_ID = #{record.targetId,jdbcType=DECIMAL},
+      EXAMINE_TARGET = #{record.examineTarget,jdbcType=VARCHAR},
+      REMARKS_EXPLAIN = #{record.remarksExplain,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.entity.BgExamineTarget" >
+    update BG_EXAMINE_TARGET
+    <set >
+      <if test="examineTarget != null" >
+        EXAMINE_TARGET = #{examineTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksExplain != null" >
+        REMARKS_EXPLAIN = #{remarksExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where TARGET_ID = #{targetId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.entity.BgExamineTarget" >
+    update BG_EXAMINE_TARGET
+    set EXAMINE_TARGET = #{examineTarget,jdbcType=VARCHAR},
+      REMARKS_EXPLAIN = #{remarksExplain,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=DECIMAL},
+      LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
+    where TARGET_ID = #{targetId,jdbcType=DECIMAL}
+  </update>
+</mapper>
