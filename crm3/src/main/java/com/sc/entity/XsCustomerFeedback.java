@@ -4,36 +4,36 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÏúÊÛ_¿Í»§·´À¡±í
+//é”€å”®_å®¢æˆ·åé¦ˆè¡¨
 public class XsCustomerFeedback implements Serializable {
-    private Long feedbackRecordId;//·´À¡¼ÇÂ¼±àºÅ
+    private Long feedbackRecordId;//åé¦ˆè®°å½•ç¼–å·
 
-    private String recordPriority;//¼ÇÂ¼ÓÅÏÈ¼¶
+    private String recordPriority;//è®°å½•ä¼˜å…ˆçº§
 
-    private Long customerId;//¿Í»§±àºÅ
+    private Long customerId;//å®¢æˆ·ç¼–å·
 
-    private String state;//×´Ì¬
+    private String state;//çŠ¶æ€Ì¬
 
-    private String feedbackType;//·´À¡ÀàĞÍ
+    private String feedbackType;//åé¦ˆç±»å‹
  
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date feedbackDate;//·´À¡Ê±¼ä
+    private Date feedbackDate;//åé¦ˆæ—¶é—´
 
-    private String feedbackReason;//·´À¡Ô­Òò
+    private String feedbackReason;//åé¦ˆåŸå› 
 
-    private String head;//¸ºÔğÈË
+    private String head;//è´Ÿè´£äºº
 
-    private String feedbackResource;//·´À¡À´Ô´
+    private String feedbackResource;//åé¦ˆæ¥æº
 
-    private String feedbackTheme;//·´À¡Ö÷Ìâ
+    private String feedbackTheme;//åé¦ˆä¸»é¢˜
 
-    private String feedbackDescribe;//·´À¡ÃèÊö
+    private String feedbackDescribe;//åé¦ˆæè¿°
 
-    private String analysis;//·ÖÎö
+    private String analysis;//åˆ†æ
 
-    private Long companyId;//¹«Ë¾±àºÅ
+    private Long companyId;//å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

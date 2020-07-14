@@ -16,22 +16,22 @@ import com.sc.entity.XtUserAccount;
 
 
 
-@Controller   //°Ñ¸ÃÀà×¢²á³Ébean¶ÔÏó£¬²¢ÇÒ×÷Îª¿ØÖÆÆ÷×é¼ş
-@RequestMapping("/loginctrl")  //¸ø¸ÃÀàÅäÖÃÒ»¸öÇëÇóÓ³ÉäµÄurlµØÖ·
+@Controller   //æŠŠè¯¥ç±»æ³¨å†Œæˆbeanå¯¹è±¡ï¼Œå¹¶ä¸”ä½œä¸ºæ§åˆ¶å™¨ç»„ä»¶
+@RequestMapping("/loginctrl")  //ç»™è¯¥ç±»é…ç½®ä¸€ä¸ªè¯·æ±‚æ˜ å°„çš„urlåœ°å€Ö·
 public class LoginController {
 	
 	 
-	//µÇÂ½Ê§°ÜµÄ·½·¨
+	//ç™»é™†å¤±è´¥çš„æ–¹æ³•
 	@RequestMapping("/login.do")
 	public ModelAndView login(ModelAndView mav,HttpServletRequest req) {
-		System.out.println("ÓÃ»§ÈÏÖ¤Ê§°Ü");
-		//Í¨¹ıÈÏÖ¤Ê§°ÜµÄÊôĞÔÃû³Æ»ñÈ¡¶ÔÓ¦µÄÖµ
+		System.out.println("ç”¨æˆ·è®¤è¯å¤±è´¥");
+		//é€šè¿‡è®¤è¯å¤±è´¥çš„å±æ€§åç§°è·å–å¯¹åº”çš„å€¼Öµ
 		String msg = (String) req.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-		System.out.println("ÈÏÖ¤Ê§°ÜµÄÏûÏ¢£º"+msg);
+		System.out.println("è®¤è¯å¤±è´¥çš„æ¶ˆæ¯"+msg);
 		String fail = "";
 		if (msg!=null) {
 			if (msg.equals(UnknownAccountException.class.getName())) {
-				fail = "unknown";//ÕË»§²»´æÔÚ
+				fail = "unknown";//è´¦æˆ·ä¸å­˜åœ¨
 			}else if (msg.equals(IncorrectCredentialsException.class.getName())) {
 				fail = "error";
 			}else if (msg.equals("randomCodeError")) {
@@ -46,7 +46,7 @@ public class LoginController {
 	
 	@RequestMapping("/main.do")
 	public ModelAndView main(ModelAndView mav,HttpSession session) {
-		System.out.println("ÓÃ»§ÈÏÖ¤³É¹¦");
+		System.out.println("ç”¨æˆ·è®¤è¯æˆåŠŸ");
 		
 		Subject subject = SecurityUtils.getSubject();
 		XtUserAccount xtUserAccount = (XtUserAccount) subject.getPrincipal();

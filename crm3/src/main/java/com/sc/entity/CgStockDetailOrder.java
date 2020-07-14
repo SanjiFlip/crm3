@@ -6,28 +6,28 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//½ø»õ_²É¹ºµ¥ÏêÇé±í
+//è¿›è´§_é‡‡è´­å•è¯¦æƒ…è¡¨
 public class CgStockDetailOrder implements Serializable {
-    private BigDecimal purchaseOrderDetailId; //²É¹ºÏêÇé±àºÅ
+    private BigDecimal purchaseOrderDetailId; //é‡‡è´­è¯¦æƒ…ç¼–å·
 
-    private BigDecimal purchaseOrderId;//²É¹ºµ¥±àºÅ
+    private BigDecimal purchaseOrderId;//é‡‡è´­å•ç¼–å·
 
-    private BigDecimal goodsId;//²úÆ·±àºÅ
+    private BigDecimal goodsId;//äº§å“ç¼–å·
 
-    private Long goodsNum;//²úÆ·ÊıÁ¿
+    private Long goodsNum;//äº§å“æ•°é‡
 
-    private BigDecimal goodsPrice;//²úÆ·¼Û¸ñ
+    private BigDecimal goodsPrice;//äº§å“ä»·æ ¼
 
-    private String isnotInStorage;//ÊÇ·ñÈë¿â
+    private String isnotInStorage;//æ˜¯å¦å…¥åº“
 
-    private Long operaterId;//²Ù×÷ÈËÔ±
+    private Long operaterId;//æ“ä½œäººå‘˜
 
-    private String noteInformation;//±¸×¢ĞÅÏ¢
+    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
 
-    private BigDecimal companyId;//¹«Ë¾±àºÅ
+    private BigDecimal companyId;//å…¬å¸ç¼–å·
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

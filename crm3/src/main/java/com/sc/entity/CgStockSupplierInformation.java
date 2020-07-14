@@ -6,44 +6,44 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//½ø»õ_¹©Ó¦ÉÌĞÅÏ¢±í
+//è¿›è´§_ä¾›åº”å•†ä¿¡æ¯è¡¨
 public class CgStockSupplierInformation implements Serializable {
-    private Long supplierId;//¹©Ó¦ÉÌ±àºÅ
+    private Long supplierId;//ä¾›åº”å•†ç¼–å·
 
-    private String supplierName;//¹©Ó¦ÉÌÃû³Æ
+    private String supplierName;//ä¾›åº”å•†åç§°
 
-    private String supplierAbbreviation;//¹©Ó¦ÉÌ¼ò³Æ
+    private String supplierAbbreviation;//ä¾›åº”å•†ç®€ç§°
 
-    private String liaisons;//ÁªÏµÈË
+    private String liaisons;//è”ç³»äºº
 
-    private BigDecimal fixedPhone;//¹Ì¶¨µç»°
+    private BigDecimal fixedPhone;//å›ºå®šç”µè¯
 
-    private BigDecimal mobilePhone;//ÒÆ¶¯µç»°
+    private BigDecimal mobilePhone;//ç§»åŠ¨ç”µè¯
 
-    private BigDecimal contactFax;//ÁªÏµ´«Õæ
+    private BigDecimal contactFax;//è”ç³»ä¼ çœŸ
 
-    private String contactAddress;//ÁªÏµµØÖ·
+    private String contactAddress;//è”ç³»åœ°å€Ö·
 
-    private BigDecimal contactPostcode;//ÁªÏµÓÊ±à
+    private BigDecimal contactPostcode;//è”ç³»é‚®ç¼–
 
-    private String mailbox;//ÓÊÏä
+    private String mailbox;//é‚®ç®±
 
-    private String bankOfDeposit;//¿ª»§ÒøĞĞ
+    private String bankOfDeposit;//å¼€æˆ·é“¶è¡Œ
 
-    private BigDecimal accountNumber;//ÒøĞĞÕËºÅ
+    private BigDecimal accountNumber;//é“¶è¡Œè´¦å·
 
-    private String companyHomepage;//¹«Ë¾Ö÷Ò³
+    private String companyHomepage;//å…¬å¸ä¸»é¡µ
 
-    private String isnotEffective;//ÊÇ·ñÓĞĞ§
+    private String isnotEffective;//æ˜¯å¦æœ‰æ•ˆ
 
-    private Long operaterId;//²Ù×÷ÈËÔ±
+    private Long operaterId;//æ“ä½œäººå‘˜
 
-    private String noteInformation;//±¸×¢ĞÅÏ¢
+    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
 
-    private BigDecimal companyId;//¹«Ë¾±àºÅ
+    private BigDecimal companyId;//å…¬å¸ç¼–å·
      
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

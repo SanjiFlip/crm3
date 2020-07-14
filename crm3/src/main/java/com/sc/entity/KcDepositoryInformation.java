@@ -5,18 +5,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//¿â´æ_²Ö¿âĞÅÏ¢±í
+//åº“å­˜_ä»“åº“ä¿¡æ¯è¡¨
 public class KcDepositoryInformation implements Serializable {
-    private Long depositoryId;//²Ö¿â±àºÅ
+    private Long depositoryId;//ä»“åº“ç¼–å·
 
-    private String depositoryName;//²Ö¿âÃû³Æ
+    private String depositoryName;//ä»“åº“åç§°
 
-    private String noteInformation;//±¸×¢ĞÅÏ¢
+    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
 
-    private BigDecimal companyId;//¹«Ë¾±àºÅ
+    private BigDecimal companyId;//å…¬å¸ç¼–å·
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

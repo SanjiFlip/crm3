@@ -4,25 +4,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//°ì¹«¡ª¡ª¸öÈËÈÕ³Ì±í
+//åŠå…¬_ä¸ªäººæ—¥ç¨‹è¡¨
 public class BgPersonalSchedule implements Serializable {
-    private Long schedulePlanId; //ÈÕ³Ì°²ÅÅ±àºÅ
+    private Long schedulePlanId; //æ—¥ç¨‹å®‰æ’ç¼–å·
 
-    private String planCategory; //°²ÅÅÀà±ğ
+    private String planCategory; //å®‰æ’ç±»åˆ«
 
-    private String planTheme; //°²ÅÅÖ÷Ìâ
+    private String planTheme; //å®‰æ’ä¸»é¢˜
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date beginDate; //¿ªÊ¼ÈÕÆÚ
+    private Date beginDate; //å¼€å§‹æ—¥æœŸ
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date beginTime; //¿ªÊ¼Ê±¼ä
+    private Date beginTime; //å¼€å§‹æ—¶é—´
 
-    private Long writePersonnelId; //ÌîĞ´ÈËÔ±±àºÅ
+    private Long writePersonnelId; //å¡«å†™äººå‘˜ç¼–å·
 
-    private String planDescribe; //°²ÅÅÃèÊö
+    private String planDescribe; //å®‰æ’æè¿°
 
-    private Long companyId; //¹«Ë¾±àºÅ
+    private Long companyId; //å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate; //æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

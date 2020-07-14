@@ -19,7 +19,7 @@ public class CustomRealmMD5 extends AuthorizingRealm {
 	XtUserAccountService xtUserAccountService;
 	
 	
-	//ÓÃ»§ÊÚÈ¨
+	//ç”¨æˆ·æˆæƒ
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
 		
@@ -28,23 +28,23 @@ public class CustomRealmMD5 extends AuthorizingRealm {
 	}
 	
 	
-	//ÓÃ»§ÈÏÖ¤
+	//ç”¨æˆ·è®¤è¯Ö¤
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		
 		String username = (String) token.getPrincipal();
-		System.out.println("µ±Ç°±»ÈÏÖ¤µÄÓÃ»§ÊÇ:"+username);
+		System.out.println("å½“å‰è¢«è®¤è¯çš„ç”¨æˆ·æ˜¯:"+username);
 		
 		
-		//1.ĞèÒª´ÓÊı¾İ¿â²éÑ¯ÊÇ·ñÓĞ¸ÃÓÃ»§
+		//1.éœ€è¦ä»æ•°æ®åº“æŸ¥è¯¢æ˜¯å¦æœ‰è¯¥ç”¨æˆ·
 		XtUserAccount xtUserAccount = xtUserAccountService.login(username);
 		if(xtUserAccount == null) {
-			System.out.println("²»´æÔÚ´ËÓÃ»§");
+			System.out.println("ä¸å­˜åœ¨æ­¤ç”¨æˆ·");
 		}
-		//2.¸ÃÓÃ»§µÄÃÜÂë
+		//2.è¯¥ç”¨æˆ·çš„å¯†ç 
 		String password = xtUserAccount.getUserPassword();
 		String salt = "qwerty";
-		//µÚÒ»¸ö²ÎÊı¿ÉÒÔÊÇÈÎÒâÀàĞÍobject
+		//ç¬¬ä¸€ä¸ªå‚æ•°å¯ä»¥æ˜¯ä»»æ„ç±»å‹object
 		SimpleAuthenticationInfo info =new SimpleAuthenticationInfo(xtUserAccount, password,ByteSource.Util.bytes(salt), super.getName());
 		
 		return info;

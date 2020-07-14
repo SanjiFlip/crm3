@@ -5,46 +5,84 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÈËÊÂ¡ª¡ªÓÃ»§ĞÅÏ¢±í
+//äººäº‹â€”â€”ç”¨æˆ·ä¿¡æ¯è¡¨
 public class RsUserMessage implements Serializable {
-    private Long staffId; //Ô±¹¤±àºÅ
+    private Long staffId; //å‘˜å·¥ç¼–å·
 
-    private String staffName; //Ô±¹¤ĞÕÃû
+    private String staffName; //å‘˜å·¥å§“å
 
-    private String staffSex; //Ô±¹¤ĞÔ±ğ
+    private String staffSex; //å‘˜å·¥æ€§åˆ«
 
-    private String staffPhoto; //Ô±¹¤ÕÕÆ¬
+    private String staffPhoto; //å‘˜å·¥ç…§ç‰‡
 
-    private BigDecimal idCard; //Éí·İÖ¤ºÅ
+    private BigDecimal idCard; //èº«ä»½è¯å·
 
-    private String hometownAddress; //¼ÒÏçµØÖ·
+    private String hometownAddress; //å®¶ä¹¡åœ°å€Ö·
 
-    private String nowAddress; //ÏÖÔÚµØÖ·
+    private String nowAddress; //ç°åœ¨åœ°å€Úµï¿½Ö·
 
-    private String staffEducationalBackground; //Ô±¹¤Ñ§Àú
+    private String staffEducationalBackground; //å‘˜å·¥å­¦å†
 
-    private String politicCountenance;//ÕşÖÎÃæÃ²
+    private String politicCountenance;//æ”¿æ²»é¢è²Œ
 
-    private String graduateSchool; //±ÏÒµÑ§Ğ£
+    private String graduateSchool; //æ¯•ä¸šå­¦æ ¡
 
-    private String onlineContactInfromation; //ÍøÉÏÁªÏµ·½Ê½
+    private String onlineContactInfromation; //ç½‘ä¸Šè”ç³»æ–¹å¼
 
-    private String onlineContactDetails; //ÍøÉÏÁªÏµÏêÇé
+    private String onlineContactDetails; //ç½‘ä¸Šè”ç³»è¯¦æƒ…
 
-    private String examineState; //ÉóºË×´Ì¬
+    private String examineState; //å®¡æ ¸çŠ¶æ€×´Ì¬
 
-    private Long postId; //Ö°Îñ±àºÅ
+    private Long postId; //èŒåŠ¡ç¼–å·
 
-    private String staffState; //Ô±¹¤×´Ì¬
+    private String staffState; //å‘˜å·¥çŠ¶æ€×´Ì¬
 
-    private String remarks; //±¸×¢
+    private String remarks; //å¤‡æ³¨×¢
 
-    private Long compnayId; //¹«Ë¾±àºÅ
+    
+    private Long compnayId; //å…¬å¸ç¼–å·
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate; //æœ€åä¿®æ”¹æ—¶é—´
+    
+  //æ‰©å±•å±æ€§ ç”¨äºæ—¥æœŸå’Œæ¨¡ç³ŠæŸ¥è¯¢
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin; 
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax; 
+    
+  //æ‰©å±•å±æ€§ ç”¨äºæ‰¹é‡åˆ é™¤
+  	private Long[] ids;	
+    
+    
+    
 
-    private static final long serialVersionUID = 1L;
+    public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+
+	public Long[] getIds() {
+		return ids;
+	}
+
+	public void setIds(Long[] ids) {
+		this.ids = ids;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public RsUserMessage(Long staffId, String staffName, String staffSex, String staffPhoto, BigDecimal idCard, String hometownAddress, String nowAddress, String staffEducationalBackground, String politicCountenance, String graduateSchool, String onlineContactInfromation, String onlineContactDetails, String examineState, Long postId, String staffState, String remarks, Long compnayId, Date lastModifyDate) {
         this.staffId = staffId;

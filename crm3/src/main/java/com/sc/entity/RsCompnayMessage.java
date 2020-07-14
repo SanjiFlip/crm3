@@ -5,38 +5,71 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÈËÊÂ¡ª¡ª¹«Ë¾ĞÅÏ¢±í
+//äººäº‹â€”â€”å…¬å¸ä¿¡æ¯è¡¨
 public class RsCompnayMessage implements Serializable {
-    private Long compnayId;		//¹«Ë¾±àºÅ
+    private Long compnayId;		//å…¬å¸ç¼–å·
 
-    private String compnayName;	//¹«Ë¾Ãû³Æ
+    private String compnayName;	//å…¬å¸åç§°
 
-    private Long compnayCode;	//¹«Ë¾´úÂë
+    private Long compnayCode;	//å…¬å¸ä»£ç 
 
-    private String mailbox;	//ÓÊÏä
+    private String mailbox;	//é‚®ç®±
 
-    private String contacts; //ÁªÏµÈË
+    private String contacts; //è”ç³»äºº
 
-    private String compnayAddress; //¹«Ë¾µØÖ·
+    private String compnayAddress; //å…¬å¸åœ°å€
 
-    private BigDecimal fixedTelephone; //¹Ì¶¨µç»°
+    private BigDecimal fixedTelephone; //å›ºå®šç”µè¯
 
-    private BigDecimal mobilePhone; //ÒÆ¶¯µç»°
+    private BigDecimal mobilePhone; //ç§»åŠ¨ç”µè¯
 
-    private String fax; //´«Õæ
+    private String fax; //ä¼ çœŸ
 
-    private BigDecimal bankOfDeposit; //¿ª»§ÒøĞĞ
+    private BigDecimal bankOfDeposit; //å¼€æˆ·é“¶è¡Œ
 
-    private BigDecimal bankAccount; //ÒøĞĞÕË»§
+    private BigDecimal bankAccount; //é“¶è¡Œè´¦æˆ·
 
-    private String enabled; //ÊÇ·ñÓĞĞ§
+    private String enabled; //æ˜¯å¦æœ‰æ•ˆ
 
-    private String remarks; //±¸×¢ĞÅÏ¢
+    private String remarks; //å¤‡æ³¨ä¿¡æ¯
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date lastModifyDate; //æœ€åä¿®æ”¹æ—¶é—´
+
+    //æ‰©å±•å±æ€§ ç”¨äºæ—¥æœŸå’Œæ¨¡ç³ŠæŸ¥è¯¢
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin; 
     
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóĞŞ¸ÄÊ±¼ä
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax; 
+    
+    public Date getDatemin() {
+		return datemin;
+	}
 
-    private static final long serialVersionUID = 1L;
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//æ‰©å±•å±æ€§ ç”¨äºæ‰¹é‡åˆ é™¤
+	private Long[] ids;	
+	
+	
+
+	public Long[] getIds() {
+		return ids;
+	}
+
+	public void setIds(Long[] ids) {
+		this.ids = ids;
+	}
+	private static final long serialVersionUID = 1L;
 
     public RsCompnayMessage(Long compnayId, String compnayName, Long compnayCode, String mailbox, String contacts, String compnayAddress, BigDecimal fixedTelephone, BigDecimal mobilePhone, String fax, BigDecimal bankOfDeposit, BigDecimal bankAccount, String enabled, String remarks, Date lastModifyDate) {
         this.compnayId = compnayId;

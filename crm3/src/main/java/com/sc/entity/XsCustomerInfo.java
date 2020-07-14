@@ -4,61 +4,61 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÏúÊÛ_¿Í»§ĞÅÏ¢±í
+//é”€å”®_å®¢æˆ·ä¿¡æ¯è¡¨
 public class XsCustomerInfo implements Serializable {
-    private Long customerId;//¿Í»§±àºÅ
+    private Long customerId;//å®¢æˆ·ç¼–å·
 
-    private String customerName;//¿Í»§Ãû³Æ
+    private String customerName;//å®¢æˆ·åç§°
 
-    private String customerAttr;//¿Í»§ÊôĞÔ
+    private String customerAttr;//å®¢æˆ·å±æ€§
 
-    private String website;//ÍøÕ¾
+    private String website;//ç½‘ç«™
 
-    private String stockCode;//¹ÉÆ±´úÂë
+    private String stockCode;//è‚¡ç¥¨ä»£ç 
 
-    private String unitHigher;//ÉÏ¼¶µ¥Î»
+    private String unitHigher;//ä¸Šçº§å•ä½
 
-    private String owner;//ËùÓĞÕß
+    private String owner;//æ‰€æœ‰è€…
 
-    private Long numberEmployee;//Ô±¹¤Êı
+    private Long numberEmployee;//å‘˜å·¥æ•°
 
-    private Long industryId;//ĞĞÒµ±àºÅ
+    private Long industryId;//è¡Œä¸šç¼–å·
 
-    private String customerType;//¿Í»§ÀàĞÍ
+    private String customerType;//å®¢æˆ·ç±»å‹
 
-    private String customerState;//¿Í»§×´Ì¬
+    private String customerState;//å®¢æˆ·çŠ¶æ€×´Ì¬
 
-    private String customerSource;//¿Í»§À´Ô´
+    private String customerSource;//å®¢æˆ·æ¥æº
 
-    private Long headId;//¸ºÔğÈË±àºÅ
+    private Long headId;//è´Ÿè´£äººç¼–å·
 
-    private String phoneFixed;//¹Ì¶¨µç»°
+    private String phoneFixed;//å›ºå®šç”µè¯
 
-    private String phoneMove;//ÒÆ¶¯µç»°
+    private String phoneMove;//ç§»åŠ¨ç”µè¯
 
-    private String customerFax;//¿Í»§´«Õæ
+    private String customerFax;//å®¢æˆ·ä¼ çœŸ
 
-    private String bank;//¿ª»§ÒøĞĞ
+    private String bank;//å¼€æˆ·é“¶è¡Œ
 
-    private String bankAccount;//ÒøĞĞÕË»§
+    private String bankAccount;//é“¶è¡Œè´¦æˆ·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date nextContactDate;//ÏÂ´ÎÁªÏµÊ±¼ä
+    private Date nextContactDate;//ä¸‹æ¬¡è”ç³»æ—¶é—´
 
-    private String email;//µç×ÓÓÊ¼ş
+    private String email;//ç”µå­é‚®ä»¶
 
-    private String sicCode;//SIC±àÂë
+    private String sicCode;//SICç¼–ç 
 
-    private String payWay;//Ö§¸¶·½Ê½
+    private String payWay;//Ö§æ”¯ä»˜æ–¹å¼
 
-    private String isEffective;//ÊÇ·ñÓĞĞ§
+    private String isEffective;//æ˜¯å¦æœ‰æ•ˆ
 
-    private String addressDetail;//ÏêÏ¸µØÖ·
+    private String addressDetail;//è¯¦ç»†åœ°å€Ö·
 
-    private String noteInformation;//±¸×¢ĞÅÏ¢
+    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
 
-    private Long companyId;//¹«Ë¾±àºÅ
+    private Long companyId;//å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

@@ -17,12 +17,12 @@ import org.springframework.context.annotation.Configuration;
 import com.sc.form.CaptchaValidateFilter;
 import com.sc.realm.CustomRealmMD5;
 
-@Configuration  //ÅäÖÃÀà
+@Configuration  //é…ç½®ç±»
 public class ShiroConfig {
 	
 
 	
-	//MD5·½·¨½âÎöÃÜÂë
+	//MD5æ–¹æ³•è§£æå¯†ç 
 	@Bean
 	public CustomRealmMD5 customRealmMD5() {
 		CustomRealmMD5 realm = new CustomRealmMD5();
@@ -33,7 +33,7 @@ public class ShiroConfig {
 		return realm;
 	}
 	
-	//°²È«¹ÜÀíÆ÷
+	//å®‰å…¨ç®¡ç†å™¨
 	@Bean
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
@@ -41,7 +41,7 @@ public class ShiroConfig {
 		return manager;
 	}
 	
-	//Shiro¹ıÂËÆ÷
+	//Shiroè¿‡æ»¤å™¨
 	@Bean("shiroFilter")
 	public ShiroFilterFactoryBean shiroFilter() {
 		CaptchaValidateFilter form = new CaptchaValidateFilter();
@@ -64,9 +64,9 @@ public class ShiroConfig {
 		filters.put("logout", logout);
 		shiroFilter.setFilters(filters);
 		
-		//½¨ÒéÊ¹ÓÃLinkedHashMap
+		//å»ºè®®ä½¿ç”¨LinkedHashMap
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		//anon:¿ÉÄäÃû·ÃÎÊ£¬authc:ĞèÒªÈÏÖ¤²ÅÄÜ·ÃÎÊ
+		//anon:å¯åŒ¿åè®¿é—®ï¼Œauthc:éœ€è¦è®¤è¯æ‰èƒ½è®¿é—®
 		map.put("/css/**", "anon");
 		map.put("/images/**", "anon");
 		map.put("/js/**", "anon");
@@ -76,12 +76,12 @@ public class ShiroConfig {
 		map.put("/main.jsp", "anon");
 		map.put("/captcha/**", "anon");
 		
-		//µÇ³ö£¬ÍË³öµÇÂ¼
+		//ç™»å‡ºï¼Œé€€å‡ºç™»å½•
 		map.put("/logout.do", "logout");
-		//È¨ÏŞÉèÖÃ£¨´ÓÈ¨ÏŞ±í²éÑ¯ËùÓĞµÄÈ¨ÏŞ²¢ÇÒÉèÖÃ£©
+		//æƒé™è®¾ç½®ï¼ˆä»æƒé™è¡¨æŸ¥è¯¢æ‰€æœ‰çš„æƒé™å¹¶ä¸”è®¾ç½®
 		/*
 		 * List<SysPermission> list = sysPermissionService.getAllPermissions(); if
-		 * (list!=null&&list.size()>0) { System.out.println("ËùÓĞÈ¨ÏŞ²¢ÉèÖÃ£º"); for
+		 * (list!=null&&list.size()>0) { System.out.println("ï¿½ï¿½ï¿½ï¿½È¨ï¿½Ş²ï¿½ï¿½ï¿½ï¿½Ã£ï¿½"); for
 		 * (SysPermission perm : list) { String url = perm.getUrl(); String code =
 		 * perm.getPercode();
 		 * if(code!=null&&!code.equals("")&&url!=null&&!url.equals("")) {
