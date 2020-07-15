@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td class="text-l">${rsuser.staffEducationalBackground }</td>
 				<td class="td-status"><span class="label label-success radius">${rsuser.examineState=="1" ? "已审核":"未审核"}</span></td>
 				<td class="text-l">${rsuser.postId }</td>
-				<td class="text-l"><span class="label label-success radius">${rsuser.staffState=="上线" ? "上线":"下线"}</span></td>
+				<td class="text-l"><span class="label label-success radius">${rsuser.staffState=="在线" ? "在线":"下线"}</span></td>
 				<td class="text-l">${rsuser.compnayId }</td>
 				<td class="text-l">
 				<fmt:formatDate value="${rsuser.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/> 
