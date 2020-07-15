@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>员工状态״：</label>
                <td>
-              <input type="radio" name="staffState" value="上线" ${rsuser.staffState=="上线" ? "checked":"" }>上线
+              <input type="radio" name="staffState" value="在线" ${rsuser.staffState=="在线" ? "checked":"" }>在线
               <input type="radio" name="staffState" value="下线" ${rsuser.staffState=="下线" ? "checked":"" }>下线
            </td>
           </div>
