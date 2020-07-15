@@ -6,25 +6,25 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//½ø»õ_Ğè²¹»õ²úÆ·±í
+//è¿›è´§_éœ€è¡¥è´§äº§å“è¡¨
 public class CgStockReplenishmentGoods implements Serializable {
-    private Long id;//±àºÅ
+    private Long id;//ç¼–å·
 
-    private BigDecimal goosId;//²úÆ·±àºÅ
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date deliveryTime;//½»»õÊ±¼ä
-
-    private String state;//×´Ì¬
-
-    private Long operaterId;//²Ù×÷ÈËÔ±
-
-    private String noteInformation;//±¸×¢ĞÅÏ¢
-
-    private BigDecimal companyId;//¹«Ë¾±àºÅ
+    private BigDecimal goosId;//äº§å“ç¼–å·
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÈÕÆÚ
+    private Date deliveryTime;//äº¤è´§æ—¶é—´
+
+    private String state;//çŠ¶æ€×´Ì¬
+
+    private Long operaterId;//æ“ä½œäººå‘˜
+
+    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
+
+    private BigDecimal companyId;//å…¬å¸ç¼–å·
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¥æœŸ
 
     private static final long serialVersionUID = 1L;
 

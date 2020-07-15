@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//°ì¹«¡ª¡ª¶ÌĞÅÏ¢±í
+//åŠå…¬_çŸ­æ¶ˆæ¯è¡¨
 public class BgSms implements Serializable {
-    private Long bhId; //±àºÅ
+    private Long bhId; //ç¼–å·
 
-    private String title; //±êÌâ
+    private String title; //æ ‡é¢˜
 
-    private String content; //ÄÚÈİ
+    private String content; //å†…å®¹
 
-    private String sendPerson; //·¢ËÍÈË
+    private String sendPerson; //å‘é€äºº
 
-    private Long companyId; //¹«Ë¾±àºÅ
+    private Long companyId; //å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate; //æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

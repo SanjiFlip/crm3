@@ -4,26 +4,26 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//°ì¹«¡ª¡ª¿¼ºËÈÎÎñ±í
+//åŠå…¬_è€ƒæ ¸ä»»åŠ¡è¡¨
 public class BgExamineTask implements Serializable {
-    private Long taskId; //ÈÎÎñ±àºÅ
+    private Long taskId; //ä»»åŠ¡ç¼–å·
 
-    private String taskTitle; //ÈÎÎñ±êÌâ
+    private String taskTitle; //ä»»åŠ¡æ ‡é¢˜
 
-    private String taskSpecificContent; //ÈÎÎñ¾ßÌåÄÚÈİ
+    private String taskSpecificContent; //ä»»åŠ¡å…·ä½“å†…å®¹
 
-    private String taskPublishPerson; //ÈÎÎñ·¢²¼ÈË
+    private String taskPublishPerson; //ä»»åŠ¡å‘å¸ƒäºº
 
-    private String examineTarget; //¿¼ºËÖ¸±ê
+    private String examineTarget; //è€ƒæ ¸æŒ‡æ ‡
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date taskBeginTime; //ÈÎÎñ¿ªÊ¼Ê±¼ä
+    private Date taskBeginTime; //ä»»åŠ¡å¼€å§‹æ—¶é—´
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date taskEndTime; //ÈÎÎñ½áÊøÊ±¼ä
+    private Date taskEndTime; //ä»»åŠ¡ç»“æŸæ—¶é—´
 
-    private Long companyId; //¹«Ë¾±àºÅ
+    private Long companyId; //å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate; //æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

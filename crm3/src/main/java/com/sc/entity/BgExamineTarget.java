@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//°ì¹«¡ª¡ª¿¼ºËÖ¸±ê±í
+//åŠå…¬_è€ƒæ ¸æŒ‡æ ‡è¡¨
 public class BgExamineTarget implements Serializable {
-    private Long targetId;  //Ö¸±ê±àºÅ
+    private Long targetId;  //Ö¸æŒ‡æ ‡ç¼–å·
 
-    private String examineTarget;  //¿¼ºËÖ¸±ê
+    private String examineTarget;  //è€ƒæ ¸æŒ‡æ ‡
 
-    private String remarksExplain;  //±¸×¢ËµÃ÷
+    private String remarksExplain;  //å¤‡æ³¨è¯´æ˜
 
-    private Long companyId;  //¹«Ë¾±àºÅ
+    private Long companyId;  //å…¬å¸ç¼–å·
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate; //æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

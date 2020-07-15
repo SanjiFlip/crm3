@@ -5,23 +5,23 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÏúÊÛ_ÏúÊÛÏêÇé±í
+//é”€å”®_é”€å”®è¯¦æƒ…è¡¨
 public class XsSaleDetail implements Serializable {
-    private Long salesDetailId;//ÏúÊÛµ¥ÏêÇé±àºÅ
+    private Long salesDetailId;//é”€å”®å•è¯¦æƒ…ç¼–å·
 
-    private Long salesId;//ÏúÊÛµ¥±àºÅ
+    private Long salesId;//é”€å”®å•ç¼–å·
 
-    private Long goodsId;//ÉÌÆ·±àºÅ
+    private Long goodsId;//å•†å“ç¼–å·
 
-    private Long goodsNumber;//ÉÌÆ·ÊıÁ¿
+    private Long goodsNumber;//å•†å“æ•°é‡
 
-    private BigDecimal goodsPrice;//ÉÌÆ·¼Û¸ñ
+    private BigDecimal goodsPrice;//å•†å“ä»·æ ¼
 
-    private String noteInformation;//±¸×¢ËµÃ÷
+    private String noteInformation;//å¤‡æ³¨è¯´æ˜
 
-    private Long companyId;//¹«Ë¾±àºÅ
+    private Long companyId;//å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

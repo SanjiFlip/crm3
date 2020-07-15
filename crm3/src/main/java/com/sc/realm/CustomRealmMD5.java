@@ -29,21 +29,21 @@ public class CustomRealmMD5 extends AuthorizingRealm {
 	@Autowired
 	XtPermissionInfoService XtPermissionInfoService;
 	
-	//ÓÃ»§ÊÚÈ¨
+	//é¢ã„¦åŸ›éºå Ÿæ½ˆ
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
 		XtUserAccount account = (XtUserAccount) arg0.getPrimaryPrincipal();
-		System.out.println("ÕıÔÚ¸øµ±Ç°ÓÃ»§ÊÚÈ¨:");
-		//´ÓÊı¾İ¿â²éÑ¯¸ÄÓÃ»§ÓµÓĞÄÄĞ©È¨ÏŞ
+		System.out.println("æ­£åœ¨ç»™å½“å‰ç”¨æˆ·æˆæƒ:");
+		//ä»æ•°æ®åº“æŸ¥è¯¢æ”¹ç”¨æˆ·æ‹¥æœ‰å“ªäº›æƒé™
 		List<String> list = new ArrayList<String>();
 		List<XtPermissionInfo> perms = XtPermissionInfoService.getUserPerm(account.getUserId());
 		if (perms!=null&&perms.size()>0) {
-			System.out.println("¸ÃÓÃ»§ÓµÓĞÒÔÏÂÈ¨ÏŞ£º");
+			System.out.println("è¯¥ç”¨æˆ·æ‹¥æœ‰ä»¥ä¸‹æƒé™ï¼š");
 			for (XtPermissionInfo perm : perms) {
 				String code = perm.getPermission();
 				if(code!=null&&!code.equals("")) {
 					System.out.println("========================="+code);
-					list.add(code);//°ÑÈ¨ÏŞÔ´Ìí¼Óµ½list¼¯ºÏ
+					list.add(code);//æŠŠæƒé™æºæ·»åŠ åˆ°listé›†åˆ
 				}
 			}
 		}
@@ -54,27 +54,27 @@ public class CustomRealmMD5 extends AuthorizingRealm {
 	}
 	
 	
-	//ÓÃ»§ÈÏÖ¤
+	//é¢ã„¦åŸ›ç’ã‚ˆç˜‰è¯
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		
 		String username = (String) token.getPrincipal();
-		System.out.println("µ±Ç°±»ÈÏÖ¤µÄÓÃ»§ÊÇ:"+username);
+		System.out.println("è¤°æ’³å¢ çšî‚¥î…»ç’‡ä½ºæ®‘é¢ã„¦åŸ›é„ï¿½:"+username);
 		
 		
-		//1.ĞèÒª´ÓÊı¾İ¿â²éÑ¯ÊÇ·ñÓĞ¸ÃÓÃ»§
+		//1.é—‡ï¿½ç‘•ä½·ç² éç‰ˆåµæ´æ’´ç…¡ç’‡ãˆ¡æ§¸éšï¸½æ¹ç’‡ãƒ§æ•¤é´ï¿½
 		XtUserAccount xtUserAccount = xtUserAccountService.login(username);
 		if(xtUserAccount == null) {
-			System.out.println("²»´æÔÚ´ËÓÃ»§");
+			System.out.println("ä¸å­˜åœ¨æ­¤ç”¨æˆ·");
 			throw new UnknownAccountException(); 
 		}
-		//2.¸ÃÓÃ»§µÄÃÜÂë
+		//2.ç’‡ãƒ§æ•¤é´é£æ®‘ç€µå—™çˆœ
 		String password = xtUserAccount.getUserPassword();
 		String salt = "qwerty";
-		if ("ÒÑÍ£ÓÃ".equals(xtUserAccount.getAccountState())) {
+		if ("å·²åœç”¨".equals(xtUserAccount.getAccountState())) {
 			throw new LockedAccountException();
 		}
-		//µÚÒ»¸ö²ÎÊı¿ÉÒÔÊÇÈÎÒâÀàĞÍobject
+		//ç¬¬ä¸€ä¸ªå‚æ•°å¯ä»¥æ˜¯ä»»æ„ç±»å‹object
 		SimpleAuthenticationInfo info =new SimpleAuthenticationInfo(xtUserAccount, password,ByteSource.Util.bytes(salt), super.getName());
 		return info;
 	}

@@ -5,31 +5,31 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÏúÊÛ_ÏúÊÛ³ö¿âµ¥
+//é”€å”®_é”€å”®å‡ºåº“å•
 public class XsSaleDeliveryList implements Serializable {
-    private Long salesId;//ÏúÊÛµ¥±àºÅ
+    private Long salesId;//é”€å”®å•ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date creatListDate;//ÖÆµ¥ÈÕÆÚ
+    private Date creatListDate;//åˆ¶å•æ—¥æœŸ
 
-    private String invoiceNumber;//·¢Æ±ºÅÂë
+    private String invoiceNumber;//å‘ç¥¨å·ç 
 
-    private Long userId;//ÓÃ»§±àºÅ
+    private Long userId;//ç”¨æˆ·ç¼–å·
 
-    private Long customerId;//¿Í»§±àºÅ
+    private Long customerId;//å®¢æˆ·ç¼–å·
 
-    private BigDecimal saleAmount;//ÏúÊÛ½ğ¶î
+    private BigDecimal saleAmount;//é”€å”®é‡‘é¢
 
-    private String saleDeliveryStatus;//ÏúÊÛ³ö¿â×´Ì¬
+    private String saleDeliveryStatus;//é”€å”®å‡ºåº“çŠ¶æ€×´Ì¬
 
-    private String isRebate;//ÊÇ·ñ·µÀû
+    private String isRebate;//æ˜¯å¦è¿”åˆ©
 
-    private String orderStatus;//¶©µ¥×´Ì¬
+    private String orderStatus;//è®¢å•çŠ¶æ€×´Ì¬
 
-    private String noteInformation;//±¸×¢ĞÅÏ¢
+    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯ 
 
-    private Long companyId;//¹«Ë¾±àºÅ
+    private Long companyId;//å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

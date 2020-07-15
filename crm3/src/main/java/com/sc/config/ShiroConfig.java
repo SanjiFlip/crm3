@@ -21,13 +21,13 @@ import com.sc.form.CaptchaValidateFilter;
 import com.sc.realm.CustomRealmMD5;
 import com.sc.service.XtPermissionInfoService;
 
-@Configuration  //ÅäÖÃÀà
+@Configuration  //é–°å¶‡ç–†ç»«ï¿½
 public class ShiroConfig {
 	
 	@Autowired
 	XtPermissionInfoService xtPermissionInfoService;
 	
-	//MD5·½·¨½âÎöÃÜÂë
+	//MD5é‚è§„ç¡¶ç‘™ï½†ç€½ç€µå—™çˆœ
 	@Bean
 	public CustomRealmMD5 customRealmMD5() {
 		CustomRealmMD5 realm = new CustomRealmMD5();
@@ -38,7 +38,7 @@ public class ShiroConfig {
 		return realm;
 	}
 	
-	//°²È«¹ÜÀíÆ÷
+	//ç€¹å¤Šåç» ï¼„æ‚Šé£ï¿½
 	@Bean
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
@@ -46,7 +46,7 @@ public class ShiroConfig {
 		return manager;
 	}
 	
-	//Shiro¹ıÂËÆ÷
+	//Shiroæ©å›¨æŠ¤é£ï¿½
 	@Bean("shiroFilter")
 	public ShiroFilterFactoryBean shiroFilter() {
 		CaptchaValidateFilter form = new CaptchaValidateFilter();
@@ -69,9 +69,9 @@ public class ShiroConfig {
 		filters.put("logout", logout);
 		shiroFilter.setFilters(filters);
 		
-		//½¨ÒéÊ¹ÓÃLinkedHashMap
+		//å¯¤é¸¿î†…æµ£è·¨æ•¤LinkedHashMap
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		//anon:¿ÉÄäÃû·ÃÎÊ£¬authc:ĞèÒªÈÏÖ¤²ÅÄÜ·ÃÎÊ
+		//anon:é™îˆšå°¶éšå¶ˆî†–é—‚î‡†ç´authc:é—‡ï¿½ç‘•ä½½î…»ç’‡ä½¹å¢ é‘³å€Ÿî†–é—‚ï¿½
 		map.put("/css/**", "anon");
 		map.put("/images/**", "anon");
 		map.put("/js/**", "anon");
@@ -79,25 +79,22 @@ public class ShiroConfig {
 		map.put("/upload/**", "anon");
 		map.put("/login.jsp", "anon");
 		map.put("/main.jsp", "anon");
-		map.put("/captcha/**", "anon");
+		map.put("/captcha/**", "anon");	
 		map.put("/static/**", "anon");
 		map.put("/lib/**", "anon");
 		map.put("/temp/**", "anon");
-		//µÇ³ö£¬ÍË³öµÇÂ¼
+		//ç™»å‡ºï¼Œé€€å‡ºç™»å½•
 		map.put("/logout.do", "logout");
-		
-		//È¨ÏŞÉèÖÃ£¨´ÓÈ¨ÏŞ±í²éÑ¯ËùÓĞµÄÈ¨ÏŞ²¢ÇÒÉèÖÃ£©
-		 
+		//æƒé™è®¾ç½®ï¼ˆä»æƒé™è¡¨æŸ¥è¯¢æ‰€æœ‰çš„æƒé™å¹¶ä¸”è®¾ç½®ï¼‰	 
 		List<XtPermissionInfo> list = xtPermissionInfoService.selectAllPerm();
 		if (list!=null&&list.size()>0) {
-			System.out.println("ËùÓĞÈ¨ÏŞ²¢ÉèÖÃÎª:");
+			System.out.println("æ‰€æœ‰æƒé™å¹¶è®¾ç½®ä¸º:");
 			for (XtPermissionInfo perm : list) {
 				String url = perm.getPermissonName();
 				String code = perm.getPermission();
 				if (url!=null&&code!=null) {
 					map.put(url, "perms["+code+"]");
-				}
-				
+				}	
 			}
 		}
 		map.put("/**", "authc");

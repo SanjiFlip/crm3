@@ -4,21 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÏúÊÛ_¿Í»§ÁªÏµ¼ÇÂ¼±í
+//é”€å”®_å®¢æˆ·è”ç³»è®°å½•è¡¨
 public class XsCustomerContactRecord implements Serializable {
-    private Long contactRecordId;//ÁªÏµ¼ÇÂ¼±àºÅ
+    private Long contactRecordId;//è”ç³»è®°å½•ç¼–å·
 
-    private String contactHeading;//ÁªÏµ±êÌâ
+    private String contactHeading;//è”ç³»æ ‡é¢˜
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date contactDate;//ÁªÏµÊ±¼ä
+    private Date contactDate;//è”ç³»æ—¶é—´
 
-    private Long customerId;//¿Í»§±àºÅ
+    private Long customerId;//å®¢æˆ·ç¼–å·
 
-    private String contactContent;//ÁªÏµÄÚÈİ
+    private String contactContent;//è”ç³»å†…å®¹
 
-    private Long companyId;//¹«Ë¾±àºÅ
+    private Long companyId;//å…¬å¸ç¼–å·
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
 
     private static final long serialVersionUID = 1L;
 

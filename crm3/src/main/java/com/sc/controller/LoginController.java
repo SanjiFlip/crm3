@@ -19,28 +19,28 @@ import com.sc.entity.XtUserAccount;
 
 
 
-@Controller   //°Ñ¸ÃÀà×¢²á³Ébean¶ÔÏó£¬²¢ÇÒ×÷Îª¿ØÖÆÆ÷×é¼ş
-@RequestMapping("/loginctrl")  //¸ø¸ÃÀàÅäÖÃÒ»¸öÇëÇóÓ³ÉäµÄurlµØÖ·
+@Controller   //é¶å©…î‡šç»«ç»˜æ•éå±¾åšbeanç€µç¡…è–„é”›å±½è‹Ÿæ¶“æ–¾ç¶”æ¶“çƒ˜å¸¶é’è·ºæ«’ç¼å‹ªæ¬¢
+@RequestMapping("/loginctrl")  //ç¼æ¬’î‡šç»«å©šå¤ç¼ƒî†»ç«´æ¶“î‡î‡¬å§¹å‚›æ§§çå‹­æ®‘urlé¦æ¿æ½ƒå€
 public class LoginController {
 	
 	 
-	//µÇÂ½Ê§°ÜµÄ·½·¨
+	//é§å©šæª°æ¾¶è¾«è§¦é¨å‹¬æŸŸå¨‰ï¿½
 	@RequestMapping("/login.do")
 	public ModelAndView login(ModelAndView mav,HttpServletRequest req) {
-		System.out.println("ÓÃ»§ÈÏÖ¤Ê§°Ü");
-		//Í¨¹ıÈÏÖ¤Ê§°ÜµÄÊôĞÔÃû³Æ»ñÈ¡¶ÔÓ¦µÄÖµ
+		System.out.println("é¢ã„¦åŸ›ç’ã‚ˆç˜‰æ¾¶è¾«è§¦");
+		//é–«æ°³ç¹ƒç’ã‚ˆç˜‰æ¾¶è¾«è§¦é¨å‹«ç˜é¬Ñƒæ‚•ç»‰æ‹Œå¹é™æ §î‡®æ´æ—‚æ®‘éŠè´¾ï¿½
 		String msg = (String) req.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-		System.out.println("ÈÏÖ¤Ê§°ÜµÄÏûÏ¢£º"+msg);
+		System.out.println("ç’ã‚ˆç˜‰æ¾¶è¾«è§¦é¨å‹¬ç§·é­ï¿½"+msg);
 		String fail = "";
-		boolean reLogin = true;//ÖØĞÂµÇÂ¼
+		boolean reLogin = true;//é‡æ–°ç™»å½•
 		Subject subject = SecurityUtils.getSubject();
-		//ÅĞ¶ÏÊÇ·ñÖØĞÂµÇÂ¼
+		//åˆ¤æ–­æ˜¯å¦é‡æ–°ç™»å½•
 		if(subject.isAuthenticated()){
 			subject.logout();
 		}else {
 			if (msg!=null) {
 				if (msg.equals(UnknownAccountException.class.getName())) {
-					fail = "unknown";//ÕË»§²»´æÔÚ
+					fail = "unknown";//è´¦æˆ·ä¸å­˜åœ¨
 				}else if (msg.equals(IncorrectCredentialsException.class.getName())) {
 					fail = "error";
 				}else if (msg.equals("randomCodeError")) {
@@ -56,10 +56,10 @@ public class LoginController {
 		return mav;
 	}
 	
-	@MyLog("ÓÃ»§µÇÂ¼³É¹¦")
+	@MyLog("ç”¨æˆ·ç™»å½•æˆåŠŸ")
 	@RequestMapping("/main.do")
 	public ModelAndView main(ModelAndView mav,HttpSession session) {
-		System.out.println("ÓÃ»§ÈÏÖ¤³É¹¦");
+		System.out.println("é¢ã„¦åŸ›ç’ã‚ˆç˜‰é´æ„¬å§›");
 		
 		Subject subject = SecurityUtils.getSubject();
 		XtUserAccount xtUserAccount = (XtUserAccount) subject.getPrincipal();

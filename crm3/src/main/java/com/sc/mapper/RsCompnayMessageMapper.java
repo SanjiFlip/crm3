@@ -17,6 +17,8 @@ public interface RsCompnayMessageMapper {
     int insertSelective(RsCompnayMessage record);
 
     List<RsCompnayMessage> selectByExample(RsCompnayMessageExample example);
+    
+    RsCompnayMessage select(RsCompnayMessage record);
 
     RsCompnayMessage selectByPrimaryKey(Long compnayId);
 
