@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -153,11 +153,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
-					<li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
+					<li><a data-href="xtaccountctrl/selectaccount.do" data-title="用户账户管理" href="javascript:void(0)">用户账户管理</a></li>
+					<li><a data-href="xtrolectrl/selectxtrole.do" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					<li><a data-href="permctrl/selectcolumns.do" data-title="权限分栏管理" href="javascript:void(0)">权限分栏管理</a></li>
+					<li><a data-href="xtlogctrl/selectxtlog.do" data-title="系统日志管理" href="javascript:void(0)">系统日志管理</a></li>
 			</ul>
 		</dd>
 	</dl>

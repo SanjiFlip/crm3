@@ -6,10 +6,10 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 //系统_权限角色表
-public class XtPermissionRole implements Serializable {
+public class XtPermissonRole implements Serializable {
     private Long id;	//编号
 
-    private Long permissionId;  //权限编号
+    private Long permissonId;  //权限编号
 
     private Long roleId;		//角色编号
 
@@ -20,15 +20,15 @@ public class XtPermissionRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public XtPermissionRole(Long id, Long permissionId, Long roleId, Long operaterId, Date lastModifyDate) {
+    public XtPermissonRole(Long id, Long permissonId, Long roleId, Long operaterId, Date lastModifyDate) {
         this.id = id;
-        this.permissionId = permissionId;
+        this.permissonId = permissonId;
         this.roleId = roleId;
         this.operaterId = operaterId;
         this.lastModifyDate = lastModifyDate;
     }
 
-    public XtPermissionRole() {
+    public XtPermissonRole() {
         super();
     }
 
@@ -40,12 +40,12 @@ public class XtPermissionRole implements Serializable {
         this.id = id;
     }
 
-    public Long getPermissionId() {
-        return permissionId;
+    public Long getPermissonId() {
+        return permissonId;
     }
 
-    public void setPermissionId(Long permissionId) {
-        this.permissionId = permissionId;
+    public void setPermissonId(Long permissonId) {
+        this.permissonId = permissonId;
     }
 
     public Long getRoleId() {

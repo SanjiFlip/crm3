@@ -211,4 +211,10 @@
       LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
+  
+  <!-- 通过用户查询角色 -->
+  <select id="selectByUserId" parameterType="java.lang.Long" resultType="com.sc.entity.XtUserRole">
+  	SELECT * FROM XT_USER_ROLE  XUR
+	WHERE USER_ID=#{userId}
+  </select>
 </mapper>

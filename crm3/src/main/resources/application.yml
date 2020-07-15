@@ -15,6 +15,8 @@ server:
 #配置视图解析器的前缀和后缀
 
 spring:
+  aop:
+    auto: true
   mvc:
     view:
       prefix: /WEB-INF/
@@ -29,7 +31,7 @@ spring:
       #初始化连接大小
       initial-size: 3
       #最小空闲连接数
-      min-idle: 2
+      min-idle: 10
       #最大连接数
       max-active: 20
       validationQuery: SELECT 1 FROM DUAL
@@ -45,3 +47,11 @@ spring:
 #加载mybatis配置文件
 mybatis:
   config-location: classpath:conf.xml
+  
+pagehelper:
+  #分页插件会自动检测当前的数据库链接，自动选择合适的分页方式。你也可以配置helperDialect属性来指定分页插件使用哪种方言。
+  helper-dialect: oracle
+  # 启用合理化，如果pageNum < 1会查询第一页，如果pageNum > pages会查询最后一页
+  reasonable: true
+  support-methods-arguments: true #是否支持接口参数来传递分页参数，默认false
+  params: count=countSql

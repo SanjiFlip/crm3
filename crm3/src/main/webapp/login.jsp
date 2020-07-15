@@ -95,6 +95,8 @@ var _hmt = _hmt || [];
 		layer.msg("验证码错误！",{icon:5,time:1000});
 	}else if(isfail=="other"){
 		layer.msg("其他错误，请联系管理员！",{icon:5,time:1000});
+	}else if(isfail=="locked"){
+		layer.msg("用户已禁用，请联系管理员！",{icon:5,time:1000});
 	};
  	
  	function chageCode(){

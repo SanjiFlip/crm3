@@ -228,4 +228,11 @@
       LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
     where ROLE_ID = #{roleId,jdbcType=DECIMAL}
   </update>
+  
+  <select id="selectUpName" resultType="com.sc.entity.XtRoles">
+  	SELECT ROLE.*,ROLES.ROLE_NAME AS UP_ROLE_NAME FROM XT_ROLES ROLE
+	LEFT JOIN XT_ROLES ROLES
+	ON ROLE.UP_ROLE_ID =ROLES.ROLE_ID
+  </select>
+  
 </mapper>

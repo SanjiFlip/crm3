@@ -27,4 +27,6 @@ public interface XtUserRoleMapper {
     int updateByPrimaryKeySelective(XtUserRole record);
 
     int updateByPrimaryKey(XtUserRole record);
+    
+    List<XtUserRole> selectByUserId(Long userId);
 }

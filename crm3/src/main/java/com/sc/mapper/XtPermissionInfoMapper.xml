@@ -228,4 +228,52 @@
       LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
     where PERMISSON_ID = #{permissonId,jdbcType=DECIMAL}
   </update>
+  
+  <select id="selectByColumnId" parameterType="java.lang.Long" resultType="com.sc.entity.XtPermissionInfo">
+	SELECT XPI.* FROM XT_PERMISSION_INFO XPI 
+	LEFT JOIN XT_PERMISSION_COLUMNS XPC
+	ON XPI.PERMISSION_COLUMNS_ID=XPC.COLUMNS_ID
+	WHERE XPI.PERMISSION_COLUMNS_ID=#{columnsId}
+  </select>
+  
+  <select id="selectNotByColumnId" parameterType="java.lang.Long" resultType="com.sc.entity.XtPermissionInfo">
+  	SELECT XPI.* FROM XT_PERMISSION_INFO XPI 
+	LEFT JOIN XT_PERMISSION_COLUMNS XPC
+	ON XPI.PERMISSION_COLUMNS_ID=XPC.COLUMNS_ID
+	<where>
+		<if test="columnsId != null">
+			AND XPI.PERMISSION_COLUMNS_ID &lt;&gt; #{columnsId}
+		</if>
+	</where>
+  </select>
+  
+  <select id="selectInfo" resultType="com.sc.entity.XtPermissionInfo">
+  	SELECT XPI.* FROM XT_PERMISSION_INFO XPI 
+	LEFT JOIN XT_PERMISSION_COLUMNS XPC
+	ON XPI.PERMISSION_COLUMNS_ID=XPC.COLUMNS_ID
+  </select>
+  
+  <select id="checkInfos" parameterType="java.lang.Long" resultType="com.sc.entity.XtPermissionInfo">
+  	SELECT XPI.* FROM XT_ROLES  XR
+	LEFT JOIN XT_PERMISSION_ROLE  XPR
+	ON XR.ROLE_ID = XPR.ROLE_ID
+	LEFT JOIN XT_PERMISSION_INFO XPI
+	ON XPR.PERMISSON_ID = XPI.PERMISSON_ID
+	WHERE XR.ROLE_ID=#{roldId}
+  </select>
+  
+  <!-- 查询个人所有权限集合 -->
+  <select id="getPermissionForUser" parameterType="java.lang.Long" resultType="com.sc.entity.XtPermissionInfo">
+  	SELECT  XPI.* FROM XT_USER_ACCOUNT  XUA
+	LEFT JOIN XT_USER_ROLE  XUR
+	ON XUA.USER_ID = XUR.USER_ID
+	LEFT JOIN XT_ROLES  XR
+	ON XUR.ROLE_ID = XR.ROLE_ID
+	LEFT JOIN XT_PERMISSION_ROLE XPR
+	ON XR.ROLE_ID = XPR.ROLE_ID
+	LEFT JOIN XT_PERMISSION_INFO XPI
+	ON XPR.PERMISSON_ID = XPI.PERMISSON_ID
+	WHERE XUA.USER_ID = #{userId}
+  </select>
+  
 </mapper>

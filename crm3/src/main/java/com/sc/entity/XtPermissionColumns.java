@@ -60,4 +60,12 @@ public class XtPermissionColumns implements Serializable {
     public void setLastModifyDate(Date lastModifyDate) {
         this.lastModifyDate = lastModifyDate;
     }
+
+	@Override
+	public String toString() {
+		return "XtPermissionColumns [columnsId=" + columnsId + ", columnsName=" + columnsName + ", remarks=" + remarks
+				+ ", lastModifyDate=" + lastModifyDate + "]";
+	}
+    
+    
 }
