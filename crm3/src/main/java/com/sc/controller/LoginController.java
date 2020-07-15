@@ -19,28 +19,27 @@ import com.sc.entity.XtUserAccount;
 
 
 
-@Controller   //鎶婅绫绘敞鍐屾垚bean瀵硅薄锛屽苟涓斾綔涓烘帶鍒跺櫒缁勪欢
-@RequestMapping("/loginctrl")  //缁欒绫婚厤缃竴涓姹傛槧灏勭殑url鍦板潃址
+@Controller   
+@RequestMapping("/loginctrl")
 public class LoginController {
 	
 	 
-	//鐧婚檰澶辫触鐨勬柟娉�
+	//登陆控制器
 	@RequestMapping("/login.do")
 	public ModelAndView login(ModelAndView mav,HttpServletRequest req) {
-		System.out.println("鐢ㄦ埛璁よ瘉澶辫触");
-		//閫氳繃璁よ瘉澶辫触鐨勫睘鎬у悕绉拌幏鍙栧搴旂殑鍊贾�
+		System.out.println("登陆失败");
+		//获取到回传的错误信息
 		String msg = (String) req.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-		System.out.println("璁よ瘉澶辫触鐨勬秷鎭�"+msg);
+		System.out.println("登陆错误信息是："+msg);
 		String fail = "";
-		boolean reLogin = true;//重新登录
 		Subject subject = SecurityUtils.getSubject();
-		//判断是否重新登录
+		//是否已经登陆
 		if(subject.isAuthenticated()){
 			subject.logout();
 		}else {
 			if (msg!=null) {
 				if (msg.equals(UnknownAccountException.class.getName())) {
-					fail = "unknown";//账户不存在
+					fail = "unknown";// 未知账户异常
 				}else if (msg.equals(IncorrectCredentialsException.class.getName())) {
 					fail = "error";
 				}else if (msg.equals("randomCodeError")) {
@@ -56,15 +55,13 @@ public class LoginController {
 		return mav;
 	}
 	
-	@MyLog("用户登录成功")
+	@MyLog("登陆成功")
 	@RequestMapping("/main.do")
 	public ModelAndView main(ModelAndView mav,HttpSession session) {
-		System.out.println("鐢ㄦ埛璁よ瘉鎴愬姛");
-		
+		System.out.println("认证成功");
 		Subject subject = SecurityUtils.getSubject();
 		XtUserAccount xtUserAccount = (XtUserAccount) subject.getPrincipal();
 		session.setAttribute("nowuser", xtUserAccount);
-		
 		mav.setViewName("redirect:../index.jsp"); 
 		return mav;
 	}

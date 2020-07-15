@@ -18,18 +18,18 @@ import com.sc.service.RsCompnayMessageService;
 
 @Service
 public class RsCompnayMessageServiceImpl implements RsCompnayMessageService {
-	//依赖注入 
+
 	@Autowired
 	RsCompnayMessageMapper rsCompnayMessageMapper;
 	
-	//添加
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void addRsCompnay(RsCompnayMessage rscompnay) {
 		rsCompnayMessageMapper.insert(rscompnay);
 
 	}
-	//修改
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void updateRsCompnay(RsCompnayMessage rscompnay) {
@@ -38,7 +38,7 @@ public class RsCompnayMessageServiceImpl implements RsCompnayMessageService {
 		}
 
 	}
-	//删除
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void deleteRsCompnay(Long compnayId) {
@@ -47,7 +47,7 @@ public class RsCompnayMessageServiceImpl implements RsCompnayMessageService {
 		}
 
 	}
-	//获取主键
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public RsCompnayMessage getRsCompnay(Long compnayId) {
@@ -57,7 +57,7 @@ public class RsCompnayMessageServiceImpl implements RsCompnayMessageService {
 		return null;
 		
 	}
-	//详细查询
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public PageInfo<RsCompnayMessage> selectRsCompnay(Integer pageNum, Integer pageSize, RsCompnayMessage rscompnay) {
@@ -65,28 +65,23 @@ public class RsCompnayMessageServiceImpl implements RsCompnayMessageService {
 		
 		if(rscompnay!=null){
 			Criteria criteria = example.createCriteria();
-			//if(depot.getDepotName()!=null&&!depot.getDepotName().equals(""))
-			if(!StringUtils.isEmpty(rscompnay.getCompnayName())){//仓库名称模糊查询
+			if(!StringUtils.isEmpty(rscompnay.getCompnayName())){
 				criteria.andCompnayNameLike("%"+rscompnay.getCompnayName()+"%");
-				System.out.println("进入模糊查询"+rscompnay.getCompnayName());
 			}
-			if(!StringUtils.isEmpty(rscompnay.getDatemin())){//最后修改时间大于等于最小日期
-				System.out.println("----小----"+rscompnay.getDatemin());
+			if(!StringUtils.isEmpty(rscompnay.getDatemin())){
 				criteria.andLastModifyDateGreaterThanOrEqualTo(rscompnay.getDatemin());
 			}
-			if(!StringUtils.isEmpty(rscompnay.getDatemax())){//最后修改时间小于等于最大日期
+			if(!StringUtils.isEmpty(rscompnay.getDatemax())){
 				Date d=rscompnay.getDatemax();
 				d.setHours(23);
 				d.setMinutes(59);
 				d.setSeconds(59);
-				System.out.println("----大----"+d);
 				criteria.andLastModifyDateLessThanOrEqualTo(d);
 			}
 		}
 		PageHelper.startPage(pageNum, pageSize);
 		List<RsCompnayMessage> list= rsCompnayMessageMapper.selectByExample(example);
 		PageInfo<RsCompnayMessage> page=new PageInfo<RsCompnayMessage>(list);
-		
 		return page;
 	}
 
