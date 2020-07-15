@@ -243,4 +243,23 @@
       LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
     where USER_ID = #{userId,jdbcType=DECIMAL}
   </update>
+  
+  <select id="selectByRoleId" parameterType="java.lang.Long" resultType="com.sc.entity.XtUserAccount">
+  	SELECT XUA.* FROM XT_USER_ACCOUNT  XUA
+	LEFT JOIN XT_USER_ROLE  XUR
+	ON XUA.USER_ID = XUR.USER_ID
+	LEFT JOIN XT_ROLES  XR
+	ON XUR.ROLE_ID = XR.ROLE_ID
+	WHERE XR.ROLE_ID=#{roleId}
+  </select>
+  
+  <select id="selectByNotInRoleId"  parameterType="java.lang.Long" resultType="com.sc.entity.XtUserAccount">
+  	SELECT XUA.* FROM XT_USER_ACCOUNT  XUA
+	LEFT JOIN XT_USER_ROLE  XUR
+	ON XUA.USER_ID = XUR.USER_ID
+	LEFT JOIN XT_ROLES  XR
+	ON XUR.ROLE_ID = XR.ROLE_ID
+	WHERE XR.ROLE_ID &lt;&gt; #{roleId}
+  </select>
+  
 </mapper>

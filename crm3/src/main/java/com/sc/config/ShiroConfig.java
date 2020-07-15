@@ -2,6 +2,7 @@ package com.sc.config;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -11,16 +12,20 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.sc.entity.XtPermissionInfo;
 import com.sc.form.CaptchaValidateFilter;
 import com.sc.realm.CustomRealmMD5;
+import com.sc.service.XtPermissionInfoService;
 
 @Configuration  //配置类
 public class ShiroConfig {
 	
-
+	@Autowired
+	XtPermissionInfoService xtPermissionInfoService;
 	
 	//MD5方法解析密码
 	@Bean
@@ -75,29 +80,28 @@ public class ShiroConfig {
 		map.put("/login.jsp", "anon");
 		map.put("/main.jsp", "anon");
 		map.put("/captcha/**", "anon");
-		
+		map.put("/static/**", "anon");
+		map.put("/lib/**", "anon");
+		map.put("/temp/**", "anon");
 		//登出，退出登录
 		map.put("/logout.do", "logout");
+		
 		//权限设置（从权限表查询所有的权限并且设置）
-		/*
-		 * List<SysPermission> list = sysPermissionService.getAllPermissions(); if
-		 * (list!=null&&list.size()>0) { System.out.println("所有权限并设置："); for
-		 * (SysPermission perm : list) { String url = perm.getUrl(); String code =
-		 * perm.getPercode();
-		 * if(code!=null&&!code.equals("")&&url!=null&&!url.equals("")) {
-		 * System.out.println("=====url======="+url+"========code====="+code);
-		 * map.put(url, "perms["+code+"]"); } } }
-		 */
-		
-		
-		
+		 
+		List<XtPermissionInfo> list = xtPermissionInfoService.selectAllPerm();
+		if (list!=null&&list.size()>0) {
+			System.out.println("所有权限并设置为:");
+			for (XtPermissionInfo perm : list) {
+				String url = perm.getPermissonName();
+				String code = perm.getPermission();
+				if (url!=null&&code!=null) {
+					map.put(url, "perms["+code+"]");
+				}
+				
+			}
+		}
 		map.put("/**", "authc");
-		
-		
 		shiroFilter.setFilterChainDefinitionMap(map);
-		return shiroFilter;
-		
-		
-		
+		return shiroFilter;	
 	}
 }

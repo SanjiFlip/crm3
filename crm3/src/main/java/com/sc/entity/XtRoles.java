@@ -19,6 +19,9 @@ public class XtRoles implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifyDate;  //最后修改时间
+    
+    //扩展属性
+    private String upRoleName;
 
     private static final long serialVersionUID = 1L;
 
@@ -82,4 +85,21 @@ public class XtRoles implements Serializable {
     public void setLastModifyDate(Date lastModifyDate) {
         this.lastModifyDate = lastModifyDate;
     }
+
+	public String getUpRoleName() {
+		return upRoleName;
+	}
+
+	public void setUpRoleName(String upRoleName) {
+		this.upRoleName = upRoleName;
+	}
+
+	@Override
+	public String toString() {
+		return "XtRoles [roleId=" + roleId + ", roleName=" + roleName + ", roleDes=" + roleDes + ", upRoleId="
+				+ upRoleId + ", operator=" + operator + ", lastModifyDate=" + lastModifyDate + ", upRoleName="
+				+ upRoleName + "]";
+	}
+    
+    
 }

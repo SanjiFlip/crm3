@@ -7,7 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 //系统_用户_账户表
 public class XtUserAccount implements Serializable {
-    private Long userId;  //用户编号
+    
+	private Long userId;  //用户编号
 
     private String userName;  //用户名称
 
@@ -21,6 +22,15 @@ public class XtUserAccount implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifyDate;  //最后修改时间
+    
+    //扩展属性
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemin;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemax;
+    
+    private Long roleId;
 
     private static final long serialVersionUID = 1L;
 
@@ -93,6 +103,34 @@ public class XtUserAccount implements Serializable {
     public void setLastModifyDate(Date lastModifyDate) {
         this.lastModifyDate = lastModifyDate;
     }
+    
+    
+    
+	public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	
+	
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
 
 	@Override
 	public String toString() {

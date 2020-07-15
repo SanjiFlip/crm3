@@ -19,6 +19,15 @@ public class XtLog implements Serializable {
     private Date visitTime;	//访问时间
 
     private Long companyId;	//公司编号
+    
+    //定义扩展属性
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date datemin;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date datemax;
+    
+    private String userName;
 
     private static final long serialVersionUID = 1L;
 
@@ -82,4 +91,37 @@ public class XtLog implements Serializable {
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
+
+	public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	@Override
+	public String toString() {
+		return "XtLog [logId=" + logId + ", userId=" + userId + ", visitIp=" + visitIp + ", permission=" + permission
+				+ ", visitTime=" + visitTime + ", companyId=" + companyId + ", datemin=" + datemin + ", datemax="
+				+ datemax + ", userName=" + userName + "]";
+	}
+    
+    
 }

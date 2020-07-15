@@ -27,4 +27,8 @@ public interface XtUserAccountMapper {
     int updateByPrimaryKeySelective(XtUserAccount record);
 
     int updateByPrimaryKey(XtUserAccount record);
+    
+    List<XtUserAccount> selectByRoleId(Long roleId);
+    
+    List<XtUserAccount> selectByNotInRoleId(Long roleId);
 }

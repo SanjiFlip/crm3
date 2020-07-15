@@ -27,4 +27,14 @@ public interface XtPermissionInfoMapper {
     int updateByPrimaryKeySelective(XtPermissionInfo record);
 
     int updateByPrimaryKey(XtPermissionInfo record);
+    
+    List<XtPermissionInfo> selectByColumnId(Long columnsId);
+    
+    List<XtPermissionInfo> selectNotByColumnId(Long columnsId);
+    
+    List<XtPermissionInfo> selectInfo();
+    
+    List<XtPermissionInfo> checkInfos(Long roleId);
+    
+    List<XtPermissionInfo> getPermissionForUser(Long userId);
 }
