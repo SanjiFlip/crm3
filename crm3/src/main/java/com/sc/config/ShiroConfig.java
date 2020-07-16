@@ -21,13 +21,13 @@ import com.sc.form.CaptchaValidateFilter;
 import com.sc.realm.CustomRealmMD5;
 import com.sc.service.XtPermissionInfoService;
 
-@Configuration  //閰嶇疆绫�
+@Configuration  
 public class ShiroConfig {
 	
 	@Autowired
 	XtPermissionInfoService xtPermissionInfoService;
 	
-	//MD5鏂规硶瑙ｆ瀽瀵嗙爜
+
 	@Bean
 	public CustomRealmMD5 customRealmMD5() {
 		CustomRealmMD5 realm = new CustomRealmMD5();
@@ -38,7 +38,7 @@ public class ShiroConfig {
 		return realm;
 	}
 	
-	//瀹夊叏绠＄悊鍣�
+
 	@Bean
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
@@ -46,7 +46,7 @@ public class ShiroConfig {
 		return manager;
 	}
 	
-	//Shiro杩囨护鍣�
+
 	@Bean("shiroFilter")
 	public ShiroFilterFactoryBean shiroFilter() {
 		CaptchaValidateFilter form = new CaptchaValidateFilter();
@@ -69,9 +69,8 @@ public class ShiroConfig {
 		filters.put("logout", logout);
 		shiroFilter.setFilters(filters);
 		
-		//寤鸿浣跨敤LinkedHashMap
+
 		Map<String, String> map = new LinkedHashMap<String, String>();
-		//anon:鍙尶鍚嶈闂紝authc:闇�瑕佽璇佹墠鑳借闂�
 		map.put("/css/**", "anon");
 		map.put("/images/**", "anon");
 		map.put("/js/**", "anon");
@@ -83,12 +82,10 @@ public class ShiroConfig {
 		map.put("/static/**", "anon");
 		map.put("/lib/**", "anon");
 		map.put("/temp/**", "anon");
-		//登出，退出登录
 		map.put("/logout.do", "logout");
-		//权限设置（从权限表查询所有的权限并且设置）	 
 		List<XtPermissionInfo> list = xtPermissionInfoService.selectAllPerm();
 		if (list!=null&&list.size()>0) {
-			System.out.println("所有权限并设置为:");
+			System.out.println("����Ȩ�޲���������:");
 			for (XtPermissionInfo perm : list) {
 				String url = perm.getPermissonName();
 				String code = perm.getPermission();

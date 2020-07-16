@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的桌面" data-href="http://localhost:8080/crm3/druid/index.html">我的桌面</span>
+					<span title="我的桌面" data-href="druid">我的桌面</span>
 					<em></em></li>
 		</ul>
 	</div>
