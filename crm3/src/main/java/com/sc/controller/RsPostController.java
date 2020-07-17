@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.Message;
 import com.sc.entity.RsPostMessage;
 import com.sc.service.RsPostMessageService;
@@ -23,12 +24,13 @@ public class RsPostController {
 	 @Autowired 
 	 RsPostMessageService rsPostMessageService;
 	 
-
+	 @MyLog("分页查询职务信息")
 	@RequestMapping("/selectrspost.do")
 	public ModelAndView selectRsPost(ModelAndView mav,
 			@RequestParam(defaultValue="1")Integer pageNum, 
 			@RequestParam(defaultValue="10")Integer pageSize,
 			RsPostMessage rspost){
+		 System.out.println("获取到的职务信息"+rspost);
 		 PageInfo<RsPostMessage> page = rsPostMessageService.selectRsPost(pageNum, pageSize, rspost);
 		 mav.addObject("p", page);
 		 mav.addObject("rspost", rspost);
@@ -36,6 +38,7 @@ public class RsPostController {
 		 return mav;
 	}
 	
+	 @MyLog("跳转添加/修改职务信息")
 	@RequestMapping("/goaddrspost.do")
 	public ModelAndView goAddPost(ModelAndView mav, 	
 			RsPostMessage rspost){
@@ -47,7 +50,7 @@ public class RsPostController {
 		 return mav;
 	}
 	 
-
+	 @MyLog("添加/修改职务信息")
 	 @RequestMapping("/addrspost.do")
 	 @ResponseBody
 	 public Message AddPost(ModelAndView mav, 	
@@ -56,11 +59,12 @@ public class RsPostController {
 		 if(rspost.getPostId()!=null){//修改操作
 			 rsPostMessageService.updateRsPost(rspost);
 		 }else{//添加操作
-			 rsPostMessageService.addRsPost(rspost);
+			 rsPostMessageService.addRsPost(rspost);			
 		 }
-		return new Message("1", "success", "成功");
+		 	 return new Message("1", "success", "成功");
 	}
 	 
+	 @MyLog("删除职务信息")
 	 @RequestMapping("/deleterspost.do")
 	 @ResponseBody
 	 public Message deletePost(ModelAndView mav, 	
@@ -69,7 +73,7 @@ public class RsPostController {
 		return new Message("1", "success", "成功");
 	 }
 	 
-	 
+	 @MyLog("查看职务详情信息")
 	@RequestMapping("/showrspost.do")
 	public ModelAndView showPost(ModelAndView mav,
 			 RsPostMessage rspost){		
@@ -79,7 +83,7 @@ public class RsPostController {
 		 return mav;
 	}
 	 
-
+	 @MyLog("批量删除职务信息")
 	 @RequestMapping("/deletepostall.do")
 	 @ResponseBody
 	 public ModelAndView deletePostall(ModelAndView mav, 	

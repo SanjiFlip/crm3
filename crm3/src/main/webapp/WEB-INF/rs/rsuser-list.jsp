@@ -74,9 +74,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td class="text-l"><img width="60" class="product-thumb" src="upload/${rsuser.staffPhoto }"></td>
 				<td class="text-l">${rsuser.nowAddress }</td>
 				<td class="text-l">${rsuser.staffEducationalBackground }</td>
-				<td class="td-status"><span class="label label-success radius">${rsuser.examineState=="1" ? "已审核":"未审核"}</span></td>
-				<td class="text-l">${rsuser.postId }</td>
-				<td class="text-l"><span class="label label-success radius">${rsuser.staffState=="在线" ? "在线":"下线"}</span></td>
+				<td class="text-l"><span class="label label-success radius">${rsuser.examineState=="已审核" ? "已审核":"未审核"}</span></td>
+				<td class="">${rsuser.postId }</td>
+				<td class="td-status"><span class="label label-success radius">${rsuser.staffState=="1" ? "在线":"下线"}</span></td>
 				<td class="text-l">${rsuser.compnayId }</td>
 				<td class="text-l">
 				<fmt:formatDate value="${rsuser.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/> 
@@ -85,7 +85,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!--<td class="td-manage"><a style="text-decoration:none" onClick="member_stop(this,'10001')" 
 				  <a href="selectcompnay?compnayId=${rscompnay.compnayId }&enabled=${rscompnay.enabled==0 ? 1:0 }">状态</a>><i class="Hui-iconfont">&#xe631;</i></a> -->
 
-				  <td class="td-manage"><a style="text-decoration:none" onClick="member_stop(this,'${rsuser.staffId}')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
+				  <td class="td-manage">
+				  <c:if test="${rsuser.staffState=='1'}">
+				  <a style="text-decoration:none" onClick="member_stop(this,'${rsuser.staffId}')" href="javascript:;" title="下线"><i class="Hui-iconfont">&#xe631;</i></a>
+				  </c:if>
+				  <c:if test="${rsuser.staffState!='1'}">
+				  <a style="text-decoration:none" onClick="member_start(this,'${rsuser.staffId}')" href="javascript:;" title="下线"><i class="Hui-iconfont">&#xe6e1;</i></a>
+				  </c:if>
 				<a title="编辑" href="javascript:;" onclick="member_edit('编辑','rsuserctrl/goadduser.do','${rsuser.staffId }','','510')" class="ml-5" style="text-decoration:none">
 				<i class="Hui-iconfont">&#xe6df;</i></a> 
 				 <a title="删除" href="javascript:;" onclick="member_del(this,'${rsuser.staffId }')" class="ml-5" style="text-decoration:none">
@@ -132,19 +138,19 @@ $(function(){
 	$("#DataTables_Table_0_filter").hide();
 });
 
-/*公司-停用*/
+/*员工-停用*/
 function member_stop(obj,id){
-	layer.confirm('确认要停用吗？',function(index){
+	layer.confirm('确认要下线吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: 'rsuserctrl/examineStateuser.do',
-			data: "staffId="+id+"&examineState=0",
+			url: 'rsuserctrl/staffStateuser.do',
+			data: "staffId="+id+"&staffState=0",
 			dataType: 'json',
 			success: function(data){
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,'+id+')" href="javascript:;" title="审核"><i class="Hui-iconfont">&#xe6e1;</i></a>');
-				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">未审核</span>');
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,'+id+')" href="javascript:;" title="上线"><i class="Hui-iconfont">&#xe6e1;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">下线</span>');
 				$(obj).remove();
-				layer.msg('未审核!',{icon: 5,time:1000});
+				layer.msg('下线!',{icon: 5,time:1000});
 			},
 			error:function(data) {
 				console.log(data.msg);
@@ -153,19 +159,19 @@ function member_stop(obj,id){
 	});
 }
 
-/*公司-启用*/
+/*员工-启用*/
 function member_start(obj,id){
-	layer.confirm('确认要启用吗？',function(index){
+	layer.confirm('确认要上线吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: 'rsuserctrl/examineStateuser.do',
-			data: "staffId="+id+"&examineState=1",
+			url: 'rsuserctrl/staffStateuser.do',
+			data: "staffId="+id+"&staffState=1",
 			dataType: 'json',
 			success: function(data){
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,'+id+'})" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
-				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已审核</span>');
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,'+id+'})" href="javascript:;" title="上线"><i class="Hui-iconfont">&#xe631;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">在线</span>');
 				$(obj).remove();
-				layer.msg('已审核!',{icon: 6,time:1000});
+				layer.msg('已上线!',{icon: 6,time:1000});
 			},
 			error:function(data) {
 				console.log(data.msg);
@@ -177,26 +183,26 @@ function member_start(obj,id){
 
 
 
-/*公司-添加*/
+/*员工-添加*/
 function member_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*公司-查看*/
+/*员工-查看*/
 function member_show(title,url,id,w,h){
 	url=url+"?staffId="+id;
 	layer_show(title,url,w,h);
 }
 
-/*公司-编辑*/
+/*员工-编辑*/
 function member_edit(title,url,id,w,h){
 	url=url+"?staffId="+id;
 	layer_show(title,url,w,h);
 }
-/*公司-修改*/
+/*员工-修改*/
 function change_password(title,url,id,w,h){
 	layer_show(title,url,w,h);	
 }
-/*公司-删除*/
+/*员工-删除*/
 function member_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
@@ -207,6 +213,7 @@ function member_del(obj,id){
 			success: function(data){
 				$(obj).parents("tr").remove();
 				layer.msg('已删除!',{icon:1,time:1000});
+				window.location.reload();
 			},
 			error:function(data) {
 				console.log(data.msg);

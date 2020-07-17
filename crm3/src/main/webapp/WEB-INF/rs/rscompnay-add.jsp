@@ -49,31 +49,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司代码：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.compnayCode }" placeholder="不输打死你" id="compnayCode" name="compnayCode">
+				<input type="text" class="input-text" value="${rscompnay.compnayCode }" placeholder="请输入公司代码" id="compnayCode" name="compnayCode">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.mailbox }" placeholder="看你心情咯" id="mailbox" name="mailbox">
+				<input type="text" class="input-text" value="${rscompnay.mailbox }" placeholder="请输入邮箱" id="mailbox" name="mailbox">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.contacts }" placeholder="不输打死你" id="contacts" name="contacts">
+				<input type="text" class="input-text" value="${rscompnay.contacts }" placeholder="请输入联系人" id="contacts" name="contacts">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.compnayAddress }" placeholder="不输打死你" id="compnayAddress" name="compnayAddress">
+				<input type="text" class="input-text" value="${rscompnay.compnayAddress }" placeholder="请输入公司地址" id="compnayAddress" name="compnayAddress">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>固定电话：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.fixedTelephone }" placeholder="不输打死你" id="fixedTelephone" name="fixedTelephone">
+				<input type="text" class="input-text" value="${rscompnay.fixedTelephone }" placeholder="请输入固定电话" id="fixedTelephone" name="fixedTelephone">
 			</div>
 		</div>
 		<div class="row cl">
@@ -85,18 +85,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>传真：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.fax }" placeholder="不输打死你" id="fax" name="fax">
+				<input type="text" class="input-text" value="${rscompnay.fax }" placeholder="请输入传真" id="fax" name="fax">
 			</div>
 		</div><div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>开户银行：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.bankOfDeposit }" placeholder="不输打死你" id="bankOfDeposit" name="bankOfDeposit">
+				<input type="text" class="input-text" value="${rscompnay.bankOfDeposit }" placeholder="请输入数字" id="bankOfDeposit" name="bankOfDeposit">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>银行账户：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rscompnay.bankAccount }" placeholder="不输打死你" id="bankAccount" name="bankAccount">
+				<input type="text" class="input-text" value="${rscompnay.bankAccount }" placeholder="请输入银行账户" id="bankAccount" name="bankAccount">
 			</div>
 		</div>
 		
@@ -163,12 +163,22 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
+			/*
 			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
 			//parent.$('.btn-refresh').click();
 			window.parent.location.reload();//刷新页面
 			parent.layer.msg('操作成功！',{icon: 6,time:1000});
-			rent.layer.close(index);
+			parent.layer.close(index);*/
+			$(form).ajaxSubmit({
+			  success:function(){
+			    var index = parent.layer.getFrameIndex(window.name);
+			    //parent.$('#btn-refresh').click();
+			    window.parent.location.reload();//刷新父页面
+			    parent.layer.msg('操作成功!',{icon: 6,time:1000});
+			    parent.layer.close(index);
+			  }
+			 });
 		}
 	});
 });

@@ -42,14 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>员工名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-			<!-- 如果是添加就没有ID，如果是修改就有ID -->
-			
-			
-			
-			
-			
-			
-			
+			<!-- 如果是添加就没有ID，如果是修改就有ID -->	
 			<input type="hidden" class="input-text" value="${rsuser.staffId }" id="staffId" name="staffId">	
 				<input type="text" class="input-text" value="${rsuser.staffName }" placeholder="请输入员工姓名" id="staffName" name="staffName">
 			</div>
@@ -67,8 +60,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>员工性别：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rsuser.staffSex }" placeholder="请输入员工性别" id="staffSex" name="staffSex">
+				 <input type="radio" name="staffSex" value="男"  ${rsuser.staffSex=="男" ? "checked":"" }>男
+              <input type="radio" name="staffSex" value="女" ${rsuser.staffSex=="女" ? "checked":"" }>女
 			</div>
+			
 		</div>
 		
 		
@@ -123,7 +118,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>审核状态：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rsuser.examineState }" placeholder="请输入审核状态" name="examineState" id="examineState">
+				 <input type="radio" name="examineState" value="已审核"  ${rsuser.examineState=="已审核" ? "checked":"" }>已审核
+              <input type="radio" name="examineState" value="未审核" ${rsuser.examineState=="未审核" ? "checked":"" }>未审核
 			</div>
 		</div>
 		<div class="row cl">
@@ -136,8 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>员工状态״：</label>
                <td>
-              <input type="radio" name="staffState" value="在线" ${rsuser.staffState=="在线" ? "checked":"" }>在线
-              <input type="radio" name="staffState" value="下线" ${rsuser.staffState=="下线" ? "checked":"" }>下线
+              <input type="hidden" class="input-text" value="1" name="staffState" id="staffState">在线
            </td>
           </div>
 		<div class="row cl">
@@ -202,12 +197,22 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
+			/*
 			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
 			//parent.$('.btn-refresh').click();
 			window.parent.location.reload();//刷新页面
 			parent.layer.msg('操作成功！',{icon: 6,time:1000});
-			rent.layer.close(index);
+			parent.layer.close(index);*/
+			$(form).ajaxSubmit({
+			  success:function(){
+			    var index = parent.layer.getFrameIndex(window.name);
+			    //parent.$('#btn-refresh').click();
+			    window.parent.location.reload();//刷新父页面
+			    parent.layer.msg('操作成功!',{icon: 6,time:1000});
+			    parent.layer.close(index);
+			  }
+			 });
 		}
 	});
 });

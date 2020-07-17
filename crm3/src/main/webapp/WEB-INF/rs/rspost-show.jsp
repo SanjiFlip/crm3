@@ -29,32 +29,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>用户查看</title>
+<title>职务查看</title>
 </head>
 <body>
 <div class="cl pd-20" style=" background-color:#5bacb6">
-	<dl style="margin-left:80px; color:#fff">
+	<dl style="color:#fff">
 		<dt>
-			<span class="f-18">职务名称：${rspost.postName }</span><hr>
-			<span class="pl-10 f-12">职务编号:$rspost.postId }</span>
+			<span">职务名称&nbsp;&nbsp;：${rspost.postName }</span><hr>
+			<span>职务编号&nbsp;&nbsp;:${rspost.postId }</span>
 		</dt>
-		<dd class="pt-10 f-12" style="margin-left:0">部门编号：${rspost.dtmartmentId }</dd>
+		<dd class="pt-10 f-12" style="margin-left:0">部门编号&nbsp;&nbsp;：${rspost.dtmartmentId }</dd>
 	</dl>
 </div>
 <div class="pd-20">
 	<table class="table">
 		<tbody>
 		<tr>
-				<th class="text-r" width="150">备注说明:${rspost.remarkExplain }</th>
-				<td></td>
+				<th>备注说明&nbsp;&nbsp;:${rspost.remarkExplain }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">公司编号:${rspost.compnayId }</th>
-				<td></td>
+				<th>公司编号&nbsp;&nbsp;:${rspost.compnayId }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">最后修改时间：</th>
-				<td><fmt:formatDate value="${rspost.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				<th>最后修改时间：<fmt:formatDate value="${rspost.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></th>
 			</tr>
 		</tbody>
 	</table>

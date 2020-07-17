@@ -36,10 +36,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<img class="avatar size-XL l" src="upload/${rsuser.staffPhoto }">
 	<dl style="margin-left:80px; color:#fff">
 		<dt>
-			<span class="f-18">员工姓名：${rsuser.staffName }</span><hr>
-			<span class="pl-10 f-12">员工编号:${rsuser.staffId }</span>
+			<span class="f-18">员工姓名&nbsp; &nbsp;：${rsuser.staffName }</span><hr>
+			<span class="pl-10 f-12">员工编号&nbsp; &nbsp;:${rsuser.staffId }</span>
 		</dt>
-		<dd class="pt-10 f-12" style="margin-left:0">员工性别：${rsuser.staffSex }</dd>
+		<dd class="pt-10 f-12" style="margin-left:0">员工性别&nbsp; &nbsp;：${rsuser.staffSex }</dd>
 	</dl>
 </div>
 <div class="pd-20">
@@ -47,60 +47,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tbody>
 		
 			<tr>
-				<th class="text-r" width="150">身份证号：${rsuser.idCard }</th>
-				<td></td>
+				<th>身份证号&nbsp; &nbsp;：${rsuser.idCard }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">家乡地址：${rsuser.hometownAddress }</th>
-				<td></td>
+				<th>家乡地址&nbsp; &nbsp;：${rsuser.hometownAddress }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">现在地址：${rsuser.nowAddress }</th>
-				<td></td>
+				<th>现在地址&nbsp; &nbsp;：${rsuser.nowAddress }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">员工学历：</th>
-				<td>${rsuser.staffEducationalBackground }</td>
+				<th>员工学历&nbsp; &nbsp;：${rsuser.staffEducationalBackground }</th>
+
 			</tr>
 			<tr>
-				<th class="text-r" width="150">政治面貌：</th>
-				<td>${rsuser.politicCountenance }</td>
+				<th>政治面貌&nbsp; &nbsp;：${rsuser.politicCountenance }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">毕业学校：</th>
-				<td>${rsuser.graduateSchool }</td>
+				<th>毕业学校&nbsp; &nbsp;：${rsuser.graduateSchool }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">网上联系方式：</th>
-				<td>${rsuser.onlineContactInfromation }</td>
+				<th>网上联系方式：${rsuser.onlineContactInfromation }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">网上联系详情：</th>
-				<td>${rsuser.onlineContactDetails }</td>
+				<th>网上联系详情：${rsuser.onlineContactDetails }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">审核状态</th>
-				<td>${rsuser.examineState==1 ? "已启用":"已停用"}</td>
+				<th>审核状态&nbsp; &nbsp;: ${rsuser.examineState==已审核 ? "已审核":"未审核"}</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">职务编号：</th>
-				<td>${rsuser.postId }</td>
+				<th>职务编号&nbsp; &nbsp;：${rsuser.postId }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">员工状态：</th>
-				<td>${rsuser.staffState }</td>
+				<th>员工状态&nbsp; &nbsp;：${rsuser.staffState=="1" ? "在线":"下线"}</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">备注：</th>
-				<td>${rsuser.remarks }</td>
+				<th>备注&nbsp; &nbsp;&nbsp; &nbsp;：${rsuser.remarks }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">公司编号：</th>
-				<td>${rsuser.compnayId }</td>
+				<th>公司编号&nbsp; &nbsp;：${rsuser.compnayId }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">最后修改时间：</th>
-				<td><fmt:formatDate value="${rsuser.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				<th>最后修改时间：<fmt:formatDate value="${rsuser.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></th>
 			</tr>
 		</tbody>
 	</table>
