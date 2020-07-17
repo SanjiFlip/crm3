@@ -29,14 +29,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>用户查看</title>
+<title>公司查看</title>
 </head>
 <body>
 <div class="cl pd-20" style=" background-color:#5bacb6">
-	<dl style="margin-left:80px; color:#fff">
+	<dl style="color:#fff">
 		<dt>
-			<span class="f-18">公司姓名：${rscompnay.compnayName }</span><hr>
-			<span class="pl-10 f-12">公司ID:${rscompnay.compnayId }</span>
+			<span>公司姓名：${rscompnay.compnayName }</span><hr>
+			<span>公司ID:${rscompnay.compnayId }</span>
 		</dt>
 		<dd class="pt-10 f-12" style="margin-left:0">公司代码：${rscompnay.compnayCode }</dd>
 	</dl>
@@ -45,48 +45,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<table class="table">
 		<tbody>
 		<tr>
-				<th class="text-r" width="150">邮箱:${rscompnay.mailbox }</th>
-				<td></td>
+				<th>邮箱&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:${rscompnay.mailbox }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">联系人：${rscompnay.contacts }</th>
-				<td></td>
+				<th>联系人&nbsp; &nbsp;：${rscompnay.contacts }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">公司地址：${rscompnay.compnayAddress }</th>
-				<td></td>
+				<th>公司地址&nbsp;：${rscompnay.compnayAddress }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">固定电话：${rscompnay.fixedTelephone }</th>
-				<td></td>
+				<th>固定电话&nbsp;：${rscompnay.fixedTelephone }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">移动电话：</th>
-				<td>${rscompnay.mobilePhone }</td>
+				<th>移动电话&nbsp;：${rscompnay.mobilePhone }</th>
+
 			</tr>
 			<tr>
-				<th class="text-r" width="150">传真：</th>
-				<td>${rscompnay.fax }</td>
+				<th>传真&nbsp; &nbsp;&nbsp;：${rscompnay.fax }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">开户银行：</th>
-				<td>${rscompnay.bankOfDeposit }</td>
+				<th>开户银行 &nbsp;：${rscompnay.bankOfDeposit }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">银行账户：</th>
-				<td>${rscompnay.bankAccount }</td>
+				<th>银行账户 &nbsp;：${rscompnay.bankAccount }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">是否有效</th>
-				<td>${rscompnay.enabled==1 ? "已启用":"已停用"}</td>
+				<th>是否有效 &nbsp;:${rscompnay.enabled==1 ? "有效":"无效"}</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">备注信息：</th>
-				<td>${rscompnay.remarks }</td>
+				<th>备注信息 &nbsp;：${rscompnay.remarks }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">最后修改时间：</th>
-				<td><fmt:formatDate value="${rscompnay.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				<th>最后修改时间：<fmt:formatDate value="${rscompnay.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></th>
 			</tr>
 		</tbody>
 	</table>

@@ -78,14 +78,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>${rscompnay.contacts }</td>
 				<td>${rscompnay.compnayAddress }</td>
 				<td>${rscompnay.bankAccount }</td>
-				<td class="td-status"><span class="label label-success radius">${rscompnay.enabled=="1" ? "已启用":"已禁用"}</span></td>
+				<td class="td-status"><span class="label label-success radius">${rscompnay.enabled=="1" ? "有效":"无效"}</span></td>
 				<td class="text-l">${rscompnay.remarks }</td>
 				<td class="text-l">
 				<fmt:formatDate value="${rscompnay.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/> 
 				</td>
-				
-				
-				  <td class="td-manage"><a style="text-decoration:none" onClick="member_stop(this,'${rscompnay.compnayId}')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
+				 <td class="td-manage">
+				<c:if test="${rscompnay.enabled=='1'}">
+				 <a style="text-decoration:none" onClick="member_stop(this,'${rscompnay.compnayId}')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>
+				 </c:if>
+				 <c:if test="${rscompnay.enabled!='1'}">
+				<a style="text-decoration:none" onClick="member_start(this,'${rscompnay.compnayId}')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>
+				 </c:if>
 				<a title="编辑" href="javascript:;" onclick="member_edit('编辑','rscompnayctrl//goaddcompnay.do','${rscompnay.compnayId }','','510')" class="ml-5" style="text-decoration:none">
 				<i class="Hui-iconfont">&#xe6df;</i></a> 
 				 <a title="删除" href="javascript:;" onclick="member_del(this,'${rscompnay.compnayId }')" class="ml-5" style="text-decoration:none">
@@ -142,7 +146,7 @@ function member_show(title,url,id,w,h){
 	url=url+"?compnayId="+id;
 	layer_show(title,url,w,h);
 }
-/*公司-停用*/
+/*员工-停用*/
 function member_stop(obj,id){
 	layer.confirm('确认要停用吗？',function(index){
 		$.ajax({
@@ -152,9 +156,9 @@ function member_stop(obj,id){
 			dataType: 'json',
 			success: function(data){
 				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,'+id+')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
-				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">无效</span>');
 				$(obj).remove();
-				layer.msg('已停用!',{icon: 5,time:1000});
+				layer.msg('无效!',{icon: 5,time:1000});
 			},
 			error:function(data) {
 				console.log(data.msg);
@@ -163,7 +167,7 @@ function member_stop(obj,id){
 	});
 }
 
-/*公司-启用*/
+/*员工-启用*/
 function member_start(obj,id){
 	layer.confirm('确认要启用吗？',function(index){
 		$.ajax({
@@ -172,10 +176,10 @@ function member_start(obj,id){
 			data: "compnayId="+id+"&enabled=1",
 			dataType: 'json',
 			success: function(data){
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,'+id+'})" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
-				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,'+id+'})" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe631;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">有效</span>');
 				$(obj).remove();
-				layer.msg('已启用!',{icon: 6,time:1000});
+				layer.msg('有效!',{icon: 6,time:1000});
 			},
 			error:function(data) {
 				console.log(data.msg);
@@ -203,6 +207,7 @@ function member_del(obj,id){
 			success: function(data){
 				$(obj).parents("tr").remove();
 				layer.msg('已删除!',{icon:1,time:1000});
+				window.location.reload();
 			},
 			error:function(data) {
 				console.log(data.msg);

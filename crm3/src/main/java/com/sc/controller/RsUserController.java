@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.Message;
 import com.sc.entity.RsUserMessage;
 import com.sc.service.RsUserMessageService;
@@ -29,12 +30,13 @@ public class RsUserController {
 	@Autowired
 	RsUserMessageService rsUserMessageService;
 	 
-
+	@MyLog("分页查询")
 	@RequestMapping("/selectuser.do")
 	public ModelAndView selectUser(ModelAndView mav,
-			@RequestParam(defaultValue="1")Integer pageNum, 
-			@RequestParam(defaultValue="10")Integer pageSize,
-			RsUserMessage rsuser){
+		 @RequestParam(defaultValue="1")Integer pageNum, 
+		 @RequestParam(defaultValue="10")Integer pageSize,
+		 RsUserMessage rsuser){
+		 System.out.println("获取到的员工信息"+rsuser);
 		 PageInfo<RsUserMessage> page = rsUserMessageService.selectRsCompnay(pageNum, pageSize, rsuser);
 		 mav.addObject("p", page);
 		 mav.addObject("rsuser", rsuser);
@@ -42,7 +44,7 @@ public class RsUserController {
 		 return mav;
 	}
 	
-
+	@MyLog("跳转添加/修改员工信息")
  	@RequestMapping("/goadduser.do")
 	public ModelAndView goAddUser(ModelAndView mav, 	
 			RsUserMessage rsuser){
@@ -55,7 +57,7 @@ public class RsUserController {
 	 return mav;
 	}
 	 
-
+	@MyLog("添加/修改员工信息")
 	 @RequestMapping("/adduser.do")
 	 @ResponseBody
 	 public Message AddUser(ModelAndView mav, 	
@@ -88,21 +90,21 @@ public class RsUserController {
 						rsuser.setStaffPhoto(name);
 					}
 			 }
-			 rsUserMessageService.addRsUser(rsuser);
+			 rsUserMessageService.addRsUser(rsuser); 
 		 }
-		 return new Message("1", "success", "成功"); 
+		 	 return new Message("1", "success", "成功");
 		}
 	 
-
+	@MyLog("删除员工信息")
 	 @RequestMapping("/deleteuser.do")
 	 @ResponseBody
 	 public Message deleteUser(ModelAndView mav, 	
 			 RsUserMessage rsuser){
 		 rsUserMessageService.deleteRsUser(rsuser.getStaffId());
-		 return new Message("1", "success", "鎴愬姛");
+		 return new Message("1", "success", "成功");
 	 }
 	 
-	 
+	@MyLog("查询员工详细信息")
 	@RequestMapping("/showuser.do")
 	public ModelAndView showUser(ModelAndView mav,
 			RsUserMessage rsuser){		
@@ -112,12 +114,12 @@ public class RsUserController {
 		 return mav;
 	}
 	 
-	
+	@MyLog("批量删除员工信息")
 	 @RequestMapping("/deleteuserall.do")
 	 @ResponseBody
 	 public ModelAndView deleteCompnayall(ModelAndView mav, 	
 			 Long[] ids){
-		 System.out.println("删除的公司ID是:"+Arrays.toString(ids));
+		 System.out.println("鍒犻櫎鐨勫叕鍙窱D鏄�:"+Arrays.toString(ids));
 		 if(ids!=null&&ids.length>0){
 			 for(Long id : ids) {
 				 rsUserMessageService.deleteRsUser(id);
@@ -127,7 +129,7 @@ public class RsUserController {
 		 return mav;
 	 } 
  
-		
+	@MyLog("上传图片")
 		@RequestMapping("/upload.do")
 		public ModelAndView upload(ModelAndView mav,
 				MultipartFile upload,
@@ -135,44 +137,33 @@ public class RsUserController {
 			if(upload!=null){
 				String name=upload.getOriginalFilename();
 				if(name!=null&&!name.equals("")){
-					String path=req.getServletContext().getRealPath("upload");
-					name=System.currentTimeMillis()
-							+name.substring(name.lastIndexOf("."));
-					System.out.println(path+"/"+name);
-					File file=new File(path+"/"+name);
-					upload.transferTo(file);
-					mav.addObject("name",name);
+				String path=req.getServletContext().getRealPath("upload");
+				name=System.currentTimeMillis()
+						+name.substring(name.lastIndexOf("."));
+				System.out.println(path+"/"+name);
+				File file=new File(path+"/"+name);
+				upload.transferTo(file);
+				mav.addObject("name",name);
 				}
 			}
-			
-			mav.setViewName("redirect:goadduser.do");
-			return mav;
-		}
+				mav.setViewName("redirect:goadduser.do");
+				return mav;
+		    }
 		 
-	 @RequestMapping("/examineStateuser.do")
+			
+		
+	@MyLog("员工状态修改")
+	 @RequestMapping("/staffStateuser.do")
 	 @ResponseBody
 	 public Message examineStateUser(ModelAndView mav, 	
 			 RsUserMessage rsuser){
-		 System.out.println("人事用户信息是:"+rsuser);
-		 if(rsuser.getStaffId()!=null){
-			 RsUserMessage comp=rsUserMessageService.getRsUser(rsuser.getStaffId());
-			 comp.setExamineState(rsuser.getExamineState());
-			 rsUserMessageService.updateRsUser(comp);
-		 }
-			return new Message("1", "success", "成功");
-	  }
-		 
-		 
-	 @RequestMapping("/staffStateuser.do")
-	 @ResponseBody
-	 public Message staffStateUser(ModelAndView mav, 	
-			 RsUserMessage rsuser){
+		 System.out.println("鑾峰彇鍒扮殑"+rsuser);
 		 if(rsuser.getStaffId()!=null){
 			 RsUserMessage comp=rsUserMessageService.getRsUser(rsuser.getStaffId());
 			 comp.setStaffState(rsuser.getStaffState());
 			 rsUserMessageService.updateRsUser(comp);
 		 }
 			return new Message("1", "success", "成功");
-	}
+	  }
 	 
 }

@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司编号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rsdepartment.companyId }" placeholder="不输打死你" id="companyId" name="companyId">
+				<input type="text" class="input-text" value="${rsdepartment.companyId }" placeholder="请输入公司编号" id="companyId" name="companyId">
 			</div>
 		</div>		
 		<div class="row cl">
@@ -107,12 +107,22 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
+			/*
 			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
 			//parent.$('.btn-refresh').click();
 			window.parent.location.reload();//刷新页面
 			parent.layer.msg('操作成功！',{icon: 6,time:1000});
-			rent.layer.close(index);
+			parent.layer.close(index);*/
+			$(form).ajaxSubmit({
+			  success:function(){
+			    var index = parent.layer.getFrameIndex(window.name);
+			    //parent.$('#btn-refresh').click();
+			    window.parent.location.reload();//刷新父页面
+			    parent.layer.msg('操作成功!',{icon: 6,time:1000});
+			    parent.layer.close(index);
+			  }
+			 });
 		}
 	});
 });

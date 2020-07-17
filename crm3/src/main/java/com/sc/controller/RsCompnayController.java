@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.Message;
 import com.sc.entity.RsCompnayMessage;
 import com.sc.service.RsCompnayMessageService;
@@ -23,7 +24,7 @@ public class RsCompnayController {
 	 @Autowired 
 	 RsCompnayMessageService rsCompnayMessageService;
 	 
-	
+	@MyLog("分页查询信息")
 	@RequestMapping("/selectcompnay.do")
 	public ModelAndView selectCompnay(ModelAndView mav,
 			@RequestParam(defaultValue="1")Integer pageNum, 
@@ -36,7 +37,7 @@ public class RsCompnayController {
 		 return mav;
 	}
 	
-
+	@MyLog("跳转添加/修改员工信息")
 	@RequestMapping("/goaddcompnay.do")
 	public ModelAndView goAddCompnay(ModelAndView mav, 	
 			RsCompnayMessage rscompnay){
@@ -48,7 +49,8 @@ public class RsCompnayController {
 	 mav.addObject("rscompnay", rscompnay);
 	 return mav;
 	}
-	 
+	
+	@MyLog("添加/修改员工信息")
 	 @RequestMapping("/addcompnay.do")
 	 @ResponseBody
 	 public Message AddCompnay(ModelAndView mav, 	
@@ -56,12 +58,14 @@ public class RsCompnayController {
 		 System.out.println("公司信息是："+rscompnay);
 		 if(rscompnay.getCompnayId()!=null){//修改操作
 			 rsCompnayMessageService.updateRsCompnay(rscompnay);
+			 
 		 }else{
 			 rsCompnayMessageService.addRsCompnay(rscompnay);
 		 }
-			 return new Message("1", "success", "成功");
+		 	 return new Message("1", "success", "成功");
 		} 
 	 
+	@MyLog("删除员工信息")
 	 @RequestMapping("/deletecompnay.do")
 	 @ResponseBody
 	 public Message deleteCompnay(ModelAndView mav, 	
@@ -71,6 +75,7 @@ public class RsCompnayController {
 		 return new Message("1", "success", "成功");
 		}
 	 
+	@MyLog("修改是否有效信息")
 	 @RequestMapping("/enabledcompnay.do")
 	 @ResponseBody
 	 public Message enabledCompnay(ModelAndView mav, 	
@@ -80,19 +85,22 @@ public class RsCompnayController {
 			 RsCompnayMessage comp=rsCompnayMessageService.getRsCompnay(rscompnay.getCompnayId());
 			 comp.setEnabled(rscompnay.getEnabled());
 			 rsCompnayMessageService.updateRsCompnay(comp);
+			
 		 }
-			return new Message("1", "success", "成功");
+		 return new Message("1", "success", "成功");
 		}
 	 
+	@MyLog("查询员工详情信息")
 	@RequestMapping("/showcompnay.do")
 	public ModelAndView showCompnay(ModelAndView mav,
 			RsCompnayMessage rscompnay){		
 		 rscompnay=rsCompnayMessageService.getRsCompnay(rscompnay.getCompnayId());
-		 mav.setViewName("rs/rscompnay-show");  // /WB-INF/rs/rscompnay-list.jsp
+		 mav.setViewName("rs/rscompnay-show");
 		 mav.addObject("rscompnay", rscompnay); 
 		 return mav;
 	}
 	 
+	 @MyLog("批量删除员工信息")
 	 @RequestMapping("/deletecompnayall.do")
 	 @ResponseBody
 	 public ModelAndView deleteCompnayall(ModelAndView mav, 	
@@ -102,7 +110,7 @@ public class RsCompnayController {
 			 for(Long id : ids) {
 				 rsCompnayMessageService.deleteRsCompnay(id);
 			 }
-		 }		 
+		 }	 
 		 mav.setViewName("redirect:selectcompnay.do");
 			return mav;
 		} 

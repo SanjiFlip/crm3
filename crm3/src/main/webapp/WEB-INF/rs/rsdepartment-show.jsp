@@ -29,28 +29,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>用户查看</title>
+<title>部门查看</title>
 </head>
 <body>
 <div class="cl pd-20" style=" background-color:#5bacb6">
-	<dl style="margin-left:80px; color:#fff">
+	<dl style="color:#fff">
 		<dt>
-			<span class="f-18">部门名称：${rsdepartment.departmentName }</span><hr>
-			<span class="pl-10 f-12">部门编号:${rsdepartment.departmentId }</span>
+			<span>部门名称&nbsp; &nbsp;：${rsdepartment.departmentName }</span><hr>
+			<span>部门编号&nbsp; &nbsp;:${rsdepartment.departmentId }</span>
 		</dt>
-		<dd class="pt-10 f-12" style="margin-left:0">公司编号：${rsdepartment.companyId }</dd>
+		<dd class="pt-10 f-12" style="margin-left:0">公司编号&nbsp; &nbsp;：${rsdepartment.companyId }</dd>
 	</dl>
 </div>
 <div class="pd-20">
 	<table class="table">
 		<tbody>
 		<tr>
-				<th class="text-r" width="150">备注说明:${rsdepartment.remarkExplain }</th>
-				<td></td>
+				<th>备注说明&nbsp; &nbsp;:${rsdepartment.remarkExplain }</th>
 			</tr>
 			<tr>
-				<th class="text-r" width="150">最后修改时间：</th>
-				<td><fmt:formatDate value="${rsdepartment.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				<th>最后修改时间：<fmt:formatDate value="${rsdepartment.lastModifyDate }" pattern="yyyy-MM-dd HH:mm:ss"/></th>
 			</tr>
 		</tbody>
 	</table>
