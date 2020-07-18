@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import com.sc.entity.RsPostMessage;
 import com.sc.entity.RsPostMessageExample;
 import com.sc.entity.RsPostMessageExample.Criteria;
+import com.sc.mapper.RsDepartmentMapper;
 import com.sc.mapper.RsPostMessageMapper;
 import com.sc.service.RsPostMessageService;
 
@@ -22,6 +23,9 @@ public class RsPostMessageServiceImpl implements RsPostMessageService {
 
 	@Autowired
 	RsPostMessageMapper rsPostMessageMapper;
+	
+	@Autowired
+	RsDepartmentMapper rsDepartmentMapper;
 	
 
 	@Override
@@ -83,6 +87,14 @@ public class RsPostMessageServiceImpl implements RsPostMessageService {
 		List<RsPostMessage> list= rsPostMessageMapper.selectByExample(example);
 		PageInfo<RsPostMessage> page=new PageInfo<RsPostMessage>(list);
 		return page;
+	}	
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public List<RsPostMessage> selectPost() {
+		List<RsPostMessage> list = rsPostMessageMapper.selectByExample(null);
+		return list;
 	}
+	
 
 }

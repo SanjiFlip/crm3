@@ -84,5 +84,13 @@ public class RsCompnayMessageServiceImpl implements RsCompnayMessageService {
 		PageInfo<RsCompnayMessage> page=new PageInfo<RsCompnayMessage>(list);
 		return page;
 	}
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public List<RsCompnayMessage> selectRsCompnay() {
+		List<RsCompnayMessage> list1 = rsCompnayMessageMapper.selectByExample(null);
+		return list1;
+	}
+	
 
 }

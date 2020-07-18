@@ -4,6 +4,7 @@ package com.sc.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageInfo;
 import com.sc.annotation.MyLog;
 import com.sc.entity.Message;
+import com.sc.entity.RsCompnayMessage;
+import com.sc.entity.RsPostMessage;
 import com.sc.entity.RsUserMessage;
+import com.sc.service.RsCompnayMessageService;
+import com.sc.service.RsPostMessageService;
 import com.sc.service.RsUserMessageService;
 
 
@@ -29,6 +34,12 @@ public class RsUserController {
 	
 	@Autowired
 	RsUserMessageService rsUserMessageService;
+	
+	@Autowired 
+	RsPostMessageService rsPostMessageService;
+	 
+	@Autowired 
+	RsCompnayMessageService rsCompnayMessageService;
 	 
 	@MyLog("分页查询")
 	@RequestMapping("/selectuser.do")
@@ -47,22 +58,27 @@ public class RsUserController {
 	@MyLog("跳转添加/修改员工信息")
  	@RequestMapping("/goadduser.do")
 	public ModelAndView goAddUser(ModelAndView mav, 	
-			RsUserMessage rsuser){
+			RsUserMessage rsuser, RsCompnayMessage rsCompnay,
+			RsPostMessage rspost){
 	 if(rsuser.getStaffId()!=null){
 		 rsuser=rsUserMessageService.getRsUser(rsuser.getStaffId());
 	 }
+	 List<RsPostMessage> list =rsPostMessageService.selectPost(); 
+	 List<RsCompnayMessage> list1 =rsCompnayMessageService.selectRsCompnay();
 	 
 	 mav.setViewName("rs/rsuser-add");
 	 mav.addObject("rsuser", rsuser);
+	 mav.addObject("list", list);
+	 mav.addObject("list1", list1);
 	 return mav;
 	}
 	 
 	@MyLog("添加/修改员工信息")
-	 @RequestMapping("/adduser.do")
-	 @ResponseBody
-	 public Message AddUser(ModelAndView mav, 	
-			 RsUserMessage rsuser, MultipartFile upload,  HttpServletRequest req) throws IllegalStateException, IOException{
-		
+	@RequestMapping("/adduser.do")
+	@ResponseBody
+	public Message AddUser(ModelAndView mav, 	
+			RsUserMessage rsuser, MultipartFile upload,  HttpServletRequest req) 
+			throws IllegalStateException, IOException{		
 		 if(rsuser.getStaffId()!=null){
 			 if(upload!=null){
 					String name=upload.getOriginalFilename();
@@ -95,14 +111,14 @@ public class RsUserController {
 		 	 return new Message("1", "success", "成功");
 		}
 	 
-	@MyLog("删除员工信息")
-	 @RequestMapping("/deleteuser.do")
-	 @ResponseBody
-	 public Message deleteUser(ModelAndView mav, 	
-			 RsUserMessage rsuser){
-		 rsUserMessageService.deleteRsUser(rsuser.getStaffId());
-		 return new Message("1", "success", "成功");
-	 }
+    @MyLog("删除员工信息")
+	@RequestMapping("/deleteuser.do")
+	@ResponseBody
+	public Message deleteUser(ModelAndView mav, 	
+		 RsUserMessage rsuser){
+		rsUserMessageService.deleteRsUser(rsuser.getStaffId());
+		return new Message("1", "success", "成功");
+	}
 	 
 	@MyLog("查询员工详细信息")
 	@RequestMapping("/showuser.do")
@@ -115,9 +131,9 @@ public class RsUserController {
 	}
 	 
 	@MyLog("批量删除员工信息")
-	 @RequestMapping("/deleteuserall.do")
-	 @ResponseBody
-	 public ModelAndView deleteCompnayall(ModelAndView mav, 	
+	@RequestMapping("/deleteuserall.do")
+	@ResponseBody
+	public ModelAndView deleteCompnayall(ModelAndView mav, 	
 			 Long[] ids){
 		 System.out.println("鍒犻櫎鐨勫叕鍙窱D鏄�:"+Arrays.toString(ids));
 		 if(ids!=null&&ids.length>0){
@@ -127,43 +143,43 @@ public class RsUserController {
 		 }	 
 		 mav.setViewName("redirect:selectuser.do");
 		 return mav;
-	 } 
+	} 
  
 	@MyLog("上传图片")
-		@RequestMapping("/upload.do")
-		public ModelAndView upload(ModelAndView mav,
-				MultipartFile upload,
-				HttpServletRequest req) throws IllegalStateException, IOException{
-			if(upload!=null){
-				String name=upload.getOriginalFilename();
-				if(name!=null&&!name.equals("")){
-				String path=req.getServletContext().getRealPath("upload");
-				name=System.currentTimeMillis()
-						+name.substring(name.lastIndexOf("."));
-				System.out.println(path+"/"+name);
-				File file=new File(path+"/"+name);
-				upload.transferTo(file);
-				mav.addObject("name",name);
-				}
+	@RequestMapping("/upload.do")
+	public ModelAndView upload(ModelAndView mav,
+			MultipartFile upload,
+			HttpServletRequest req) throws IllegalStateException, IOException{
+		if(upload!=null){
+			String name=upload.getOriginalFilename();
+			if(name!=null&&!name.equals("")){
+			String path=req.getServletContext().getRealPath("upload");
+			name=System.currentTimeMillis()
+					+name.substring(name.lastIndexOf("."));
+			System.out.println(path+"/"+name);
+			File file=new File(path+"/"+name);
+			upload.transferTo(file);
+			mav.addObject("name",name);
 			}
-				mav.setViewName("redirect:goadduser.do");
-				return mav;
-		    }
+		}
+			mav.setViewName("redirect:goadduser.do");
+			return mav;
+		}
 		 
 			
 		
 	@MyLog("员工状态修改")
-	 @RequestMapping("/staffStateuser.do")
-	 @ResponseBody
-	 public Message examineStateUser(ModelAndView mav, 	
-			 RsUserMessage rsuser){
-		 System.out.println("鑾峰彇鍒扮殑"+rsuser);
-		 if(rsuser.getStaffId()!=null){
-			 RsUserMessage comp=rsUserMessageService.getRsUser(rsuser.getStaffId());
-			 comp.setStaffState(rsuser.getStaffState());
-			 rsUserMessageService.updateRsUser(comp);
-		 }
+    @RequestMapping("/staffStateuser.do")
+	@ResponseBody
+	public Message examineStateUser(ModelAndView mav, 	
+			RsUserMessage rsuser){
+		System.out.println("鑾峰彇鍒扮殑"+rsuser);
+		if(rsuser.getStaffId()!=null){
+			RsUserMessage comp=rsUserMessageService.getRsUser(rsuser.getStaffId());
+			comp.setStaffState(rsuser.getStaffState());
+			rsUserMessageService.updateRsUser(comp);
+		}
 			return new Message("1", "success", "成功");
-	  }
+	 }
 	 
 }

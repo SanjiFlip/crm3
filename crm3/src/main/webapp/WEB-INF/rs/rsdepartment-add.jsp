@@ -1,5 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -47,11 +48,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司编号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rsdepartment.companyId }" placeholder="请输入公司编号" id="companyId" name="companyId">
+		<label class="form-label col-xs-4 col-sm-3">公司编号：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<span class="select-box" style="width:150px;">
+				<select class="select" name="companyId" size="1">
+					<c:forEach items="${list }" var="rscompnay">
+						<option value="${rscompnay.compnayId }" ${rscompnay.compnayId==rsdepartment.companyId ? 'selected':'' }>${rscompnay.compnayName}</option>
+					</c:forEach>
+				</select>
+				</span> 
 			</div>
-		</div>		
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">备注信息：</label>
 			<div class="formControls col-xs-8 col-sm-9">

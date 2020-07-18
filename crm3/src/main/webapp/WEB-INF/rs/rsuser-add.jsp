@@ -123,12 +123,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>职务编号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rsuser.postId }" placeholder="请输入职务编号" name="postId" id="postId">
+		<label class="form-label col-xs-4 col-sm-3">职务编号：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<span class="select-box" style="width:150px;">
+				<select class="select" name="postId" size="1">
+					<c:forEach items="${list }" var="post">
+						<option value="${post.postId }" ${post.postId==rsuser.postId ? 'selected':'' }>${post.postName}</option>
+					</c:forEach>
+				</select>
+				</span> 
 			</div>
-		</div>
-		
+		</div>	
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>员工状态״：</label>
                <td>
@@ -136,9 +141,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            </td>
           </div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司编号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rsuser.compnayId }" placeholder="请输入公司编号" name="compnayId" id="compnayId">
+		<label class="form-label col-xs-4 col-sm-3">公司编号：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<span class="select-box" style="width:150px;">
+				<select class="select" name="compnayId" size="1">
+					<c:forEach items="${list1 }" var="rscompnay">
+						<option value="${rscompnay.compnayId }" ${rscompnay.compnayId==rsuser.compnayId ? 'selected':'' }>${rscompnay.compnayName}</option>
+					</c:forEach>
+				</select>
+				</span> 
 			</div>
 		</div>
 		<div class="row cl">

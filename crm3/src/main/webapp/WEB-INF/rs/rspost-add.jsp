@@ -1,5 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -47,11 +48,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>部门编号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rspost.dtmartmentId }" placeholder="请输入部门编号" id="dtmartmentId" name="dtmartmentId">
+		<label class="form-label col-xs-4 col-sm-3">部门编号：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<span class="select-box" style="width:150px;">
+				<select class="select" name="dtmartmentId" size="1">
+					<c:forEach items="${list }" var="c">
+						<option value="${c.departmentId}" ${c.departmentId==rspost.dtmartmentId ? 'selected':'' }>${c.departmentName}</option>
+					</c:forEach>				
+				</select>
+				
+				</span> 
 			</div>
-		</div>		
+		</div>	
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">备注信息：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -60,11 +68,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司编号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="${rspost.compnayId }" placeholder="请输入公司编号" id="compnayId" name="compnayId">
+		<label class="form-label col-xs-4 col-sm-3">公司编号：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<span class="select-box" style="width:150px;">
+				<select class="select" name="compnayId" size="1">
+					<c:forEach items="${list1 }" var="rscompnay">				 
+						<option value="${rscompnay.compnayId }" ${rscompnay.compnayId==rspost.compnayId ? 'selected':'' }>${rscompnay.compnayName}</option>
+					</c:forEach>
+				</select>
+				</span> 
+				
 			</div>
-		</div>	
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">最后修改时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
