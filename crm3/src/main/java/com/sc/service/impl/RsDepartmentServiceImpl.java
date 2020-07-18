@@ -87,5 +87,12 @@ public class RsDepartmentServiceImpl implements RsDepartmentService {
 		PageInfo<RsDepartment> page=new PageInfo<RsDepartment>(list);
 		return page;
 	}
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public List<RsDepartment> selectDepartment() {
+		List<RsDepartment> list = rsDepartmentMapper.selectByExample(null);
+		return list;
+	}
 
 }

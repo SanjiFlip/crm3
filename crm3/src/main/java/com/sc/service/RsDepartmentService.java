@@ -1,6 +1,8 @@
 package com.sc.service;
 
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.sc.entity.RsDepartment;
 
@@ -15,4 +17,6 @@ public interface RsDepartmentService {
 	public RsDepartment getRsDeptment(Long departmentId);
 
 	public PageInfo<RsDepartment> selectRsDepartment(Integer pageNum,Integer pageSize, RsDepartment rsdepartment);
+	
+	List<RsDepartment> selectDepartment();
 }

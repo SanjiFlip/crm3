@@ -1,6 +1,8 @@
 package com.sc.service;
 
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.sc.entity.RsCompnayMessage;
 
@@ -15,4 +17,6 @@ public interface RsCompnayMessageService {
 	public RsCompnayMessage getRsCompnay(Long compnayId);
 
 	public PageInfo<RsCompnayMessage> selectRsCompnay(Integer pageNum,Integer pageSize, RsCompnayMessage rscompnay);
+
+	List<RsCompnayMessage> selectRsCompnay();
 }

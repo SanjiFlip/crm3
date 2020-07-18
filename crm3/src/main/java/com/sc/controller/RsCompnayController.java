@@ -50,7 +50,7 @@ public class RsCompnayController {
 	 return mav;
 	}
 	
-	@MyLog("添加/修改员工信息")
+	 @MyLog("添加/修改员工信息")
 	 @RequestMapping("/addcompnay.do")
 	 @ResponseBody
 	 public Message AddCompnay(ModelAndView mav, 	
@@ -65,7 +65,7 @@ public class RsCompnayController {
 		 	 return new Message("1", "success", "成功");
 		} 
 	 
-	@MyLog("删除员工信息")
+	 @MyLog("删除员工信息")
 	 @RequestMapping("/deletecompnay.do")
 	 @ResponseBody
 	 public Message deleteCompnay(ModelAndView mav, 	
@@ -75,7 +75,7 @@ public class RsCompnayController {
 		 return new Message("1", "success", "成功");
 		}
 	 
-	@MyLog("修改是否有效信息")
+	 @MyLog("修改是否有效信息")
 	 @RequestMapping("/enabledcompnay.do")
 	 @ResponseBody
 	 public Message enabledCompnay(ModelAndView mav, 	
@@ -112,6 +112,6 @@ public class RsCompnayController {
 			 }
 		 }	 
 		 mav.setViewName("redirect:selectcompnay.do");
-			return mav;
+		 return mav;
 		} 
 }

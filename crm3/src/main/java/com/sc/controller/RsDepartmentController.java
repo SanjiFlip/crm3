@@ -2,6 +2,7 @@ package com.sc.controller;
 
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageInfo;
 import com.sc.annotation.MyLog;
 import com.sc.entity.Message;
+import com.sc.entity.RsCompnayMessage;
 import com.sc.entity.RsDepartment;
+import com.sc.service.RsCompnayMessageService;
 import com.sc.service.RsDepartmentService;
 
 
@@ -24,6 +27,9 @@ public class RsDepartmentController {
 	
 	@Autowired
 	RsDepartmentService rsDepartmentService;
+	
+	@Autowired 
+	RsCompnayMessageService rsCompnayMessageService;
 	 
 	@MyLog("分页查询部门信息")
 	@RequestMapping("/selectrsdeptment.do")
@@ -42,34 +48,38 @@ public class RsDepartmentController {
 	@MyLog("跳转添加/修改部门信息")
 	@RequestMapping("/goaddrsdepartment.do")
 	public ModelAndView goAddDepartment(ModelAndView mav, 	
-			RsDepartment rsdepartment){
+			RsDepartment rsdepartment, RsCompnayMessage rsCompnay){
 	 System.out.println("获取到的人事部门信息是："+rsdepartment);
 	 if(rsdepartment.getDepartmentId()!=null){
 		 rsdepartment=rsDepartmentService.getRsDeptment(rsdepartment.getDepartmentId());
-	 }
+	 }	 
+	 	 List<RsCompnayMessage> list =rsCompnayMessageService.selectRsCompnay();
 		 mav.setViewName("rs/rsdepartment-add");  // /WB-INF/rs/rscompnay-add.jsp
+		 mav.addObject("list", list);
 		 mav.addObject("rsdepartment", rsdepartment);
 		 return mav;
 	}
 	 
 	@MyLog("添加/修改部门信息")
-	 @RequestMapping("/addrsdepartment.do")
-	 @ResponseBody
-	 public Message AddDepartment(ModelAndView mav, 	
-			 RsDepartment rsdepartment){
+	@RequestMapping("/addrsdepartment.do")
+	@ResponseBody
+	public Message AddDepartment(ModelAndView mav, 	
+			 RsDepartment rsdepartment, RsCompnayMessage rsCompnay){
 		 System.out.println("添加的人事部门信息是："+rsdepartment);
+		 System.out.println("@@@@@@@@@@@@@@@@@"+rsCompnay.getCompnayId());
 		 if(rsdepartment.getDepartmentId()!=null){
 			 rsDepartmentService.updateRsDeptment(rsdepartment);	
 		 }else{
-			 rsDepartmentService.addRsDepartment(rsdepartment);		 
+			 rsDepartmentService.addRsDepartment(rsdepartment);	
+			 mav.addObject("rsdepartment", rsdepartment);
 		 }
 		 return new Message("1", "success", "成功");
 		}
 	 
-	@MyLog("删除部门信息")
-	 @RequestMapping("/deletedepartment.do")
-	 @ResponseBody
-	 public Message deleteDepartment(ModelAndView mav, 	
+    @MyLog("删除部门信息")
+	@RequestMapping("/deletedepartment.do")
+	@ResponseBody
+	public Message deleteDepartment(ModelAndView mav, 	
 			 RsDepartment rsdepartment){
 		 System.out.println("删除的人事部门信息是:"+rsdepartment);
 		 rsDepartmentService.deleteRsDeptment(rsdepartment.getDepartmentId());
@@ -89,10 +99,10 @@ public class RsDepartmentController {
 	}
 	 
 	@MyLog("批量删除部门信息")
-	 @RequestMapping("/deletedepartmentall.do")
-	 @ResponseBody
-	 public ModelAndView deleteDepartmentAll(ModelAndView mav, 	
-			 Long[] ids){
+	@RequestMapping("/deletedepartmentall.do")
+	@ResponseBody
+	public ModelAndView deleteDepartmentAll(ModelAndView mav, 	
+			Long[] ids){
 		 System.out.println("多个删除人事部门的的ID是:"+Arrays.toString(ids));
 		 if(ids!=null&&ids.length>0){
 			 for(Long id : ids) {

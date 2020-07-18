@@ -15,7 +15,7 @@ import com.sc.service.XtRoleService;
 /**
  * 
  * @author Sanji
- *	@function 系统角色
+ *	@function 系统锟斤拷色
  */
 @Service
 public class XtRoleServiceImpl implements XtRoleService {
