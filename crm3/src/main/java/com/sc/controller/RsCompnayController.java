@@ -21,8 +21,8 @@ import com.sc.service.RsCompnayMessageService;
 @RequestMapping("/rscompnayctrl")
 public class RsCompnayController {
 	
-	 @Autowired 
-	 RsCompnayMessageService rsCompnayMessageService;
+	@Autowired 
+	RsCompnayMessageService rsCompnayMessageService;
 	 
 	@MyLog("分页查询信息")
 	@RequestMapping("/selectcompnay.do")
@@ -50,45 +50,43 @@ public class RsCompnayController {
 	 return mav;
 	}
 	
-	 @MyLog("添加/修改员工信息")
-	 @RequestMapping("/addcompnay.do")
-	 @ResponseBody
-	 public Message AddCompnay(ModelAndView mav, 	
-				RsCompnayMessage rscompnay){
-		 System.out.println("公司信息是："+rscompnay);
-		 if(rscompnay.getCompnayId()!=null){//修改操作
-			 rsCompnayMessageService.updateRsCompnay(rscompnay);
-			 
-		 }else{
+    @MyLog("添加/修改员工信息")
+	@RequestMapping("/addcompnay.do")
+	@ResponseBody
+	public Message AddCompnay(ModelAndView mav, 	
+			RsCompnayMessage rscompnay){
+		System.out.println("公司信息是："+rscompnay);
+		if(rscompnay.getCompnayId()!=null){//修改操作
+			rsCompnayMessageService.updateRsCompnay(rscompnay);	 
+		}else{
 			 rsCompnayMessageService.addRsCompnay(rscompnay);
-		 }
+		}
 		 	 return new Message("1", "success", "成功");
-		} 
+	} 
 	 
-	 @MyLog("删除员工信息")
-	 @RequestMapping("/deletecompnay.do")
-	 @ResponseBody
-	 public Message deleteCompnay(ModelAndView mav, 	
-				RsCompnayMessage rscompnay){
-		 System.out.println("删除的公司信息是:"+rscompnay);
-		 rsCompnayMessageService.deleteRsCompnay(rscompnay.getCompnayId());
-		 return new Message("1", "success", "成功");
-		}
+	@MyLog("删除员工信息")
+	@RequestMapping("/deletecompnay.do")
+	@ResponseBody
+	public Message deleteCompnay(ModelAndView mav, 	
+			RsCompnayMessage rscompnay){
+		System.out.println("删除的公司信息是:"+rscompnay);
+		rsCompnayMessageService.deleteRsCompnay(rscompnay.getCompnayId());
+		return new Message("1", "success", "成功");
+	}
 	 
-	 @MyLog("修改是否有效信息")
-	 @RequestMapping("/enabledcompnay.do")
-	 @ResponseBody
-	 public Message enabledCompnay(ModelAndView mav, 	
-				RsCompnayMessage rscompnay){
-		 System.out.println("公司可用信息是:"+rscompnay);
-		 if(rscompnay.getCompnayId()!=null){
-			 RsCompnayMessage comp=rsCompnayMessageService.getRsCompnay(rscompnay.getCompnayId());
-			 comp.setEnabled(rscompnay.getEnabled());
-			 rsCompnayMessageService.updateRsCompnay(comp);
-			
-		 }
-		 return new Message("1", "success", "成功");
+    @MyLog("修改是否有效信息")
+	@RequestMapping("/enabledcompnay.do")
+	@ResponseBody
+	public Message enabledCompnay(ModelAndView mav, 	
+			RsCompnayMessage rscompnay){
+		System.out.println("公司可用信息是:"+rscompnay);
+		if(rscompnay.getCompnayId()!=null){
+			RsCompnayMessage comp=rsCompnayMessageService.getRsCompnay(rscompnay.getCompnayId());
+			comp.setEnabled(rscompnay.getEnabled());
+			rsCompnayMessageService.updateRsCompnay(comp);			
 		}
+		return new Message("1", "success", "成功");
+	}
 	 
 	@MyLog("查询员工详情信息")
 	@RequestMapping("/showcompnay.do")
@@ -100,18 +98,18 @@ public class RsCompnayController {
 		 return mav;
 	}
 	 
-	 @MyLog("批量删除员工信息")
-	 @RequestMapping("/deletecompnayall.do")
-	 @ResponseBody
-	 public ModelAndView deleteCompnayall(ModelAndView mav, 	
-			 Long[] ids){
-		 System.out.println("删除的ID是:"+Arrays.toString(ids));
-		 if(ids!=null&&ids.length>0){
-			 for(Long id : ids) {
-				 rsCompnayMessageService.deleteRsCompnay(id);
-			 }
-		 }	 
-		 mav.setViewName("redirect:selectcompnay.do");
-		 return mav;
-		} 
+	@MyLog("批量删除员工信息")
+	@RequestMapping("/deletecompnayall.do")
+	@ResponseBody
+	public ModelAndView deleteCompnayall(ModelAndView mav, 	
+			Long[] ids){
+		System.out.println("删除的ID是:"+Arrays.toString(ids));
+		if(ids!=null&&ids.length>0){
+			for(Long id : ids) {
+				rsCompnayMessageService.deleteRsCompnay(id);
+			}
+		}	 
+		mav.setViewName("redirect:selectcompnay.do");
+		return mav;
+	} 
 }

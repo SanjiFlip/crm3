@@ -35,11 +35,11 @@ public class RsUserController {
 	@Autowired
 	RsUserMessageService rsUserMessageService;
 	
-	 @Autowired 
-	 RsPostMessageService rsPostMessageService;
+	@Autowired 
+	RsPostMessageService rsPostMessageService;
 	 
-	 @Autowired 
-	 RsCompnayMessageService rsCompnayMessageService;
+	@Autowired 
+	RsCompnayMessageService rsCompnayMessageService;
 	 
 	@MyLog("分页查询")
 	@RequestMapping("/selectuser.do")
@@ -111,14 +111,14 @@ public class RsUserController {
 		 	 return new Message("1", "success", "成功");
 		}
 	 
-	@MyLog("删除员工信息")
-	 @RequestMapping("/deleteuser.do")
-	 @ResponseBody
-	 public Message deleteUser(ModelAndView mav, 	
-			 RsUserMessage rsuser){
-		 rsUserMessageService.deleteRsUser(rsuser.getStaffId());
-		 return new Message("1", "success", "成功");
-	 }
+    @MyLog("删除员工信息")
+	@RequestMapping("/deleteuser.do")
+	@ResponseBody
+	public Message deleteUser(ModelAndView mav, 	
+		 RsUserMessage rsuser){
+		rsUserMessageService.deleteRsUser(rsuser.getStaffId());
+		return new Message("1", "success", "成功");
+	}
 	 
 	@MyLog("查询员工详细信息")
 	@RequestMapping("/showuser.do")

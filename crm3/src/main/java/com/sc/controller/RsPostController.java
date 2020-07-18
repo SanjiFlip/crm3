@@ -26,14 +26,14 @@ import com.sc.service.RsPostMessageService;
 @RequestMapping("/rspostctrl")
 public class RsPostController {
 	
-	 @Autowired 
-	 RsPostMessageService rsPostMessageService;
+	@Autowired 
+	RsPostMessageService rsPostMessageService;
 	 
-	 @Autowired
-	 RsDepartmentService rsDepartmentService;
+	@Autowired
+	RsDepartmentService rsDepartmentService;
 	 
-	 @Autowired 
-	 RsCompnayMessageService rsCompnayMessageService;
+	@Autowired 
+	RsCompnayMessageService rsCompnayMessageService;
 	 
 	@MyLog("分页查询职务信息")
 	@RequestMapping("/selectrspost.do")
