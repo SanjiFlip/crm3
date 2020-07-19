@@ -1,23 +1,47 @@
 package com.sc.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//办公_考核指标表
+//�칫��������ָ���
 public class BgExamineTarget implements Serializable {
-    private Long targetId;  //ָ指标编号
+    private Long targetId;  //ָ����
 
-    private String examineTarget;  //考核指标
+    private String examineTarget;  //����ָ��
 
-    private String remarksExplain;  //备注说明
+    private String remarksExplain;  //��ע˵��
 
-    private Long companyId;  //公司编号
+    private Long companyId;  //��˾���
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //最后修改时间
+    private Date lastModifyDate; //����޸�ʱ��
+    //日期范围内查询
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
+    public Date getDatemin() {
+		return datemin;
+	}
 
-    private static final long serialVersionUID = 1L;
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//日期范围内查询-end
+	private Long[] ids;
+	
+	private static final long serialVersionUID = 1L;
 
     public BgExamineTarget(Long targetId, String examineTarget, String remarksExplain, Long companyId, Date lastModifyDate) {
         this.targetId = targetId;

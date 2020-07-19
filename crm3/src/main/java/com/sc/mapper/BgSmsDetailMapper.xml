@@ -97,6 +97,13 @@
     delete from BG_SMS_DETAIL
     where DETAIL_ID = #{detailId,jdbcType=DECIMAL}
   </delete>
+	
+	<select id="selectSmsDetailByName" resultType="com.sc.entity.BgSmsDetailTwo">
+	select d.DETAIL_ID,s.TITLE,s.CONTENT,s.SEND_PERSON,d.MESSAGE_STATE,d.LAST_MODIFY_DATE
+	from BG_SMS s  left join BG_SMS_DETAIL d  on s.BH_ID=d.SHORT_MESSAGE_ID
+	where d.RECIPIENT_ID=#{recipientId}
+	</select>
+  
   <delete id="deleteByExample" parameterType="com.sc.entity.BgSmsDetailExample" >
     delete from BG_SMS_DETAIL
     <if test="_parameter != null" >

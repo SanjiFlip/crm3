@@ -4,27 +4,50 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//办公_个人日程表
+
 public class BgPersonalSchedule implements Serializable {
-    private Long schedulePlanId; //日程安排编号
+    private Long schedulePlanId; //�ճ̰��ű��
 
-    private String planCategory; //安排类别
+    private String planCategory; //�������
 
-    private String planTheme; //安排主题
+    private String planTheme; //��������
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date beginDate; //开始日期
+    private Date beginDate; //��ʼ����
+    @DateTimeFormat(pattern="HH:mm:ss")
+    private Date beginTime; //��ʼʱ��
+
+    private Long writePersonnelId; //��д��Ա���
+
+    private String planDescribe; //��������
+
+    private Long companyId; //��˾���
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date beginTime; //开始时间
+    private Date lastModifyDate; //����޸�ʱ��
+    
+  //日期范围内查询
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
 
-    private Long writePersonnelId; //填写人员编号
+    public Date getDatemin() {
+		return datemin;
+	}
 
-    private String planDescribe; //安排描述
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
 
-    private Long companyId; //公司编号
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //最后修改时间
+	public Date getDatemax() {
+		return datemax;
+	}
 
-    private static final long serialVersionUID = 1L;
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//日期范围内查询 end
+	private static final long serialVersionUID = 1L;
 
     public BgPersonalSchedule(Long schedulePlanId, String planCategory, String planTheme, Date beginDate, Date beginTime, Long writePersonnelId, String planDescribe, Long companyId, Date lastModifyDate) {
         this.schedulePlanId = schedulePlanId;
