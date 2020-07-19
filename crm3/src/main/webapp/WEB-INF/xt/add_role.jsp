@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="select-box" style="width:150px;">
 				<select class="select" name="upRoleId" size="1">
 					<c:forEach items="${roles }" var="role">
-						<option value="${role.upRoleId }">${role.upRoleName}</option>
+						<option value="${role.upRoleId }">${role.roleName}</option>
 					</c:forEach>
 				</select>
 				</span> 
