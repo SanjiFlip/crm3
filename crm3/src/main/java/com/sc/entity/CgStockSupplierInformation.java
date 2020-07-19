@@ -9,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 //进货_供应商信息表
 public class CgStockSupplierInformation implements Serializable {
     private Long supplierId;//供应商编号
-
+  
     private String supplierName;//供应商名称
 
     private String supplierAbbreviation;//供应商简称
@@ -44,6 +44,33 @@ public class CgStockSupplierInformation implements Serializable {
      
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
     private Date lastModifyDate;//最后修改时间
+    
+    
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemax;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemin;
+    
+
+    public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+
+	public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+    
+    
 
     private static final long serialVersionUID = 1L;
 

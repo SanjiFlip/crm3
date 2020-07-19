@@ -1,16 +1,14 @@
-package com.sc.entity;
+package com.sc.mapper;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class CgStockReplenishmentGoods implements Serializable {
     private Long id;
 
     private BigDecimal goodsId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date deliveryTime;
 
     private String state;
@@ -20,43 +18,8 @@ public class CgStockReplenishmentGoods implements Serializable {
     private String noteInformation;
 
     private BigDecimal companyId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date lastModifyDate;
-    
-    private Long[] ids;
-    
-
-    public Long[] getIds() {
-		return ids;
-	}
-
-	public void setIds(Long[] ids) {
-		this.ids = ids;
-	}
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date datemax;
-    
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date datemin;
-    
-
-    public Date getDatemax() {
-		return datemax;
-	}
-
-	public void setDatemax(Date datemax) {
-		this.datemax = datemax;
-	}
-
-	public Date getDatemin() {
-		return datemin;
-	}
-
-	public void setDatemin(Date datemin) {
-		this.datemin = datemin;
-	}
-    
 
     private static final long serialVersionUID = 1L;
 

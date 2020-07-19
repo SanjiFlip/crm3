@@ -17,6 +17,30 @@ public class KcDepositoryInformation implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifyDate;//最后修改时间
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemax;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemin;
+    
+
+    public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+
+	public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+    
 
     private static final long serialVersionUID = 1L;
 

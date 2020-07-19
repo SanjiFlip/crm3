@@ -7,8 +7,8 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 //进货_采购单详情表
-public class CgStockDetailOrder implements Serializable {
-    private BigDecimal purchaseOrderDetailId; //采购详情编号
+public class CgStockDetailOrder implements Serializable { 
+    private BigDecimal purchaseOrderDetailId; //采购详情编号 
 
     private BigDecimal purchaseOrderId;//采购单编号
 
@@ -28,8 +28,33 @@ public class CgStockDetailOrder implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifyDate;//最后修改时间
+    
+    
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemax;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemin;
+    
 
-    private static final long serialVersionUID = 1L;
+    public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+
+	public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public CgStockDetailOrder(BigDecimal purchaseOrderDetailId, BigDecimal purchaseOrderId, BigDecimal goodsId, Long goodsNum, BigDecimal goodsPrice, String isnotInStorage, Long operaterId, String noteInformation, BigDecimal companyId, Date lastModifyDate) {
         this.purchaseOrderDetailId = purchaseOrderDetailId;
