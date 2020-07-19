@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//办公_短信息详情表
+
 public class BgSmsDetail implements Serializable {
-    private Long detailId; //详情编号
+    private Long detailId; //������
 
-    private Long shortMessageId; //短信息编号
+    private Long shortMessageId; //����Ϣ���
 
-    private Long recipientId; //接收者编号
+    private Long recipientId; //�����߱��
 
-    private String messageState; //信息状态״̬
+    private String messageState; //��Ϣ״̬
 
-    private Long companyId; //公司编号
+    private Long companyId; //��˾���
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //最后修改时间
+    private Date lastModifyDate; //����޸�ʱ��
 
     private static final long serialVersionUID = 1L;
 

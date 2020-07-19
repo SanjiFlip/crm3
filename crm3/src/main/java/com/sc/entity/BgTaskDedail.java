@@ -4,21 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//åŠå…¬_ä»»åŠ¡è¯¦æƒ…è¡¨
+//°ì¹«¡ª¡ªÈÎÎñÏêÇé±í
 public class BgTaskDedail implements Serializable {
-    private Long bhId; //ç¼–å·
+    private Long bhId; //±àºÅ
 
-    private Long taskId; //ä»»åŠ¡ç¼–å·
+    private Long taskId; //ÈÎÎñ±àºÅ
 
-    private Long acceptUserId; //æ¥å—ç”¨æˆ·ç¼–å·
+    private Long acceptUserId; //½ÓÊÜÈÎÎñ±àºÅ
 
-    private String whetherFinish; //æ˜¯å¦å®Œæˆ
+    private String whetherFinish; //ÊÇ·ñÍê³É
 
-    private String state; //çŠ¶æ€
+    private String state; //×´Ìå
 
-    private Long companyId; //å…¬å¸ç¼–å·
+    private Long companyId; //¹«Ë¾±àºÅ
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //æœ€åä¿®æ”¹æ—¶é—´
+    private Date lastModifyDate; //×îºóĞŞ¸ÄÊ±¼ä
 
     private static final long serialVersionUID = 1L;
 

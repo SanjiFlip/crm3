@@ -4,28 +4,51 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//办公_考核任务表
+//�칫�������������
 public class BgExamineTask implements Serializable {
-    private Long taskId; //任务编号
+    private Long taskId; //������
 
-    private String taskTitle; //任务标题
+    private String taskTitle; //�������
 
-    private String taskSpecificContent; //任务具体内容
+    private String taskSpecificContent; //�����������
 
-    private String taskPublishPerson; //任务发布人
+    private String taskPublishPerson; //���񷢲���
 
-    private String examineTarget; //考核指标
+    private String examineTarget; //����ָ��
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date taskBeginTime; //任务开始时间
+    private Date taskBeginTime; //����ʼʱ��
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date taskEndTime; //任务结束时间
+    private Date taskEndTime; //�������ʱ��
 
-    private Long companyId; //公司编号
+    private Long companyId; //��˾���
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //最后修改时间
+    private Date lastModifyDate; //����޸�ʱ��
+    
+  //日期范围内查询
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
 
-    private static final long serialVersionUID = 1L;
+    public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//日期范围内查询 end
+	private static final long serialVersionUID = 1L;
 
     public BgExamineTask(Long taskId, String taskTitle, String taskSpecificContent, String taskPublishPerson, String examineTarget, Date taskBeginTime, Date taskEndTime, Long companyId, Date lastModifyDate) {
         this.taskId = taskId;

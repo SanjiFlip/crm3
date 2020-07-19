@@ -83,6 +83,9 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
+      
+ 
+    
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
@@ -104,6 +107,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.sc.entity.BgSms" >
+    <selectKey resultType="Long" order="AFTER" keyProperty="bhId">  
+       SELECT SEQ_BG_SMS_BH_ID.CURRVAL as bhId from DUAL
+   </selectKey>
     insert into BG_SMS (BH_ID, TITLE, CONTENT, 
       SEND_PERSON, COMPANY_ID, LAST_MODIFY_DATE
       )
@@ -160,6 +166,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  
+  <select id="selectSmsByName" resultType="com.sc.entity.BgSms">
+  	select BH_ID, TITLE, CONTENT, SEND_PERSON, COMPANY_ID, LAST_MODIFY_DATE
+  		from BG_SMS 
+  		where SEND_PERSON=#{sendPerson}
+  </select>
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update BG_SMS
     <set >

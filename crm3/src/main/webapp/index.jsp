@@ -125,13 +125,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</ul>
 		</dd>
 	</dl>
-		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dl id="menu-product">
+			<dt><i class="Hui-iconfont">&#xe620;</i> 办公管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="bgexaminetargetctrl/selecttarget.do" data-title="任务指标管理" href="javascript:void(0)">任务指标管理</a></li>
+					<li><a data-href="bgexaminetaskctrl/selecttask.do" data-title="任务发布管理" href="javascript:void(0)">任务发布管理</a></li>
+					<li><a data-href="bgtaskdedailctrl/selectdedail.do" data-title="任务详情管理" href="javascript:void(0)">任务详情管理</a></li>
+					<li><a data-href="bgsmsctrl/selectsms.do" data-title="短信息管理" href="javascript:void(0)">短信息管理</a></li>
+					<li><a data-href="bgpersonalschedule/selectschedule.do" data-title="个人日程管理" href="javascript:void(0)">个人日程管理</a></li>
 			</ul>
 		</dd>
 	</dl>

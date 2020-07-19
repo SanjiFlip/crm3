@@ -108,6 +108,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.sc.entity.BgExamineTask" >
+<!--       <selectKey resultType="Long.class" order="BEFORE" keyProperty="id">
+       SELECT sys_guid() from DUAL
+   </selectKey>  -->
+  <selectKey resultType="Long" order="AFTER" keyProperty="taskId">  
+       SELECT SEQ_BG_TASK_ID.CURRVAL as taskId from DUAL
+   </selectKey>
     insert into BG_EXAMINE_TASK (TASK_ID, TASK_TITLE, TASK_SPECIFIC_CONTENT, 
       TASK_PUBLISH_PERSON, EXAMINE_TARGET, TASK_BEGIN_TIME, 
       TASK_END_TIME, COMPANY_ID, LAST_MODIFY_DATE
