@@ -1,4 +1,4 @@
-package com.sc.entity;
+package com.sc.mapper;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
