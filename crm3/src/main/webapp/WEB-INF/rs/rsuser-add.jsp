@@ -135,18 +135,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>	
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>员工状态״：</label>
-               <td>
-              <input type="hidden" class="input-text" value="1" name="staffState" id="staffState">在线
-           </td>
-          </div>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>员工状态：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				 <input type="hidden" name="staffState" value="${rsuser.staffState}"  >${rsuser.staffState=="1" ? "在线":"下线"}
+			</div>
+		</div>
 		<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">公司编号：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
 				<span class="select-box" style="width:150px;">
 				<select class="select" name="compnayId" size="1">
 					<c:forEach items="${list1 }" var="rscompnay">
+					<c:if test="${rscompnay.enabled=='1'}">	
 						<option value="${rscompnay.compnayId }" ${rscompnay.compnayId==rsuser.compnayId ? 'selected':'' }>${rscompnay.compnayName}</option>
+					</c:if>
 					</c:forEach>
 				</select>
 				</span> 
