@@ -113,5 +113,4 @@ public class CgStockReplenishmentGoods implements Serializable {
 				+ ", state=" + state + ", operaterId=" + operaterId + ", noteInformation=" + noteInformation
 				+ ", companyId=" + companyId + ", lastModifyDate=" + lastModifyDate + "]";
 	}
-    
 }

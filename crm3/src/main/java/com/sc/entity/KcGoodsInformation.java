@@ -34,8 +34,31 @@ public class KcGoodsInformation implements Serializable {
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifyDate;//最后修改日期
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemax;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemin;
+    
 
-    private static final long serialVersionUID = 1L;
+    public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+
+	public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public KcGoodsInformation(BigDecimal goodsId, String goodsName, String goodsType, String standardsIllustrate, String unit, Long depositoryId, BigDecimal stockNumber, BigDecimal costPrice, BigDecimal retailPrice, BigDecimal distributionPrice, String noteInformation, BigDecimal companyId, Date lastModifyDate) {
         this.goodsId = goodsId;

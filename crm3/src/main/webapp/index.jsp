@@ -95,13 +95,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dd>
 	</dl>
 		<dl id="menu-product">
-			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe620;</i> 采购库存管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
-				<ul>
+
+			<ul>
+			<li><span style="margin-left: 24px;cursor:pointer;"onclick="kc1()" >仓库管理</span></li>
+			   <ul id="kc" style="display: none;">
+								<li><a data-href="KcDeptCtrl/selectdepo.do"
+									data-title="仓库信息管理"> <i class="Hui-iconfont">&#xe623;</i>&nbsp仓库信息管理
+								</a></li>
+								<li><a data-href="KcGoodsCtrl/selectgoods.do" data-title="仓库商品管理">
+										<i class="Hui-iconfont">&#xe623;</i>&nbsp仓库商品管理
+								</a></li>
+							</ul>
+				<li><span style="margin-left: 24px;cursor:pointer;"onclick="cg1()" >采购管理</span></li>
+				<ul id="cg" style="display: none;">
+								<li><a data-href="cgrepctrl/selectcgrep.do"
+									data-title="需补货产品管理"> <i class="Hui-iconfont">&#xe623;</i>&nbsp需补货产品管理
+								</a></li>
+								<li><a data-href="cgpurctrl/selectpur.do " data-title="采购订单信息">
+										<i class="Hui-iconfont">&#xe623;</i>&nbsp采购订单信息
+								</a></li>
+								<!-- <li><a data-href="cgdetailorder/selectcgdetail.do" data-title="采购订单详情信息">
+										<i class="Hui-iconfont">&#xe623;</i>&nbsp采购订单详情信息
+								</a></li> -->
+								<li><a data-href="cgsupplier/selectsupp.do" data-title="供应商管理">
+										<i class="Hui-iconfont">&#xe623;</i>&nbsp供应商管理
+								</a></li>
+							</ul>
+
+<!-- 				<ul>
 					<li><a data-href="rscompnayctrl//selectcompnay.do" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
 					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
 					<li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
-			</ul>
+			</ul> -->
 		</dd>
 	</dl>
 		<dl id="menu-comments">
@@ -259,7 +286,28 @@ function member_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
 
-
+//样式的开启和关闭
+function kc1() {
+	var kcdepo = document.getElementById("kc").style.display;
+/* alert("这是我自己写的树状列表，你们需要的话就看代码，当前状态："+zt); */
+	if (kcdepo == "none") {
+		document.getElementById("kc").style.display = "block";
+			}
+		if (kcdepo == "block") {
+		document.getElementById("kc").style.display = "none";
+			}
+	}
+	
+function cg1() {
+	var cggoods = document.getElementById("cg").style.display;
+/* alert("这是我自己写的树状列表，你们需要的话就看代码，当前状态："+zt); */
+	if (cggoods == "none") {
+		document.getElementById("cg").style.display = "block";
+			}
+		if (cggoods == "block") {
+		document.getElementById("cg").style.display = "none";
+			}
+	}
 </script> 
 
 
