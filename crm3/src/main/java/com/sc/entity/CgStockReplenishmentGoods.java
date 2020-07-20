@@ -6,31 +6,63 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//进货_需补货产品表
 public class CgStockReplenishmentGoods implements Serializable {
-    private Long id;//编号
+    private Long id;
 
-    private BigDecimal goosId;//产品编号
+    private BigDecimal goodsId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date deliveryTime;
 
+    private String state;
+
+    private Long operaterId;
+
+    private String noteInformation;
+
+    private BigDecimal companyId;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date deliveryTime;//交货时间
+    private Date lastModifyDate;
+    
+    private Long[] ids;
+    
 
-    private String state;//状态״̬
+    public Long[] getIds() {
+		return ids;
+	}
 
-    private Long operaterId;//操作人员
+	public void setIds(Long[] ids) {
+		this.ids = ids;
+	}
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemax;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datemin;
+    
 
-    private String noteInformation;//备注信息
+    public Date getDatemax() {
+		return datemax;
+	}
 
-    private BigDecimal companyId;//公司编号
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//最后修改日期
+	public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+    
 
     private static final long serialVersionUID = 1L;
 
-    public CgStockReplenishmentGoods(Long id, BigDecimal goosId, Date deliveryTime, String state, Long operaterId, String noteInformation, BigDecimal companyId, Date lastModifyDate) {
+    public CgStockReplenishmentGoods(Long id, BigDecimal goodsId, Date deliveryTime, String state, Long operaterId, String noteInformation, BigDecimal companyId, Date lastModifyDate) {
         this.id = id;
-        this.goosId = goosId;
+        this.goodsId = goodsId;
         this.deliveryTime = deliveryTime;
         this.state = state;
         this.operaterId = operaterId;
@@ -51,12 +83,12 @@ public class CgStockReplenishmentGoods implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getGoosId() {
-        return goosId;
+    public BigDecimal getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoosId(BigDecimal goosId) {
-        this.goosId = goosId;
+    public void setGoodsId(BigDecimal goodsId) {
+        this.goodsId = goodsId;
     }
 
     public Date getDeliveryTime() {
@@ -106,11 +138,4 @@ public class CgStockReplenishmentGoods implements Serializable {
     public void setLastModifyDate(Date lastModifyDate) {
         this.lastModifyDate = lastModifyDate;
     }
-
-	@Override
-	public String toString() {
-		return "CgStockReplenishmentGoods [id=" + id + ", goosId=" + goosId + ", deliveryTime=" + deliveryTime
-				+ ", state=" + state + ", operaterId=" + operaterId + ", noteInformation=" + noteInformation
-				+ ", companyId=" + companyId + ", lastModifyDate=" + lastModifyDate + "]";
-	}
 }

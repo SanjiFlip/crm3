@@ -10,7 +10,6 @@ import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jayway.jsonpath.Criteria;
 import com.sc.entity.BgExamineTarget;
 import com.sc.entity.BgExamineTargetExample;
 import com.sc.mapper.BgExamineTargetMapper;
@@ -66,7 +65,7 @@ public class BgExamineTargetServiceImpl implements BgExamineTargetService {
 				criteria.andExamineTargetLike("%"+target.getExamineTarget()+"%");
 			}
 			if(!StringUtils.isEmpty(target.getDatemin())){
-				System.out.println("----小----"+target.getDatemin());
+				System.out.println("----灏�----"+target.getDatemin());
 				criteria.andLastModifyDateGreaterThanOrEqualTo(target.getDatemin());
 			}
 			if(!StringUtils.isEmpty(target.getDatemax())){
@@ -74,7 +73,7 @@ public class BgExamineTargetServiceImpl implements BgExamineTargetService {
 				datemax.setHours(23);
 				datemax.setMinutes(59);
 				datemax.setSeconds(59);
-				System.out.println("----大----"+datemax);
+				System.out.println("----澶�----"+datemax);
 				criteria.andLastModifyDateLessThanOrEqualTo(datemax);
 				
 			}

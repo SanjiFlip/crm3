@@ -4,12 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 public class IpUtils {
     /**
-     * 获取登录用户的IP地址
+     * 鑾峰彇鐧诲綍鐢ㄦ埛鐨処P鍦板潃
      *
      * @param request
      * @return
      */
-    public static String getIpAddr(HttpServletRequest request) {
+	public static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -18,13 +18,13 @@ public class IpUtils {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
-        }
-        if ("0:0:0:0:0:0:0:1".equals(ip)) {
-            ip = "127.0.0.1";
-        }
-        if (ip.split(",").length > 1) {
-            ip = ip.split(",")[0];
         }
         return ip;
     }

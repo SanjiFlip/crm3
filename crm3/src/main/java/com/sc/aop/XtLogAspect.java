@@ -69,7 +69,7 @@ public class XtLogAspect {
         xtLog.setCompanyId(account.getCompanyId());
         //获取用户ip地址
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String ip = IpUtils.getIpAddr(request);
+        String ip = IpUtils.getIpAddress(request);
         xtLog.setVisitIp(ip);
  
         //调用service保存XtLog实体类到数据库
