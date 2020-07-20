@@ -53,7 +53,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="select-box" style="width:150px;">
 				<select class="select" name="companyId" size="1">
 					<c:forEach items="${list }" var="rscompnay">
+					<c:if test="${rscompnay.enabled=='1'}">	
 						<option value="${rscompnay.compnayId }" ${rscompnay.compnayId==rsdepartment.companyId ? 'selected':'' }>${rscompnay.compnayName}</option>
+					</c:if>
 					</c:forEach>
 				</select>
 				</span> 

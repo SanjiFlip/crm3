@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th>网上联系详情：${rsuser.onlineContactDetails }</th>
 			</tr>
 			<tr>
-				<th>审核状态&nbsp; &nbsp;: ${rsuser.examineState==已审核 ? "已审核":"未审核"}</th>
+				<th>审核状态&nbsp; &nbsp;: ${rsuser.examineState=="已审核" ? "已审核":"未审核"}</th>
 			</tr>
 			<tr>
 				<th>职务编号&nbsp; &nbsp;：${rsuser.postId }</th>

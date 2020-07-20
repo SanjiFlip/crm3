@@ -26,7 +26,7 @@ import com.sc.service.RsDepartmentService;
 public class RsDepartmentController {
 	
 	@Autowired
-	RsDepartmentService rsDepartmentService;
+    RsDepartmentService rsDepartmentService;
 	
 	@Autowired 
 	RsCompnayMessageService rsCompnayMessageService;
