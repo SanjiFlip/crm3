@@ -8,18 +8,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 //系统_权限信息表
 public class XtPermissionInfo implements Serializable {
-    private Long permissonId;	//权限编号
+    
+	private Long permissonId;	//权限编号
 
     private String permissonName;	//权限名
 
-    private String permission;	//权限
+    private String permission;  //权限
 
     private BigDecimal permissionColumnsId;		//权限分栏编号
 
-    private String remarks;	//备注信息
+    private String remarks;  //备注信息
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;	//最后修改时间
+    private Date lastModifyDate; //最后修改时间
+    
+    private boolean checked;
+    
+    //扩展属性
+    private Long columnsId;
 
     private static final long serialVersionUID = 1L;
 
@@ -83,4 +89,32 @@ public class XtPermissionInfo implements Serializable {
     public void setLastModifyDate(Date lastModifyDate) {
         this.lastModifyDate = lastModifyDate;
     }
+    
+    
+    
+	public Long getColumnsId() {
+		return columnsId;
+	}
+
+	public void setColumnsId(Long columnsId) {
+		this.columnsId = columnsId;
+	}
+	
+	
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
+	@Override
+	public String toString() {
+		return "XtPermissionInfo [permissonId=" + permissonId + ", permissonName=" + permissonName + ", permission="
+				+ permission + ", permissionColumnsId=" + permissionColumnsId + ", remarks=" + remarks
+				+ ", lastModifyDate=" + lastModifyDate + ", checked=" + checked + ", columnsId=" + columnsId + "]";
+	}
+    
 }

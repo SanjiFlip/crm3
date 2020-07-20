@@ -4,20 +4,58 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//ÈËÊÂ¡ª¡ª²¿ÃÅ±í
+//äººäº‹â€”â€”éƒ¨é—¨è¡¨
 public class RsDepartment implements Serializable {
-    private Long departmentId; 	//²¿ÃÅ±àºÅ
+    private Long departmentId; 	//éƒ¨é—¨ç¼–å·
 
-    private String departmentName;  //²¿ÃÅÃû³Æ
+    private String departmentName;  //éƒ¨é—¨åç§°
 
-    private String remarkExplain;	//±¸×¢ËµÃ÷
+    private String remarkExplain;	//å¤‡æ³¨è¯´æ˜
 
-    private Long companyId;		//¹«Ë¾±àºÅ
+    private Long companyId;		//å…¬å¸ç¼–å·
     
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;	//×îºóĞŞ¸ÄÊ±¼ä
+    private Date lastModifyDate;	//æœ€åä¿®æ”¹æ—¶é—´
+    
+    //æ‰©å±•å±æ€§
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin; 
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax; 
+    
+  //æ‰©å±•å±æ€§ ç”¨äºæ‰¹é‡åˆ é™¤
+  	private Long[] ids;	
+  	
+  	
+    
+    
 
-    private static final long serialVersionUID = 1L;
+    public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+
+	public Long[] getIds() {
+		return ids;
+	}
+
+	public void setIds(Long[] ids) {
+		this.ids = ids;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public RsDepartment(Long departmentId, String departmentName, String remarkExplain, Long companyId, Date lastModifyDate) {
         this.departmentId = departmentId;

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -91,11 +91,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul>
 					<li><a data-href="picture-list.html" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
 			</ul>
+			
 		</dd>
 	</dl>
 		<dl id="menu-product">
 			<dt><i class="Hui-iconfont">&#xe620;</i> 采购库存管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
+
 			<ul>
 			<li><span style="margin-left: 24px;cursor:pointer;"onclick="kc1()" >仓库管理</span></li>
 			   <ul id="kc" style="display: none;">
@@ -121,7 +123,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<i class="Hui-iconfont">&#xe623;</i>&nbsp供应商管理
 								</a></li>
 							</ul>
-			</ul>
+
+<!-- 				<ul>
+					<li><a data-href="rscompnayctrl//selectcompnay.do" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
+					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
+					<li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
+			</ul> -->
 		</dd>
 	</dl>
 		<dl id="menu-comments">
@@ -134,26 +141,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</dd>
 	</dl>
 		<dl id="menu-member">
-			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 人事管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="member-list.html" data-title="会员列表" href="javascript:;">会员列表</a></li>
-					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
-					<li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>
-					<li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">积分管理</a></li>
-					<li><a data-href="member-record-browse.html" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
-					<li><a data-href="member-record-download.html" data-title="下载记录" href="javascript:void(0)">下载记录</a></li>
-					<li><a data-href="member-record-share.html" data-title="分享记录" href="javascript:void(0)">分享记录</a></li>
+					<li><a data-href="rscompnayctrl/selectcompnay.do" data-title="公司管理" href="javascript:;">公司管理</a></li>
+					<li><a data-href="rsuserctrl/selectuser.do" data-title="员工管理" href="javascript:;">员工管理</a></li>
+					<li><a data-href="rsdeptmentctrl/selectrsdeptment.do" data-title="部门管理" href="javascript:;">部门管理</a></li>
+					<li><a data-href="rspostctrl/selectrspost.do" data-title="职务管理" href="javascript:;">职务管理</a></li>
+					
 			</ul>
 		</dd>
 	</dl>
-		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dl id="menu-product">
+			<dt><i class="Hui-iconfont">&#xe620;</i> 办公管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="bgexaminetargetctrl/selecttarget.do" data-title="任务指标管理" href="javascript:void(0)">任务指标管理</a></li>
+					<li><a data-href="bgexaminetaskctrl/selecttask.do" data-title="任务发布管理" href="javascript:void(0)">任务发布管理</a></li>
+					<li><a data-href="bgtaskdedailctrl/selectdedail.do" data-title="任务详情管理" href="javascript:void(0)">任务详情管理</a></li>
+					<li><a data-href="bgsmsctrl/selectsms.do" data-title="短信息管理" href="javascript:void(0)">短信息管理</a></li>
+					<li><a data-href="bgpersonalschedule/selectschedule.do" data-title="个人日程管理" href="javascript:void(0)">个人日程管理</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -175,11 +182,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
-					<li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
+					<li><a data-href="xtaccountctrl/selectaccount.do" data-title="用户账户管理" href="javascript:void(0)">用户账户管理</a></li>
+					<li><a data-href="xtrolectrl/selectxtrole.do" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					<li><a data-href="permctrl/selectcolumns.do" data-title="权限分栏管理" href="javascript:void(0)">权限分栏管理</a></li>
+					<li><a data-href="xtlogctrl/selectxtlog.do" data-title="系统日志管理" href="javascript:void(0)">系统日志管理</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -191,7 +197,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的桌面" data-href="http://localhost:8080/crm3/druid/index.html">我的桌面</span>
+					<span title="我的桌面" data-href="druid">我的桌面</span>
 					<em></em></li>
 		</ul>
 	</div>

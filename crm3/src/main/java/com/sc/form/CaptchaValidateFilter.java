@@ -10,6 +10,7 @@ import com.google.code.kaptcha.Constants;
 
 //另外一种验证码生成方式
 public class CaptchaValidateFilter extends FormAuthenticationFilter {
+	
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 		System.out.println("我进入验证码匹配阶段！");

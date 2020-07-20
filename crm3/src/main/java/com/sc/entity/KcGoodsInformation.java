@@ -6,37 +6,34 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//¿â´æ_ÉÌÆ·ĞÅÏ¢±í
+//åº“å­˜_å•†å“ä¿¡æ¯è¡¨
 public class KcGoodsInformation implements Serializable {
-    private BigDecimal goodsId;//ÉÌÆ·±àºÅ
+    private BigDecimal goodsId;//å•†å“ç¼–å·
 
-    private String goodsName;//ÉÌÆ·Ãû³Æ
+    private String goodsName;//å•†å“åç§°
 
-    private String goodsType;//ÉÌÆ·Àà±ğ
+    private String goodsType;//å•†å“ç±»åˆ«
 
-    private String standardsIllustrate;//¹æ¸ñËµÃ÷
+    private String standardsIllustrate;//è§„æ ¼è¯´æ˜
 
-    private String unit;//µ¥Î»
+    private String unit;//å•ä½
 
-    private Long depositoryId;//²Ö¿â±àºÅ
+    private Long depositoryId;//ä»“åº“ç¼–å·
 
-    private BigDecimal stockNumber;//¿â´æÊıÁ¿
+    private BigDecimal stockNumber;//åº“å­˜æ•°é‡
 
-    private BigDecimal costPrice;//³É±¾¼Û
+    private BigDecimal costPrice;//æˆæœ¬ä»·
 
-    private BigDecimal retailPrice;//ÁãÊÛ¼Û
+    private BigDecimal retailPrice;//é›¶å”®ä»·
 
-    private BigDecimal distributionPrice;//¾­Ïú¼Û
+    private BigDecimal distributionPrice;//ç»é”€ä»·
 
-    private String noteInformation;//±¸×¢ĞÅÏ¢
+    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
 
-    private BigDecimal companyId;//¹«Ë¾±àºÅ
+    private BigDecimal companyId;//å…¬å¸ç¼–å·
     
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÈÕÆÚ
-    
-    
-    //À©Õ¹ÊôĞÔ
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¥æœŸ
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datemax;
@@ -60,8 +57,6 @@ public class KcGoodsInformation implements Serializable {
 	public void setDatemin(Date datemin) {
 		this.datemin = datemin;
 	}
-	
-	
 
 	private static final long serialVersionUID = 1L;
 

@@ -228,4 +228,23 @@
       COMPANY_ID = #{companyId,jdbcType=DECIMAL}
     where LOG_ID = #{logId,jdbcType=DECIMAL}
   </update>
+  
+  <!-- 条件查询系统日志表 -->
+  <select id="selectBySome" parameterType="com.sc.entity.XtLog" resultType="com.sc.entity.XtLog">
+  	SELECT LOG.*,ACCOUNT.USER_NAME USER_NAME FROM XT_LOG LOG
+	LEFT JOIN XT_USER_ACCOUNT ACCOUNT
+	ON LOG.USER_ID=ACCOUNT.USER_ID
+	<where>
+		<if test="userName!=null">
+			AND ACCOUNT.USER_NAME LIKE '%'||#{userName}||'%' 
+		</if>
+		<if test="datemin!=null">
+			AND LOG.VISIT_TIME &gt;= #{datemin}
+		</if>
+		<if test="datemax!=null">
+			AND LOG.VISIT_TIME &lt;= #{datemax}
+		</if>
+	</where>
+  </select>
+  
 </mapper>

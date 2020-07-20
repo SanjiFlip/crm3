@@ -88,6 +88,11 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectTaskDedailById" resultType="com.sc.entity.BgTaskDedailTwo">
+	select  d.BH_ID, d.TASK_ID, t.TASK_PUBLISH_PERSON,d.ACCEPT_USER_ID, d.WHETHER_FINISH, d.STATE, d.COMPANY_ID, d.LAST_MODIFY_DATE
+	from BG_TASK_DETAIL d left join BG_EXAMINE_TASK t on d.TASK_ID=t.TASK_ID
+	where ACCEPT_USER_ID=#{acceptUserId}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
@@ -97,6 +102,9 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from BG_TASK_DETAIL
     where BH_ID = #{bhId,jdbcType=DECIMAL}
+  </delete>
+    <delete id="deleteByTaskId" parameterType="java.lang.Long">
+  		delete from  BG_TASK_DETAIL where TASK_ID=#{taskId}
   </delete>
   <delete id="deleteByExample" parameterType="com.sc.entity.BgTaskDedailExample" >
     delete from BG_TASK_DETAIL
@@ -242,5 +250,13 @@
       COMPANY_ID = #{companyId,jdbcType=DECIMAL},
       LAST_MODIFY_DATE = #{lastModifyDate,jdbcType=TIMESTAMP}
     where BH_ID = #{bhId,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateByWhetherFinish" parameterType="com.sc.entity.BgTaskDedail">
+  	update BG_TASK_DETAIL set WHETHER_FINISH=#{whetherFinish} where BH_ID=#{bhId}
+  </update>
+  
+    <update id="updateByState" parameterType="com.sc.entity.BgTaskDedail">
+  	update BG_TASK_DETAIL set STATE=#{state} where BH_ID=#{bhId}
   </update>
 </mapper>

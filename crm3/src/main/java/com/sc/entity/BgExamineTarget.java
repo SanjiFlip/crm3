@@ -1,23 +1,47 @@
 package com.sc.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//°ì¹«¡ª¡ª¿¼ºËÖ¸±ê±í
+//ï¿½ì¹«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½
 public class BgExamineTarget implements Serializable {
-    private Long targetId;  //Ö¸±ê±àºÅ
+    private Long targetId;  //Ö¸ï¿½ï¿½ï¿½ï¿½
 
-    private String examineTarget;  //¿¼ºËÖ¸±ê
+    private String examineTarget;  //ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
 
-    private String remarksExplain;  //±¸×¢ËµÃ÷
+    private String remarksExplain;  //ï¿½ï¿½×¢Ëµï¿½ï¿½
 
-    private Long companyId;  //¹«Ë¾±àºÅ
+    private Long companyId;  //ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóÐÞ¸ÄÊ±¼ä
+    private Date lastModifyDate; //ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+    //æ—¥æœŸèŒƒå›´å†…æŸ¥è¯¢
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
+    public Date getDatemin() {
+		return datemin;
+	}
 
-    private static final long serialVersionUID = 1L;
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//æ—¥æœŸèŒƒå›´å†…æŸ¥è¯¢-end
+	private Long[] ids;
+	
+	private static final long serialVersionUID = 1L;
 
     public BgExamineTarget(Long targetId, String examineTarget, String remarksExplain, Long companyId, Date lastModifyDate) {
         this.targetId = targetId;

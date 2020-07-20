@@ -17,6 +17,8 @@ public interface BgSmsMapper {
     int insertSelective(BgSms record);
 
     List<BgSms> selectByExample(BgSmsExample example);
+    
+    List<BgSms> selectSmsByName(String sendPerson);
 
     BgSms selectByPrimaryKey(Long bhId);
 

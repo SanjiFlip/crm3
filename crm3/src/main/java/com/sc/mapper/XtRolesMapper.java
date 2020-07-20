@@ -27,4 +27,6 @@ public interface XtRolesMapper {
     int updateByPrimaryKeySelective(XtRoles record);
 
     int updateByPrimaryKey(XtRoles record);
+    
+    List<XtRoles> selectUpName();
 }

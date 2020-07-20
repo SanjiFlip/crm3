@@ -4,27 +4,50 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//°ì¹«¡ª¡ª¸öÈËÈÕ³Ì±í
+
 public class BgPersonalSchedule implements Serializable {
-    private Long schedulePlanId; //ÈÕ³Ì°²ÅÅ±àºÅ
+    private Long schedulePlanId; //ï¿½Õ³Ì°ï¿½ï¿½Å±ï¿½ï¿½
 
-    private String planCategory; //°²ÅÅÀà±ð
+    private String planCategory; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    private String planTheme; //°²ÅÅÖ÷Ìâ
+    private String planTheme; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date beginDate; //¿ªÊ¼ÈÕÆÚ
+    private Date beginDate; //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+    @DateTimeFormat(pattern="HH:mm:ss")
+    private Date beginTime; //ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+
+    private Long writePersonnelId; //ï¿½ï¿½Ð´ï¿½ï¿½Ô±ï¿½ï¿½ï¿½
+
+    private String planDescribe; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+    private Long companyId; //ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date beginTime; //¿ªÊ¼Ê±¼ä
+    private Date lastModifyDate; //ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+    
+  //æ—¥æœŸèŒƒå›´å†…æŸ¥è¯¢
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
 
-    private Long writePersonnelId; //ÌîÐ´ÈËÔ±±àºÅ
+    public Date getDatemin() {
+		return datemin;
+	}
 
-    private String planDescribe; //°²ÅÅÃèÊö
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
 
-    private Long companyId; //¹«Ë¾±àºÅ
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóÐÞ¸ÄÊ±¼ä
+	public Date getDatemax() {
+		return datemax;
+	}
 
-    private static final long serialVersionUID = 1L;
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//æ—¥æœŸèŒƒå›´å†…æŸ¥è¯¢ end
+	private static final long serialVersionUID = 1L;
 
     public BgPersonalSchedule(Long schedulePlanId, String planCategory, String planTheme, Date beginDate, Date beginTime, Long writePersonnelId, String planDescribe, Long companyId, Date lastModifyDate) {
         this.schedulePlanId = schedulePlanId;

@@ -6,40 +6,41 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//½ø»õ_²É¹ºµ¥
-public class CgStockPurchaseOrder implements Serializable { 
-    private BigDecimal purchaseOrderId;//²É¹ºµ¥±àºÅ
 
-    private String purchaseSubject;//²É¹ºÖ÷Ìâ
+//è¿›è´§_é‡‡è´­å•
+public class CgStockPurchaseOrder implements Serializable {
+    private BigDecimal purchaseOrderId;//é‡‡è´­å•ç¼–å·
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date purchaseDate;//²É¹ºÈÕÆÚ
-
-    private Long supplierId;//¹©Ó¦ÉÌ±àºÅ
-
-    private BigDecimal loanAmount;//´û¿î½ğ¶î
-
-    private BigDecimal invoiceNumber;//·¢Æ±ºÅÂë
-
-    private String paymentStatus;//¸¶¿îÇé¿ö
-
-    private String purchaseProgress;//²É¹º½øÕ¹
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date deliveryDate;//½»»õÈÕÆÚ
-
-    private String deliveryPlace;//½»»õµØµã
-
-    private String deliveryMode;//½»»õ·½Ê½
-
-    private Long operaterId;//²Ù×÷ÈËÔ±
-
-	private String noteInformation;//±¸×¢ĞÅÏ¢
-
-    private BigDecimal companyId;//¹«Ë¾±àºÅ
+    private String purchaseSubject;//é‡‡è´­ä¸»é¢˜
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//×îºóĞŞ¸ÄÈÕÆÚ
+    private Date purchaseDate;//é‡‡è´­æ—¥æœŸ
+
+    private Long supplierId;//ä¾›åº”å•†ç¼–å·
+
+    private BigDecimal loanAmount;//è´·æ¬¾é‡‘é¢
+
+    private BigDecimal invoiceNumber;//å‘ç¥¨å·ç 
+
+    private String paymentStatus;//ä»˜æ¬¾æƒ…å†µ
+
+    private String purchaseProgress;//é‡‡è´­è¿›å±•
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date deliveryDate;//äº¤è´§æ—¥æœŸ
+
+    private String deliveryPlace;//äº¤è´§åœ°ç‚¹
+
+    private String deliveryMode;//äº¤è´§æ–¹å¼
+
+    private Long operaterId;//æ“ä½œäººå‘˜
+
+	private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
+
+    private BigDecimal companyId;//å…¬å¸ç¼–å·
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¥æœŸ
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datemax;
@@ -63,7 +64,7 @@ public class CgStockPurchaseOrder implements Serializable {
 	public void setDatemin(Date datemin) {
 		this.datemin = datemin;
 	}
-    
+
 
 	private static final long serialVersionUID = 1L;
 

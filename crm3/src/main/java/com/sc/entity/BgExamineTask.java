@@ -4,28 +4,51 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//°ì¹«¡ª¡ª¿¼ºËÈÎÎñ±í
+//ï¿½ì¹«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class BgExamineTask implements Serializable {
-    private Long taskId; //ÈÎÎñ±àºÅ
+    private Long taskId; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    private String taskTitle; //ÈÎÎñ±êÌâ
+    private String taskTitle; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    private String taskSpecificContent; //ÈÎÎñ¾ßÌåÄÚÈÝ
+    private String taskSpecificContent; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    private String taskPublishPerson; //ÈÎÎñ·¢²¼ÈË
+    private String taskPublishPerson; //ï¿½ï¿½ï¿½ñ·¢²ï¿½ï¿½ï¿½
 
-    private String examineTarget; //¿¼ºËÖ¸±ê
+    private String examineTarget; //ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date taskBeginTime; //ÈÎÎñ¿ªÊ¼Ê±¼ä
+    private Date taskBeginTime; //ï¿½ï¿½ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date taskEndTime; //ÈÎÎñ½áÊøÊ±¼ä
+    private Date taskEndTime; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 
-    private Long companyId; //¹«Ë¾±àºÅ
+    private Long companyId; //ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate; //×îºóÐÞ¸ÄÊ±¼ä
+    private Date lastModifyDate; //ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
+    
+  //æ—¥æœŸèŒƒå›´å†…æŸ¥è¯¢
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
 
-    private static final long serialVersionUID = 1L;
+    public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//æ—¥æœŸèŒƒå›´å†…æŸ¥è¯¢ end
+	private static final long serialVersionUID = 1L;
 
     public BgExamineTask(Long taskId, String taskTitle, String taskSpecificContent, String taskPublishPerson, String examineTarget, Date taskBeginTime, Date taskEndTime, Long companyId, Date lastModifyDate) {
         this.taskId = taskId;

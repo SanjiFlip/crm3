@@ -27,4 +27,6 @@ public interface XtLogMapper {
     int updateByPrimaryKeySelective(XtLog record);
 
     int updateByPrimaryKey(XtLog record);
+    
+    List<XtLog> selectBySome(XtLog xtLog);
 }

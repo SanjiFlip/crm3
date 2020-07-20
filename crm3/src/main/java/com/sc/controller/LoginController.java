@@ -3,8 +3,10 @@ package com.sc.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.io.ResolverUtil.IsA;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -12,46 +14,54 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sc.annotation.MyLog;
 import com.sc.entity.XtUserAccount;
 
 
 
-@Controller   //°Ñ¸ÃÀà×¢²á³Ébean¶ÔÏó£¬²¢ÇÒ×÷Îª¿ØÖÆÆ÷×é¼ş
-@RequestMapping("/loginctrl")  //¸ø¸ÃÀàÅäÖÃÒ»¸öÇëÇóÓ³ÉäµÄurlµØÖ·
+@Controller   
+@RequestMapping("/loginctrl")
 public class LoginController {
 	
 	 
-	//µÇÂ½Ê§°ÜµÄ·½·¨
+	//ç™»é™†æ§åˆ¶å™¨
 	@RequestMapping("/login.do")
 	public ModelAndView login(ModelAndView mav,HttpServletRequest req) {
-		System.out.println("ÓÃ»§ÈÏÖ¤Ê§°Ü");
-		//Í¨¹ıÈÏÖ¤Ê§°ÜµÄÊôĞÔÃû³Æ»ñÈ¡¶ÔÓ¦µÄÖµ
+		System.out.println("ç™»é™†å¤±è´¥");
+		//è·å–åˆ°å›ä¼ çš„é”™è¯¯ä¿¡æ¯
 		String msg = (String) req.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-		System.out.println("ÈÏÖ¤Ê§°ÜµÄÏûÏ¢£º"+msg);
+		System.out.println("ç™»é™†é”™è¯¯ä¿¡æ¯æ˜¯ï¼š"+msg);
 		String fail = "";
-		if (msg!=null) {
-			if (msg.equals(UnknownAccountException.class.getName())) {
-				fail = "unknown";//ÕË»§²»´æÔÚ
-			}else if (msg.equals(IncorrectCredentialsException.class.getName())) {
-				fail = "error";
-			}else if (msg.equals("randomCodeError")) {
-				fail = "code";
-			}else {
-				fail = "other";
+		Subject subject = SecurityUtils.getSubject();
+		//æ˜¯å¦å·²ç»ç™»é™†
+		if(subject.isAuthenticated()){
+			subject.logout();
+		}else {
+			if (msg!=null) {
+				if (msg.equals(UnknownAccountException.class.getName())) {
+					fail = "unknown";// æœªçŸ¥è´¦æˆ·å¼‚å¸¸
+				}else if (msg.equals(IncorrectCredentialsException.class.getName())) {
+					fail = "error";
+				}else if (msg.equals("randomCodeError")) {
+					fail = "code";
+				}else if (msg.equals(LockedAccountException.class.getName())) {
+					fail = "locked";
+				}else {
+					fail = "other";
+				}
 			}
 		}
 		mav.setViewName("redirect:../login.jsp?isfail="+fail); 
 		return mav;
 	}
 	
+	@MyLog("ç™»é™†æˆåŠŸ")
 	@RequestMapping("/main.do")
 	public ModelAndView main(ModelAndView mav,HttpSession session) {
-		System.out.println("ÓÃ»§ÈÏÖ¤³É¹¦");
-		
+		System.out.println("è®¤è¯æˆåŠŸ");
 		Subject subject = SecurityUtils.getSubject();
 		XtUserAccount xtUserAccount = (XtUserAccount) subject.getPrincipal();
 		session.setAttribute("nowuser", xtUserAccount);
-		
 		mav.setViewName("redirect:../index.jsp"); 
 		return mav;
 	}
