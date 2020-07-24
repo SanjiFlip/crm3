@@ -1,4 +1,4 @@
-package com.sc.controller;
+ package com.sc.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.KcDepositoryInformation;
 import com.sc.entity.KcGoodsInformation;
 import com.sc.entity.Message;
@@ -28,6 +29,7 @@ public class KcGoodsInDeptCtrl {
 	
 	
 	//通过仓库编号找该仓库下面的商品
+	@MyLog("仓库编号找该仓库下面的商品")
 	   @RequestMapping("/selectdepogoods.do")
 		public ModelAndView selectDeptgoods(ModelAndView mav,
 				@RequestParam(defaultValue="1") Integer pageNum,
@@ -54,7 +56,7 @@ public class KcGoodsInDeptCtrl {
 		}
 	   
 	  //在跳过去的页面添加商品信息
-	   
+	@MyLog("跳过去添加商品信息的页面")
 	   @RequestMapping("/goaddgoodsindept.do")
 		public ModelAndView goaddgoods(ModelAndView mav,KcGoodsInformation goods,KcDepositoryInformation dept){
 			System.out.println("进入添加页面");
@@ -69,7 +71,8 @@ public class KcGoodsInDeptCtrl {
 			
 			return mav;
 		}
-	   
+	
+	@MyLog("在跳过去的页面添加商品信息")
 	   @RequestMapping("/addgoodsindept.do")
 		@ResponseBody
 		public Message addgoods(KcGoodsInformation goods){
@@ -86,7 +89,7 @@ public class KcGoodsInDeptCtrl {
 			
 		}
 		
-	   
+	@MyLog("删除商品信息")
 		@RequestMapping("/deletegoodsindept.do")
 		@ResponseBody
 		public Message deletegoods(KcGoodsInformation goods){
@@ -97,7 +100,7 @@ public class KcGoodsInDeptCtrl {
 			return new Message("1","success","成功");
 			
 		}
-		
+		@MyLog("批量删除商品信息")
 		@RequestMapping("/deletegoodsindeptall.do")
 		public String deletegoodsall(BigDecimal[] ids){
 			System.out.println("进入批量删除方法了");

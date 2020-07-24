@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.CgStockDetailOrder;
 import com.sc.entity.CgStockPurchaseOrder;
 import com.sc.entity.CgStockReplenishmentGoods;
@@ -37,6 +38,7 @@ public class CgStockDetailOrderController {
 	KcGoodsInformationService kcgoods;
 	
 	//查询订单详情表
+	@MyLog("查询订单详情表")
 	@RequestMapping("/selectcgdetail.do")
 	public ModelAndView selectcgdetail(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
@@ -59,6 +61,7 @@ public class CgStockDetailOrderController {
 	
 	
 	//进入添加详情采购单的页面
+	@MyLog("进入添加详情采购单的页面")
 	@RequestMapping("/goadddetail.do")
 	public ModelAndView goadddetail(ModelAndView mav,CgStockDetailOrder detorder,
 			KcGoodsInformation goods){
@@ -79,6 +82,7 @@ public class CgStockDetailOrderController {
 	}
 	
 	//添加详情采购单
+	@MyLog("添加详情采购单")
 	@RequestMapping("/adddetail.do")
 	@ResponseBody
 	public Message adddetail(CgStockDetailOrder detorder,ModelAndView mav){
@@ -96,7 +100,7 @@ public class CgStockDetailOrderController {
 	}
 	
 	
-	
+	@MyLog("删除详情采购单")
 	@RequestMapping("/deletedetorder.do")
 	@ResponseBody
 	public Message deletedetorder(CgStockDetailOrder detorder){
@@ -108,6 +112,7 @@ public class CgStockDetailOrderController {
 		
 	}
 	
+	@MyLog("批量删除详情采购单")
 	@RequestMapping("/deletedetorderall.do")
 	@ResponseBody
 	public String deletedetorderall(BigDecimal[] ids){
@@ -124,6 +129,7 @@ public class CgStockDetailOrderController {
 	}
 	
 	//改变入库状态
+	@MyLog("改变入库状态")
 		@RequestMapping("/updatestorage.do")
 		@ResponseBody
 		public Message updatestorage(CgStockDetailOrder detorder,KcGoodsInformation goods){
@@ -141,6 +147,7 @@ public class CgStockDetailOrderController {
 		}
 		
 		//入库
+	@MyLog("入库")
 		@RequestMapping("/updategoodsNum.do")
 		@ResponseBody
 		public Message updategoodsNum(CgStockDetailOrder detorder,KcGoodsInformation goods,

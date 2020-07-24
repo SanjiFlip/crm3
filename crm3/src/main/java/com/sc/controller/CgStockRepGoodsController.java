@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.CgStockDetailOrder;
 import com.sc.entity.CgStockPurchaseOrder;
 import com.sc.entity.CgStockReplenishmentGoods;
@@ -34,7 +35,7 @@ public class CgStockRepGoodsController {
 	@Autowired
 	CgStockDetailOrderService cgdetailorder;//采购订单详情service
 	
-	
+	@MyLog("查寻需补货产品")
 	@RequestMapping("/selectcgrep.do")
 	public ModelAndView selectcgrep(ModelAndView mav,
 			@RequestParam(defaultValue="1")Integer pageNum,
@@ -51,7 +52,7 @@ public class CgStockRepGoodsController {
 		return mav;
 	}
 	
-	
+	@MyLog("查寻需补货产品")
 	@RequestMapping("/selectkcgoods.do")
 	public ModelAndView selectkcgoods(ModelAndView mav,
 			@RequestParam(defaultValue="1")Integer pageNum,
@@ -67,7 +68,7 @@ public class CgStockRepGoodsController {
 		mav.addObject("page", pageInfo);
 		return mav;
 	}
-	
+	@MyLog("进添加需补货产品页面")
 	@RequestMapping("/goaddrepgoods.do")
 	public ModelAndView goaddrepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
 			KcGoodsInformation goods){
@@ -81,6 +82,7 @@ public class CgStockRepGoodsController {
 	}
 	
 	//添加进入需采购单
+	@MyLog("添加需补货产品")
 	@RequestMapping("/addrepgoods.do")
 	@ResponseBody
 	public Message addrepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
@@ -133,6 +135,7 @@ public class CgStockRepGoodsController {
 	
 		
 	//删除
+	@MyLog("删除需补货产品")
 		@RequestMapping("/deleterepgoods.do")
 		@ResponseBody
 		public Message deleterepgoods(CgStockReplenishmentGoods repgoods){
@@ -144,6 +147,7 @@ public class CgStockRepGoodsController {
 			
 		}
 		//批量删除
+	@MyLog("批量删除需补货产品")
 		@RequestMapping("/deleterepgoodsall.do")
 		@ResponseBody
 		public String deleterepgoodsall(Long[] ids){
@@ -160,6 +164,7 @@ public class CgStockRepGoodsController {
 		}
 		
 		//进入修改页面
+	@MyLog("去修改需补货产品")
 		@RequestMapping("/goupdaterepgoods.do")
 		public ModelAndView goupdaterepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
 				KcGoodsInformation goods){
@@ -179,6 +184,7 @@ public class CgStockRepGoodsController {
 		
 		
 		//执行修改
+		@MyLog("修改需补货产品")
 		@RequestMapping("/updaterepgoods.do")
 		@ResponseBody
 		public Message updaterepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
@@ -196,6 +202,7 @@ public class CgStockRepGoodsController {
 		
 		
 		//改变状态
+		@MyLog("改变状态信息")
 		@RequestMapping("/updatestate.do")
 		@ResponseBody
 		public Message updatepaystate(CgStockReplenishmentGoods repgoods){

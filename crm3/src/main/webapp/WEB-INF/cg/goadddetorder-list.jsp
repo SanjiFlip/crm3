@@ -62,14 +62,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<label class="form-label col-xs-4 col-sm-3">产品编号：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" id="seldeptid" size="1" name="id">
-				     <%-- <c:if test="${detail.purchaseOrderDetailId }!=null">
-				         <option value="${detail.goodsId }">${detail.goodsId }</option>
-				     </c:if> 
-				    <c:if test="${detail.purchaseOrderDetailId=='null' }">--%>
 					 <c:forEach items="${list }" var="g">
 					      <option value="${g.goodsId }">${g.goodsId }</option>
 					 </c:forEach>
-					<%-- </c:if>  --%>
 					</select>
 				</span> </div>
 		</div>
