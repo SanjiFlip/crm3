@@ -72,4 +72,11 @@ public class XtRoleServiceImpl implements XtRoleService {
 		return list;
 	}
 
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public XtRoles getXtRplesByUserId(Long userId) {
+		XtRoles role = xtRolesMapper.getRoleByUserId(userId);
+		return role;
+	}
+
 }

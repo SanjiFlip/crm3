@@ -18,4 +18,6 @@ public interface XtUserRoleService {
 	PageInfo<XtUserRole> selectXtUserRole(Integer pageNum,Integer pageSize,XtUserRole xtUserRole);
 	
 	List<XtUserRole> selectByUserId(Long id);
+	
+	void deleteXtUserRoleByRoleId(Long roleId);
 }

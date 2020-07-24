@@ -4,34 +4,60 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//é”€å”®_å®¢æˆ·è”ç³»äººè¡¨
+//ÏúÊÛ_¿Í»§ÁªÏµÈË±í
 public class XsCustomerContact implements Serializable {
-    private Long contactId;//è”ç³»äººç¼–å·
+    private Long contactId;//ÁªÏµÈË±àºÅ
 
-    private Long customerId;//å®¢æˆ·ç¼–å·
+    private Long customerId;//¿Í»§±àºÅ
 
-    private String contactName;//è”ç³»äººå§“å
+    private String contactName;//ÁªÏµÈËĞÕÃû
 
-    private String englishName;//è‹±æ–‡å
+    private String englishName;//Ó¢ÎÄÃû
 
-    private String job;//Ö°èŒåŠ¡
+    private String job;//Ö°Îñ
 
-    private String department;//éƒ¨é—¨
+    private String department;//²¿ÃÅ
 
-    private String mobilephone;//æ‰‹æœº
+    private String mobilephone;//ÊÖ»ú
 
-    private String officePhone;//åŠå…¬ç”µè¯
+    private String officePhone;//°ì¹«µç»°
 
-    private String email;//ç”µå­é‚®ä»¶
+    private String email;//EMAIL
 
-    private String address;//åœ°å€Ö·
+    private String address;//µØÖ·
 
-    private String noteInformation;//å¤‡æ³¨ä¿¡æ¯
+    private String noteInformation;//±¸×¢ĞÅÏ¢
 
-    private Long companyId;//å…¬å¸ç¼–å·
+    private Long companyId;//¹«Ë¾±àºÅ
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
+    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
+
+  //À©Õ¹ÊôĞÔ ÓÃÓÚ²éÑ¯-start
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
+    
+    public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//À©Õ¹ÊôĞÔ ÓÃÓÚ²éÑ¯-end
+	 
 
     private static final long serialVersionUID = 1L;
 

@@ -39,11 +39,16 @@ public class CustomRealmMD5 extends AuthorizingRealm {
 		if (perms!=null&&perms.size()>0) {
 			System.out.println("用户的权限如下");
 			for (XtPermissionInfo perm : perms) {
-				String code = perm.getPermission();
-				if(code!=null&&!code.equals("")) {
-					System.out.println("========================="+code);
-					list.add(code);
+				try {
+					String code = perm.getPermission();
+					if(code!=null&&!code.equals("")) {
+						System.out.println("========================="+code);
+						list.add(code);
+					}
+				}catch (Exception e) {
+					
 				}
+				
 			}
 		}
 		SimpleAuthorizationInfo  info = new SimpleAuthorizationInfo();

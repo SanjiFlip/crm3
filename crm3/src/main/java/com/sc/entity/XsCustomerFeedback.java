@@ -4,37 +4,62 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//é”€å”®_å®¢æˆ·åé¦ˆè¡¨
+//ÏúÊÛ_¿Í»§·´À¡±í
 public class XsCustomerFeedback implements Serializable {
-    private Long feedbackRecordId;//åé¦ˆè®°å½•ç¼–å·
+    private Long feedbackRecordId;//·´À¡¼ÇÂ¼±àºÅ
 
-    private String recordPriority;//è®°å½•ä¼˜å…ˆçº§
+    private String recordPriority;//¼ÇÂ¼ÓÅÏÈ¼¶
 
-    private Long customerId;//å®¢æˆ·ç¼–å·
+    private Long customerId;//¿Í»§±àºÅ
 
-    private String state;//çŠ¶æ€Ì¬
+    private String state;//×´Ì¬
 
-    private String feedbackType;//åé¦ˆç±»å‹
+    private String feedbackType;//·´À¡ÀàĞÍ
  
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date feedbackDate;//åé¦ˆæ—¶é—´
+    private Date feedbackDate;//·´À¡Ê±¼ä
 
-    private String feedbackReason;//åé¦ˆåŸå› 
+    private String feedbackReason;//·´À¡Ô­Òò
 
-    private String head;//è´Ÿè´£äºº
+    private String head;//¸ºÔğÈË
 
-    private String feedbackResource;//åé¦ˆæ¥æº
+    private String feedbackResource;//·´À¡À´Ô´
 
-    private String feedbackTheme;//åé¦ˆä¸»é¢˜
+    private String feedbackTheme;//·´À¡Ö÷Ìâ
 
-    private String feedbackDescribe;//åé¦ˆæè¿°
+    private String feedbackDescribe;//·´À¡ÃèÊö
 
-    private String analysis;//åˆ†æ
+    private String analysis;//·ÖÎö
 
-    private Long companyId;//å…¬å¸ç¼–å·
+    private Long companyId;//¹«Ë¾±àºÅ
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
+    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
 
+  //À©Õ¹ÊôĞÔ ÓÃÓÚ²éÑ¯-start
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
+    
+    public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//À©Õ¹ÊôĞÔ ÓÃÓÚ²éÑ¯-end
+	 
     private static final long serialVersionUID = 1L;
 
     public XsCustomerFeedback(Long feedbackRecordId, String recordPriority, Long customerId, String state, String feedbackType, Date feedbackDate, String feedbackReason, String head, String feedbackResource, String feedbackTheme, String feedbackDescribe, String analysis, Long companyId, Date lastModifyDate) {

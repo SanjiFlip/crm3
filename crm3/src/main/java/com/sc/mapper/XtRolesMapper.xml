@@ -235,4 +235,13 @@
 	ON ROLE.UP_ROLE_ID =ROLES.ROLE_ID
   </select>
   
+  <select id="getRoleByUserId" parameterType="java.lang.Long" resultType="com.sc.entity.XtRoles">
+  	SELECT XR.* FROM XT_USER_ACCOUNT  XUA
+	LEFT JOIN XT_USER_ROLE  XUR
+	ON XUA.USER_ID = XUR.USER_ID
+	LEFT JOIN XT_ROLES XR
+	ON XUR.ROLE_ID = XR.ROLE_ID
+	WHERE XUA.USER_ID = #{userId}
+  </select>
+  
 </mapper>

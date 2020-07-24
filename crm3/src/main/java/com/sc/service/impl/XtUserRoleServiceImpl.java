@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sc.entity.XtUserRole;
+import com.sc.entity.XtUserRoleExample;
+import com.sc.entity.XtUserRoleExample.Criteria;
 import com.sc.mapper.XtUserRoleMapper;
 import com.sc.service.XtUserRoleService;
 
@@ -94,6 +96,15 @@ public class XtUserRoleServiceImpl implements XtUserRoleService {
 			return list;
 		}
 		return null;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteXtUserRoleByRoleId(Long roleId) {
+		XtUserRoleExample example = new XtUserRoleExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andRoleIdEqualTo(roleId);
+		xtUserRoleMapper.deleteByExample(example);
 	}
 
 }

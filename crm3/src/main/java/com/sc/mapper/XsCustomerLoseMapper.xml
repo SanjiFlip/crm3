@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sc.mapper.XsCustomerLoseMapper" >
+  <resultMap id="BaseResultMap" type="com.sc.entity.XsCustomerLose" >
+    <constructor >
+      <arg column="LOSE_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="CUSTOMER_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="MANAGE_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="WAY" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MEASURES" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ISLOSE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMPANY_ID" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="LAST_MODIFY_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LOSE_ID, CUSTOMER_ID, MANAGE_ID, WAY, MEASURES, ISLOSE, COMPANY_ID, LAST_MODIFY_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.entity.XsCustomerLoseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XS_CUSTOMER_LOSE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.sc.entity.XsCustomerLoseExample" >
+    delete from XS_CUSTOMER_LOSE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sc.entity.XsCustomerLose" >
+    insert into XS_CUSTOMER_LOSE (LOSE_ID, CUSTOMER_ID, MANAGE_ID, 
+      WAY, MEASURES, ISLOSE, 
+      COMPANY_ID, LAST_MODIFY_DATE)
+    values (#{loseId,jdbcType=DECIMAL}, #{customerId,jdbcType=DECIMAL}, #{manageId,jdbcType=DECIMAL}, 
+      #{way,jdbcType=VARCHAR}, #{measures,jdbcType=VARCHAR}, #{islose,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=DECIMAL}, #{lastModifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.entity.XsCustomerLose" >
+    insert into XS_CUSTOMER_LOSE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loseId != null" >
+        LOSE_ID,
+      </if>
+      <if test="customerId != null" >
+        CUSTOMER_ID,
+      </if>
+      <if test="manageId != null" >
+        MANAGE_ID,
+      </if>
+      <if test="way != null" >
+        WAY,
+      </if>
+      <if test="measures != null" >
+        MEASURES,
+      </if>
+      <if test="islose != null" >
+        ISLOSE,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="lastModifyDate != null" >
+        LAST_MODIFY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loseId != null" >
+        #{loseId,jdbcType=DECIMAL},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=DECIMAL},
+      </if>
+      <if test="manageId != null" >
+        #{manageId,jdbcType=DECIMAL},
+      </if>
+      <if test="way != null" >
+        #{way,jdbcType=VARCHAR},
+      </if>
+      <if test="measures != null" >
+        #{measures,jdbcType=VARCHAR},
+      </if>
+      <if test="islose != null" >
+        #{islose,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sc.entity.XsCustomerLoseExample" resultType="java.lang.Integer" >
+    select count(*) from XS_CUSTOMER_LOSE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update XS_CUSTOMER_LOSE
+    <set >
+      <if test="record.loseId != null" >
+        LOSE_ID = #{record.loseId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.customerId != null" >
+        CUSTOMER_ID = #{record.customerId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.manageId != null" >
+        MANAGE_ID = #{record.manageId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.way != null" >
+        WAY = #{record.way,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measures != null" >
+        MEASURES = #{record.measures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.islose != null" >
+        ISLOSE = #{record.islose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastModifyDate != null" >
+        LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update XS_CUSTOMER_LOSE
+    set LOSE_ID = #{record.loseId,jdbcType=DECIMAL},
+      CUSTOMER_ID = #{record.customerId,jdbcType=DECIMAL},
+      MANAGE_ID = #{record.manageId,jdbcType=DECIMAL},
+      WAY = #{record.way,jdbcType=VARCHAR},
+      MEASURES = #{record.measures,jdbcType=VARCHAR},
+      ISLOSE = #{record.islose,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=DECIMAL},
+      LAST_MODIFY_DATE = #{record.lastModifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

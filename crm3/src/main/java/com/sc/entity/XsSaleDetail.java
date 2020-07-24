@@ -5,24 +5,48 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//é”€å”®_é”€å”®è¯¦æƒ…è¡¨
+//ÏúÊÛ_ÏúÊÛÏêÇé±í
 public class XsSaleDetail implements Serializable {
-    private Long salesDetailId;//é”€å”®å•è¯¦æƒ…ç¼–å·
+    private Long salesDetailId;//ÏúÊÛµ¥ÏêÇé±àºÅ
 
-    private Long salesId;//é”€å”®å•ç¼–å·
+    private Long salesId;//ÏúÊÛµ¥±àºÅ
 
-    private Long goodsId;//å•†å“ç¼–å·
+    private Long goodsId;//ÉÌÆ·±àºÅ
 
-    private Long goodsNumber;//å•†å“æ•°é‡
+    private Long goodsNumber;//ÉÌÆ·ÊıÁ¿
 
-    private BigDecimal goodsPrice;//å•†å“ä»·æ ¼
+    private BigDecimal goodsPrice;//ÉÌÆ·¼Û¸ñ
 
-    private String noteInformation;//å¤‡æ³¨è¯´æ˜
+    private String noteInformation;//±¸×¢ËµÃ÷
 
-    private Long companyId;//å…¬å¸ç¼–å·
+    private Long companyId;//¹«Ë¾±àºÅ
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date lastModifyDate;//æœ€åä¿®æ”¹æ—¶é—´
+    private Date lastModifyDate;//×îºóĞŞ¸ÄÊ±¼ä
 
+    //À©Õ¹ÊôĞÔ ÓÃÓÚ²éÑ¯-start
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemin;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date datemax;
+    
+    
+    public Date getDatemin() {
+		return datemin;
+	}
+
+	public void setDatemin(Date datemin) {
+		this.datemin = datemin;
+	}
+
+	public Date getDatemax() {
+		return datemax;
+	}
+
+	public void setDatemax(Date datemax) {
+		this.datemax = datemax;
+	}
+	//À©Õ¹ÊôĞÔ ÓÃÓÚ²éÑ¯-end
     private static final long serialVersionUID = 1L;
 
     public XsSaleDetail(Long salesDetailId, Long salesId, Long goodsId, Long goodsNumber, BigDecimal goodsPrice, String noteInformation, Long companyId, Date lastModifyDate) {

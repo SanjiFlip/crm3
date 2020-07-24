@@ -29,4 +29,6 @@ public interface XtRolesMapper {
     int updateByPrimaryKey(XtRoles record);
     
     List<XtRoles> selectUpName();
+    
+    XtRoles getRoleByUserId(Long userId);
 }

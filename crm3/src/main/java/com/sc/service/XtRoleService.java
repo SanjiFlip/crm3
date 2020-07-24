@@ -18,4 +18,6 @@ public interface XtRoleService {
 	XtRoles getXtRoles(Long roleId);
 	
 	List<XtRoles> selectAllRole();
+	
+	XtRoles getXtRplesByUserId(Long userId);
 }

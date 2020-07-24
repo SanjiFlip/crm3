@@ -10,12 +10,16 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sc.annotation.MyLog;
+import com.sc.entity.XtRoles;
 import com.sc.entity.XtUserAccount;
+import com.sc.service.XtRoleService;
+import com.sc.service.XtUserAccountService;
 
 
 
@@ -23,6 +27,11 @@ import com.sc.entity.XtUserAccount;
 @RequestMapping("/loginctrl")
 public class LoginController {
 	
+	@Autowired
+	XtRoleService xtRoleService;
+	
+	@Autowired
+	XtUserAccountService xtUserAccountService;
 	 
 	//登陆控制器
 	@RequestMapping("/login.do")
@@ -61,8 +70,13 @@ public class LoginController {
 		System.out.println("认证成功");
 		Subject subject = SecurityUtils.getSubject();
 		XtUserAccount xtUserAccount = (XtUserAccount) subject.getPrincipal();
+		//获取到单个登陆账户的完整信息
+		XtUserAccount account = xtUserAccountService.login(xtUserAccount.getUserName());
+		//根据账户id查询账户角色名称
+	    XtRoles role = xtRoleService.getXtRplesByUserId(account.getUserId());
+	    session.setAttribute("nowrole", role);
 		session.setAttribute("nowuser", xtUserAccount);
-		mav.setViewName("redirect:../index.jsp"); 
+		mav.setViewName("index"); 
 		return mav;
 	}
 	

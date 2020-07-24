@@ -86,7 +86,10 @@ public class XtPermissionInfoServiceImpl implements XtPermissionInfoService {
 	@Transactional(rollbackFor = Exception.class)
 	public List<XtPermissionInfo> checkInfos(Long roleId) {
 		List<XtPermissionInfo> list = xtPermissionInfoMapper.checkInfos(roleId);
-		return list;
+		if(list!=null&&list.size()>0) {
+			return list;
+		}
+		return null;
 	}
 
 	@Override
