@@ -49,7 +49,7 @@ public class XsFeedbackController {
 	/** 
 	 *@function  跳转添加页面or修改页面
 	*/
-	@MyLog("跳转添加页面or修改页面")
+	@MyLog("跳转添加or修改反馈记录")
 	@RequestMapping("/goaddfeedback.do")
 	public ModelAndView goAddFeedback(ModelAndView mav,XsCustomerFeedback feedback){
 		System.out.println("进入添加页面"+feedback);

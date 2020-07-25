@@ -147,7 +147,7 @@ public class CgStockDetailOrderController {
 		}
 		
 		//Èë¿â
-	@MyLog("Èë¿â")
+	    @MyLog("Èë¿â")
 		@RequestMapping("/updategoodsNum.do")
 		@ResponseBody
 		public Message updategoodsNum(CgStockDetailOrder detorder,KcGoodsInformation goods,

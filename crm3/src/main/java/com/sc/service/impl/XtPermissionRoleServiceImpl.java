@@ -27,7 +27,7 @@ public class XtPermissionRoleServiceImpl implements com.sc.service.XtPermissionR
 		XtPermissonRoleExample example = new XtPermissonRoleExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andRoleIdEqualTo(roleId);
-		criteria.andPermissonIdEqualTo(permissionId);
+		//criteria.andPermissonIdEqualTo(permissionId);
 		xtPermissonRoleMapper.deleteByExample(example);
 
 	}

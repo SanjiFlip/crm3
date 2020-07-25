@@ -49,7 +49,7 @@ public class XsContactRecordController {
 	/** 
 	 *@function  跳转添加页面or修改页面
 	*/
-	@MyLog(" 跳转添加页面or修改页面")
+	@MyLog(" 跳转添加or修改客户联系记录")
 	@RequestMapping("/goaddrecord.do")
 	public ModelAndView goAddRecord(ModelAndView mav,XsCustomerContactRecord record){
 		System.out.println("进入添加页面"+record);

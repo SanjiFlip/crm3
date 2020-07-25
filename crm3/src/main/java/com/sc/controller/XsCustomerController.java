@@ -67,7 +67,7 @@ public class XsCustomerController {
 	/** 
 	 *@function  跳转添加页面or修改页面
 	*/
-	@MyLog("跳转添加页面or修改页面")
+	@MyLog("跳转添加or修改客户信息")
 	@RequestMapping("/goaddcustomer.do")
 	public ModelAndView goAddCustomer(ModelAndView mav,XsCustomerInfo customer){
 		System.out.println("进入添加页面"+customer);

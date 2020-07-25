@@ -56,7 +56,7 @@
  		}
  	   
  	  //在跳过去的页面添加商品信息
- 	@MyLog("跳过去添加商品信息的页面")
+ 	@MyLog("添加商品信息的页面")
  	   @RequestMapping("/goaddgoodsindept.do")
  		public ModelAndView goaddgoods(ModelAndView mav,KcGoodsInformation goods,KcDepositoryInformation dept){
  			System.out.println("进入添加页面");
@@ -72,7 +72,7 @@
  			return mav;
  		}
  	
- 	@MyLog("在跳过去的页面添加商品信息")
+ 	@MyLog("添加商品信息")
  	   @RequestMapping("/addgoodsindept.do")
  		@ResponseBody
  		public Message addgoods(KcGoodsInformation goods){

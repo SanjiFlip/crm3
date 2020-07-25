@@ -45,7 +45,7 @@ public class BgExamineTaskController {
 	}
 	
 	
-	@MyLog("进入添加界面或进入修改界面")
+	@MyLog("进入添加或进入修改考核任务")
 	@RequestMapping("/goaddtask.do")
 	public ModelAndView goAddTask(ModelAndView mav,BgExamineTask task){	
 		System.out.println("进入添加页面："+task);

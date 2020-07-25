@@ -41,7 +41,7 @@ public class RsUserController {
 	@Autowired 
 	RsCompnayMessageService rsCompnayMessageService;
 	 
-	@MyLog("分页查询")
+	@MyLog("分页查询员工")
 	@RequestMapping("/selectuser.do")
 	public ModelAndView selectUser(ModelAndView mav,
 		 @RequestParam(defaultValue="1")Integer pageNum, 

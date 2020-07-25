@@ -46,7 +46,7 @@ public class XsSaleDetailController {
 	/** 
 	 *@function  跳转添加页面or修改页面
 	*/
-	@MyLog("跳转添加页面or修改页面")
+	@MyLog("跳转添加or修改销售详情单")
 	@RequestMapping("/goadddetail.do")
 	public ModelAndView goAddDetail(ModelAndView mav,XsSaleDetail detail){
 		System.out.println("进入添加页面"+detail);

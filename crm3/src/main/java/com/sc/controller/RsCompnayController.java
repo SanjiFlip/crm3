@@ -24,7 +24,7 @@ public class RsCompnayController {
 	@Autowired 
 	RsCompnayMessageService rsCompnayMessageService;
 	 
-	@MyLog("分页查询信息")
+	@MyLog("分页查询公司信息")
 	@RequestMapping("/selectcompnay.do")
 	public ModelAndView selectCompnay(ModelAndView mav,
 			@RequestParam(defaultValue="1")Integer pageNum, 
@@ -37,7 +37,7 @@ public class RsCompnayController {
 		 return mav;
 	}
 	
-	@MyLog("跳转添加/修改员工信息")
+	@MyLog("跳转添加/修改公司信息")
 	@RequestMapping("/goaddcompnay.do")
 	public ModelAndView goAddCompnay(ModelAndView mav, 	
 			RsCompnayMessage rscompnay){
@@ -50,7 +50,7 @@ public class RsCompnayController {
 	 return mav;
 	}
 	
-    @MyLog("添加/修改员工信息")
+    @MyLog("添加/修改公司信息")
 	@RequestMapping("/addcompnay.do")
 	@ResponseBody
 	public Message AddCompnay(ModelAndView mav, 	
@@ -64,7 +64,7 @@ public class RsCompnayController {
 		 	 return new Message("1", "success", "成功");
 	} 
 	 
-	@MyLog("删除员工信息")
+	@MyLog("删除公司信息")
 	@RequestMapping("/deletecompnay.do")
 	@ResponseBody
 	public Message deleteCompnay(ModelAndView mav, 	
@@ -74,7 +74,7 @@ public class RsCompnayController {
 		return new Message("1", "success", "成功");
 	}
 	 
-    @MyLog("修改是否有效信息")
+    @MyLog("修改公司是否有效信息")
 	@RequestMapping("/enabledcompnay.do")
 	@ResponseBody
 	public Message enabledCompnay(ModelAndView mav, 	
@@ -88,7 +88,7 @@ public class RsCompnayController {
 		return new Message("1", "success", "成功");
 	}
 	 
-	@MyLog("查询员工详情信息")
+	@MyLog("查询公司详情信息")
 	@RequestMapping("/showcompnay.do")
 	public ModelAndView showCompnay(ModelAndView mav,
 			RsCompnayMessage rscompnay){		
@@ -98,7 +98,7 @@ public class RsCompnayController {
 		 return mav;
 	}
 	 
-	@MyLog("批量删除员工信息")
+	@MyLog("批量删除公司信息")
 	@RequestMapping("/deletecompnayall.do")
 	@ResponseBody
 	public ModelAndView deleteCompnayall(ModelAndView mav, 	

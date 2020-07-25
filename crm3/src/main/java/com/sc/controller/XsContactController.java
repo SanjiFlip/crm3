@@ -54,7 +54,7 @@ public class XsContactController {
 	/** 
 	 *@function  跳转添加界面/修改界面
 	*/
-	@MyLog(" 跳转添加界面/修改界面")
+	@MyLog("跳转添加/修改客户联系人")
 	@RequestMapping("/goaddcontact.do")
 	public ModelAndView goAddContact(ModelAndView mav,XsCustomerContact contact){
 		System.out.println("进入添加页面"+contact);

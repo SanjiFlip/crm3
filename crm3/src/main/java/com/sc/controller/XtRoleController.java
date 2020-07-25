@@ -160,19 +160,18 @@ public class XtRoleController {
 	@MyLog("跳转权限管理界面")
 	@RequestMapping("/gorolemanage.do")
 	public ModelAndView goRoleManage(ModelAndView mav,Long roleId) {
+		System.out.println("===============================================进入跳转权限管理界面");
 		List<XtPermissionColumns> list1 = xtPermissionColumnsService.selectAll();
-		//权限集合
+		//权限集合(所有的权限)
 		List<XtPermissionInfo> list2 = xtPermissionInfoService.selectInfo();
-		//权限选中集合
+		//权限选中集合(当前角色的权限)
 		List<XtPermissionInfo> list3 = xtPermissionInfoService.checkInfos(roleId);
 		//权限中一些选中属性
 		for (XtPermissionInfo info1 : list2) {
 				for (XtPermissionInfo obj : list3) {
-					if(obj != null) {
-						if(info1.getPermissonId() == obj.getPermissonId()) {
-							info1.setChecked(true);
-							break;
-						}
+					if(info1.getPermissonId() == obj.getPermissonId()) {
+						info1.setCheckstate(true);
+						break;
 					}
 				}
 		}
@@ -183,11 +182,12 @@ public class XtRoleController {
 		return mav;
 	}
 	
+	
 	@MyLog("添加权限")
 	@RequestMapping("/rolemanage.do")
 	@ResponseBody
 	public Message roleManage(ModelAndView mav,Long roleId,Long[] permissonIds) {
-		System.out.println("选中的权限ID为:"+Arrays.toString(permissonIds));
+		System.out.println("选中的权限ID为:"+permissonIds);
 		List<XtPermissionInfo> list = xtPermissionInfoService.checkInfos(roleId); //当前角色所有权限
 		XtUserAccount account = (XtUserAccount) SecurityUtils.getSubject().getPrincipal();	//获取账户信息
 		XtUserAccount xtUserAccount = xtUserAccountService.login(account.getUserName());	//获取用户所有信息
@@ -195,13 +195,9 @@ public class XtRoleController {
 		if (permissonIds!=null&&permissonIds.length>0) { 
 			try {
 				if (list != null&&list.size()>0) {
-					for (XtPermissionInfo info : list) {//删除之前所有的权限
-						if (info.getPermissonId()!=null&&info!=null) {
-							xtPermissionRoleService.deleteXtPermissionRole(info.getPermissonId(), roleId);
-						}		
-					}
-				}
-			}catch(NullPointerException e) {
+					xtPermissionRoleService.deleteXtPermissionRole(null, roleId);//删除之前所有的权限
+				}					
+			}catch(Exception e) {
 //				e.printStackTrace();
 			}
 			for (Long pid : permissonIds) {//添加选中的所有权限

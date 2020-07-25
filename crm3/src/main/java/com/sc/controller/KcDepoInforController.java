@@ -29,7 +29,7 @@ public class KcDepoInforController {
 	@Autowired
 	KcGoodsInformationService kcgoods;
 	
-	@MyLog("查询仓库方法 ")
+	@MyLog("查询仓库")
 	@RequestMapping("/selectdepo.do")
 	public ModelAndView selectDept(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
@@ -68,7 +68,7 @@ public class KcDepoInforController {
 	   }
 	   
 	   //添加完了就把层关了，不需要返回任何东西，这里使用Ajax提交
-	@MyLog("进入仓库添加")
+	@MyLog("添加仓库")
 	   @RequestMapping("/adddepo.do")
 	   @ResponseBody
 	   public Message adddept(ModelAndView mav,KcDepositoryInformation dept){

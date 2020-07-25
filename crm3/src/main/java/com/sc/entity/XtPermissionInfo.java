@@ -22,7 +22,7 @@ public class XtPermissionInfo implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifyDate; //最后修改时间
     
-    private boolean checked;
+    private boolean checkstate;
     
     //扩展属性
     private Long columnsId;
@@ -102,19 +102,22 @@ public class XtPermissionInfo implements Serializable {
 	
 	
 
-	public boolean isChecked() {
-		return checked;
+	public boolean isCheckstate() {
+		return checkstate;
 	}
 
-	public void setChecked(boolean checked) {
-		this.checked = checked;
+	public void setCheckstate(boolean checkstate) {
+		this.checkstate = checkstate;
 	}
 
 	@Override
 	public String toString() {
 		return "XtPermissionInfo [permissonId=" + permissonId + ", permissonName=" + permissonName + ", permission="
 				+ permission + ", permissionColumnsId=" + permissionColumnsId + ", remarks=" + remarks
-				+ ", lastModifyDate=" + lastModifyDate + ", checked=" + checked + ", columnsId=" + columnsId + "]";
+				+ ", lastModifyDate=" + lastModifyDate + ", checkstate=" + checkstate + ", columnsId=" + columnsId
+				+ "]";
 	}
+
+	
     
 }

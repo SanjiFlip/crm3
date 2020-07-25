@@ -36,7 +36,7 @@ public class BgTaskDedailController {
 		return mav;
 	}
 	
-	
+	@MyLog("查询任务完成状态")
 	@RequestMapping("/updateWhetherFinsh.do")
 	public String updateBywhetherFinsh(ModelAndView mav,BgTaskDedail dedail){
 		if(dedail.getWhetherFinish().equals("未完成")){

@@ -95,7 +95,7 @@ public class KcGoodsInfoController {
 		
 	}
 	
-	@MyLog("删除所有库存商品信息")
+	@MyLog("批量删除库存商品信息")
 	@RequestMapping("/deletegoodsall.do")
 	public String deletegoodsall(BigDecimal[] ids){
 		System.out.println("进入批量删除方法了");

@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<label class="form-label col-xs-4 col-sm-3">给角色授予权限</label>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3">网站所有权限：</label>
+			<label class="form-label col-xs-4 col-sm-3">网站所有权限如下：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<c:forEach items="${list1 }" var="columns">
 					<dl class="permission-list">
@@ -56,11 +56,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										${columns.columnsName}</label>
 								</dt>
 								<dd>
-									<c:forEach items="${list2 }" var="roleperm">
-										<c:if test="${roleperm.permissionColumnsId==columns.columnsId }">
+									<c:forEach items="${list2}" var="roleperm">
+										<c:if test="${columns.columnsId==roleperm.permissionColumnsId}">
 											<label class="">
-											<input type="checkbox" value="${roleperm.permissonId }" name="permissonIds" id="user-Character-1-0-0" ${roleperm.checked==true ? "checked":"" }>
-											${roleperm.remarks }</label>
+											<input type="checkbox" value="${roleperm.permissonId }" ${roleperm.checkstate==true ? "checked":""} name="permissonIds" id="${roleperm.permissonId }" >
+											${roleperm.remarks }
+											</label>
 										</c:if>
 									</c:forEach>
 								</dd>
@@ -68,7 +69,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</dd>
 					</dl>
 				</c:forEach>
-				
 			</div>
 		</div>
 		<div class="row cl">

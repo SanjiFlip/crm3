@@ -60,7 +60,7 @@ public class BgSmsController {
 		return mav;
     }
 	
-	@MyLog("发送信息或修改信息")
+	@MyLog("进入添加信息或进入修改发送信息")
 	@RequestMapping("/addsms.do")
 	@ResponseBody
 	public void addSms(ModelAndView mav,BgSms sms,BgSmsDetail smsDetail,HttpServletRequest request){	

@@ -59,7 +59,7 @@ public class XsDeliveryListController {
 		/** 
 		 *@function  跳转添加页面or修改页面
 		*/
-		@MyLog("跳转添加页面or修改页面")
+		@MyLog("跳转添加or修改销售出库单")
 		@RequestMapping("/goaddsalelist.do")
 		public ModelAndView goAddSalelist(ModelAndView mav,XsSaleDeliveryList salelist){
 			System.out.println("进入添加页面"+salelist);
