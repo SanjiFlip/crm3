@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.BgSms;
 import com.sc.entity.BgSmsDetail;
 import com.sc.entity.Message;
@@ -26,12 +27,13 @@ public class BgSmsController {
 	@Autowired
 	BgSmsDetailService bgSmsDetailService;
 	 
+	@MyLog("·ÖÒ³²éÑ¯·¢ËÍµÄ¶ÌĞÅÏ¢")
 	@RequestMapping("/selectsms.do")
 	public ModelAndView selectSms(ModelAndView mav, 
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="5") Integer pageSize,
 			BgSms sms,HttpServletRequest request){
-		System.out.println("è¿›å…¥æŸ¥è¯¢çŸ­ä¿¡æ¯åˆ†é¡µæ–¹æ³•äº†");
+		System.out.println("½øÈë²éÑ¯¶ÌĞÅÏ¢·ÖÒ³·½·¨ÁË");
 		
 		XtUserAccount user =  (XtUserAccount) request.getSession().getAttribute("nowuser");
 		sms.setSendPerson(user.getUserName());
@@ -44,10 +46,11 @@ public class BgSmsController {
 		return mav;
 	}
 	
+	@MyLog("½øÈëÌí¼Ó½çÃæ»ò½øÈëĞŞ¸Ä½çÃæ")
 	@RequestMapping("/goaddsms.do")
 	public ModelAndView goAddSms(ModelAndView mav,BgSms sms){
 			
-		System.out.println("è¿›å…¥æ·»åŠ é¡µé¢ï¼š"+sms);
+		System.out.println("½øÈëÌí¼ÓÒ³Ãæ£º"+sms);
 		
 		if(sms.getBhId()!=null){
 			sms=bgSmsService.getSms(sms.getBhId());
@@ -57,30 +60,32 @@ public class BgSmsController {
 		return mav;
     }
 	
+	@MyLog("·¢ËÍĞÅÏ¢»òĞŞ¸ÄĞÅÏ¢")
 	@RequestMapping("/addsms.do")
 	@ResponseBody
 	public void addSms(ModelAndView mav,BgSms sms,BgSmsDetail smsDetail,HttpServletRequest request){	
 		if(sms.getBhId()!=null){
-			System.out.println("è¿›å…¥ä¿®æ”¹æ–¹æ³•");
+			System.out.println("½øÈëĞŞ¸Ä·½·¨");
 			bgSmsService.updateSms(sms);
 		}else{
-			System.out.println("è¿›å…¥æ·»åŠ æ–¹æ³•");
+			System.out.println("½øÈëÌí¼Ó·½·¨");
 			bgSmsService.addSms(sms);
 //			sms.getBhId();
 			System.out.println(sms.getBhId()+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&77");
 			XtUserAccount user =  (XtUserAccount) request.getSession().getAttribute("nowuser");
 			
-			smsDetail.setMessageState("å·²æ¥æ”¶");
+			smsDetail.setMessageState("ÒÑ½ÓÊÕ");
 			smsDetail.setShortMessageId(sms.getBhId());
 			smsDetail.setRecipientId(smsDetail.getRecipientId());
 			bgSmsDetailService.addSmsdetail(smsDetail);
 		}
     }
 	
+	@MyLog("É¾³ıĞÅÏ¢")
 	@RequestMapping("/deletesms.do")
 	@ResponseBody
 	public Message deleteSms(ModelAndView mav,BgSms sms){
 		bgSmsService.deleteSms(sms.getBhId());
-		return new Message("1", "success", "æˆåŠŸ");
+		return new Message("1", "success", "³É¹¦");
 	}
 }

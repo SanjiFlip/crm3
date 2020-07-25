@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.BgTaskDedail;
 import com.sc.entity.BgTaskDedailTwo;
 import com.sc.entity.XtUserAccount;
@@ -21,12 +22,13 @@ public class BgTaskDedailController {
 	@Autowired
 	BgTaskDedailService bgTaskDedailService;
 	
+	@MyLog("·ÖÒ³²éÑ¯ÈÎÎñÏêÇé")
 	@RequestMapping("/selectdedail.do")
 	public ModelAndView selectdedail(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			BgTaskDedail dedail){
-		System.out.println("è¿›å…¥ä»»åŠ¡è¯¦æƒ…åˆ†é¡µæŸ¥è¯¢");
+		System.out.println("½øÈëÈÎÎñÏêÇé·ÖÒ³²éÑ¯");
 		PageInfo<BgTaskDedail> page=bgTaskDedailService.selectDedail(pageNum, pageSize, dedail);
 		mav.addObject("p",page);
 		mav.addObject("d",dedail);
@@ -34,30 +36,20 @@ public class BgTaskDedailController {
 		return mav;
 	}
 	
+	
 	@RequestMapping("/updateWhetherFinsh.do")
 	public String updateBywhetherFinsh(ModelAndView mav,BgTaskDedail dedail){
-		if(dedail.getWhetherFinish().equals("æœªå®Œæˆ")){
-			dedail.setWhetherFinish("å·²å®Œæˆ");
-		}else if(dedail.getWhetherFinish().equals("å·²å®Œæˆ")){
-			dedail.setWhetherFinish("æœªå®Œæˆ");
+		if(dedail.getWhetherFinish().equals("Î´Íê³É")){
+			dedail.setWhetherFinish("ÒÑÍê³É");
+		}else if(dedail.getWhetherFinish().equals("ÒÑÍê³É")){
+			dedail.setWhetherFinish("Î´Íê³É");
 		}
 		bgTaskDedailService.updateBywhetherFinish(dedail);
 		
 		return "redirect:/bgtaskdedailctrl/selectdedail.do";
 	}
 	
-/*	@RequestMapping("/updateByState.do")
-	public String updateByState(ModelAndView mav,BgTaskDedail dedail){
-		if(dedail.getState().equals("æœªæ¥æ”¶")){
-			dedail.setState("æ¥æ”¶");
-		}else if(dedail.getState().equals("æ¥æ”¶")){
-			dedail.setState("æœªæ¥æ”¶");
-		}
-		bgTaskDedailService.updateByState(dedail);
-		
-		return "redirect:/bgtaskdedailctrl/selectdedail.do";
-	}*/
-	
+	@MyLog("·ÖÒ³²éÑ¯½ÓÊÕÈÎÎñÏêÇé")
 	@RequestMapping("/selectTaskDedailById.do")
 	public ModelAndView selectTaskDedailById(ModelAndView mav,BgTaskDedailTwo dedail,
 			@RequestParam(defaultValue="1") Integer pageNum,

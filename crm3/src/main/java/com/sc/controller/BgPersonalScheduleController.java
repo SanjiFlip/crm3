@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.BgPersonalSchedule;
 import com.sc.entity.Message;
 import com.sc.service.BgPersonalScheduleService;
@@ -21,6 +22,7 @@ public class BgPersonalScheduleController {
 	@Autowired
 	BgPersonalScheduleService bgPersonalScheduleService;
 	
+	@MyLog("·ÖÒ³²éÑ¯¸öÈËÈÕ³Ì")
 	@RequestMapping("/selectschedule.do")
 	public ModelAndView selectSchedule(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
@@ -34,9 +36,10 @@ public class BgPersonalScheduleController {
 		return mav;
 	}
 	
+	@MyLog("½øÈëÌí¼Ó½çÃæ»ò½øÈëÐÞ¸Ä½çÃæ")	
 	@RequestMapping("/goaddschedule.do")
 	public ModelAndView goAddschedule(ModelAndView mav,BgPersonalSchedule schedule){
-		System.out.println("è¿›å…¥æ·»åŠ é¡µé¢"+schedule);
+		System.out.println("½øÈëÌí¼ÓÒ³Ãæ"+schedule);
 		
 		if(schedule.getSchedulePlanId()!=null){
 			schedule=bgPersonalScheduleService.getSchedule(schedule.getSchedulePlanId());
@@ -46,10 +49,11 @@ public class BgPersonalScheduleController {
 		return mav;
 	}
 	
+	@MyLog("Ìí¼Ó¸öÈËÈÕ³Ì»òÐÞ¸Ä¸öÈËÈÕ³Ì")
 	@RequestMapping("/addschedule.do")
 	@ResponseBody
 	public void addSchedule(ModelAndView mav,BgPersonalSchedule schedule){
-		System.out.println("è¿›å…¥æ·»åŠ æ–¹æ³•ï¼š"+schedule);
+		System.out.println("½øÈëÌí¼Ó·½·¨£º"+schedule);
 		if(schedule.getSchedulePlanId()!=null){
 			bgPersonalScheduleService.updateSchedule(schedule);
 		}else{
@@ -57,17 +61,19 @@ public class BgPersonalScheduleController {
 		}
 	}
 	
+	@MyLog("É¾³ý¸öÈËÈÕ³Ì")
 	@RequestMapping("/deleteschedule.do")
 	@ResponseBody
 	public Message deleteSchedule(ModelAndView mav,BgPersonalSchedule schedule){
 		bgPersonalScheduleService.deleteSchedule(schedule.getSchedulePlanId());
-		return new Message("1", "success", "æˆåŠŸ");
+		return new Message("1", "success", "³É¹¦");
 	}
 	
+	@MyLog("ÅúÁ¿É¾³ý¸öÈËÈÕ³Ì")
 	@RequestMapping("/deletescheduleall.do")
 	public String deleteScheduleAll(ModelAndView mav,Long[] ids){
 			
-		System.out.println("è¿›å…¥æ‰¹é‡åˆ é™¤:"+Arrays.toString(ids));
+		System.out.println("½øÈëÅúÁ¿É¾³ý:"+Arrays.toString(ids));
 		if(ids!=null&&ids.length>0){
 			for (Long id : ids) {
 				bgPersonalScheduleService.deleteSchedule(id);

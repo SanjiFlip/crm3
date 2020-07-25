@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.BgExamineTarget;
 import com.sc.entity.Message;
 import com.sc.service.BgExamineTargetService;
@@ -22,12 +23,13 @@ public class BgExamineTargetController {
 	@Autowired
 	BgExamineTargetService bgExamineTargetService;
 	
+	@MyLog("·ÖÒ³²éÑ¯¿¼ºËÖ¸±ê")
 	@RequestMapping("/selecttarget.do")
 	public ModelAndView selectTarget(ModelAndView mav, 
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			BgExamineTarget target){
-		System.out.println("è¿›å…¥æŸ¥è¯¢ä»»åŠ¡æŒ‡æ ‡åˆ†é¡µæ–¹æ³•äº†");
+		System.out.println("½øÈë²éÑ¯ÈÎÎñÖ¸±ê·ÖÒ³·½·¨ÁË");
 		PageInfo<BgExamineTarget> page = bgExamineTargetService.selectTarget(pageNum, pageSize, target);
 		
 		
@@ -37,11 +39,12 @@ public class BgExamineTargetController {
 		return mav;
 	}
 	
+	@MyLog("½øÈëÌí¼Ó½çÃæ»ò½øÈëÐÞ¸Ä½çÃæ")
 	@RequestMapping("/goaddtarget.do")
 	public ModelAndView goAddTarget(ModelAndView mav,BgExamineTarget target){
 			
-		System.out.println("è¿›å…¥æ·»åŠ é¡µé¢ï¼š"+target);
-		//ä¿®æ”¹
+		System.out.println("½øÈëÌí¼ÓÒ³Ãæ£º"+target);
+		//ÐÞ¸Ä
 		if(target.getTargetId()!=null){
 			target=bgExamineTargetService.getTarget(target.getTargetId());
 		}
@@ -50,33 +53,35 @@ public class BgExamineTargetController {
 		return mav;
     }
 	
+	@MyLog("Ìí¼Ó¿¼ºËÖ¸±ê»òÐÞ¸Ä¿¼ºËÖ¸±ê")
 	@RequestMapping("/addtarget.do")
 	@ResponseBody
 	public void addTarget(ModelAndView mav,BgExamineTarget target){
 		System.out.println("task="+target);
-		if(target.getTargetId()!=null){//ä¿®æ”¹
-			System.out.println("è¿›å…¥ä¿®æ”¹æµ‹è¯•");
+		if(target.getTargetId()!=null){//ÐÞ¸Ä
+			System.out.println("½øÈëÐÞ¸Ä²âÊÔ");
 			bgExamineTargetService.updateTarget(target);
-		}else{//æ·»åŠ 
+		}else{//Ìí¼Ó
 			bgExamineTargetService.addTarget(target);
 		}
     }
 	
-	
+	@MyLog("É¾³ý¿¼ºËÖ¸±ê")
 	@RequestMapping("/deletetarget.do")
 	@ResponseBody
 	public Message deleteTarget(ModelAndView mav,BgExamineTarget target){
 			
-		System.out.println("è¿›å…¥åˆ é™¤è€ƒæ ¸æŒ‡æ ‡:"+target);
+		System.out.println("½øÈëÉ¾³ý¿¼ºËÖ¸±ê:"+target);
 		bgExamineTargetService.deleteTarget(target.getTargetId());
 		
-		return new Message("1", "success", "æˆåŠŸ");
+		return new Message("1", "success", "³É¹¦");
     }
 	
+	@MyLog("ÅúÁ¿É¾³ý¿¼ºËÖ¸±ê")
 	@RequestMapping("/deletetargetall.do")
 	public String deleteTargetAll(ModelAndView mav,Long[] ids){
 			
-		System.out.println("è¿›å…¥æ‰¹é‡åˆ é™¤:"+Arrays.toString(ids));
+		System.out.println("½øÈëÅúÁ¿É¾³ý:"+Arrays.toString(ids));
 		if(ids!=null&&ids.length>0){
 			for (Long id : ids) {
 				bgExamineTargetService.deleteTarget(id);

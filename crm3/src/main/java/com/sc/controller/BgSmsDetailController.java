@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.BgExamineTask;
 import com.sc.entity.BgSmsDetail;
 import com.sc.entity.BgSmsDetailTwo;
@@ -24,12 +25,13 @@ public class BgSmsDetailController {
 	@Autowired
 	BgSmsDetailService bgSmsDetailService;
 	
+	@MyLog("·ÖÒ³²éÑ¯½ÓÊÕµÄĞÅÏ¢")
 	@RequestMapping("/selectsmsdetail.do")
 	public ModelAndView selectSmsdetail(ModelAndView mav, 
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			BgSmsDetailTwo smsdetail,HttpServletRequest request){
-		System.out.println("è¿›å…¥æŸ¥è¯¢ä»»åŠ¡æŒ‡æ ‡åˆ†é¡µæ–¹æ³•äº†");
+		System.out.println("½øÈë²éÑ¯ÈÎÎñÖ¸±ê·ÖÒ³·½·¨ÁË");
 //		PageInfo<BgSmsDetail> page = bgSmsDetailService.selectSmsdetail(pageNum, pageSize, smsdetail);
 		XtUserAccount user =  (XtUserAccount) request.getSession().getAttribute("nowuser");
 		System.out.println("userId="+user.getUserId());
@@ -43,13 +45,14 @@ public class BgSmsDetailController {
 		return mav;
 	}
 	
+	@MyLog("É¾³ı½ÓÊÕµÄĞÅÏ¢")
 	@RequestMapping("/deletesmsdetail.do")
 	@ResponseBody
 	public Message deleteTask(ModelAndView mav,BgSmsDetailTwo smsdetail){
 			
-		System.out.println("è¿›å…¥åˆ é™¤ä¿¡æ¯è¯¦æƒ…:"+smsdetail);
+		System.out.println("½øÈëÉ¾³ıĞÅÏ¢ÏêÇé:"+smsdetail);
 		bgSmsDetailService.deleteSmsdetail(smsdetail.getDetailId());
 		 bgSmsDetailService.deleteSmsdetail(smsdetail.getDetailId());
-		return new Message("1", "success", "æˆåŠŸ");
+		return new Message("1", "success", "³É¹¦");
     }
 }

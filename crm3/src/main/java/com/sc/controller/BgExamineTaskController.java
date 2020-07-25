@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.BgExamineTask;
 import com.sc.entity.BgTaskDedail;
 import com.sc.entity.BgExamineTask;
@@ -26,13 +27,14 @@ public class BgExamineTaskController {
 	@Autowired
 	BgTaskDedailService bgTaskDedailService;
 	
+	@MyLog("·ÖÒ³²éÑ¯¿¼ºËÈÎÎñ")
 	@RequestMapping("/selecttask.do")
 	public ModelAndView selectTask(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="8") Integer pageSize,
 			BgExamineTask task){
 		
-		System.out.println("è¿›å…¥æŸ¥è¯¢ä»»åŠ¡åˆ†é¡µæ–¹æ³•äº†");
+		System.out.println("½øÈë²éÑ¯ÈÎÎñ·ÖÒ³·½·¨ÁË");
 		PageInfo<BgExamineTask> page=bgExamineTaskService.selectTask(pageNum, pageSize, task);
 		
 		
@@ -43,9 +45,10 @@ public class BgExamineTaskController {
 	}
 	
 	
+	@MyLog("½øÈëÌí¼Ó½çÃæ»ò½øÈëĞŞ¸Ä½çÃæ")
 	@RequestMapping("/goaddtask.do")
 	public ModelAndView goAddTask(ModelAndView mav,BgExamineTask task){	
-		System.out.println("è¿›å…¥æ·»åŠ é¡µé¢ï¼š"+task);
+		System.out.println("½øÈëÌí¼ÓÒ³Ãæ£º"+task);
 		if(task.getTaskId()!=null){
 			task=bgExamineTaskService.getTask(task.getTaskId());
 
@@ -55,17 +58,18 @@ public class BgExamineTaskController {
 		return mav;
     }
 	
+	@MyLog("Ìí¼Ó¿¼ºËÈÎÎñ»òĞŞ¸Ä¿¼ºËÈÎÎñ")
 	@RequestMapping("/addtask.do")
 	@ResponseBody
 	public void addTask(ModelAndView mav,BgExamineTask task,BgTaskDedail dedail){
-		System.out.println("è¿›å…¥æ·»åŠ æ–¹æ³•"+task);
-		if(task.getTaskId()!=null){//ä¿®æ”¹
+		System.out.println("½øÈëÌí¼Ó·½·¨"+task);
+		if(task.getTaskId()!=null){//ĞŞ¸Ä
 			bgExamineTaskService.updateTask(task);
-		}else{//æ·»åŠ 
+		}else{//Ìí¼Ó
 			 bgExamineTaskService.addTask(task);
 			 dedail.setAcceptUserId(dedail.getAcceptUserId());
-			 dedail.setWhetherFinish("æœªå®Œæˆ");
-			 dedail.setState("ç”Ÿæ•ˆ");
+			 dedail.setWhetherFinish("Î´Íê³É");
+			 dedail.setState("ÉúĞ§");
 			dedail.setTaskId(task.getTaskId());
 			dedail.setCompanyId(task.getCompanyId());
 			bgTaskDedailService.addDedail(dedail);
@@ -74,21 +78,22 @@ public class BgExamineTaskController {
     }
 
 	
-	
+	@MyLog("É¾³ı¿¼ºËÈÎÎñ")
 	@RequestMapping("/deletetask.do")
 	@ResponseBody
 	public Message deleteTask(ModelAndView mav,BgExamineTask task){
 			
-		System.out.println("è¿›å…¥åˆ é™¤è€ƒæ ¸æŒ‡æ ‡:"+task);
+		System.out.println("½øÈëÉ¾³ı¿¼ºËÖ¸±ê:"+task);
 		bgExamineTaskService.deleteTask(task.getTaskId());
 		bgTaskDedailService.deleteByTaskId(task.getTaskId());
-		return new Message("1", "success", "æˆåŠŸ");
+		return new Message("1", "success", "³É¹¦");
     }
 	
+	@MyLog("ÅúÁ¿É¾³ı¿¼ºËÈÎÎñ")
 	@RequestMapping("/deletetaskall.do")
 	public String deleteTaskAll(ModelAndView mav,Long[] ids){
 			
-		System.out.println("è¿›å…¥æ‰¹é‡åˆ é™¤:"+Arrays.toString(ids));
+		System.out.println("½øÈëÅúÁ¿É¾³ı:"+Arrays.toString(ids));
 		if(ids!=null&&ids.length>0){
 			for (Long id : ids) {
 				bgExamineTaskService.deleteTask(id);
