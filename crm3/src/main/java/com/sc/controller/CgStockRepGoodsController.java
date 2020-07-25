@@ -27,22 +27,22 @@ import com.sc.service.KcGoodsInformationService;
 public class CgStockRepGoodsController {
 	
 	@Autowired
-	CgStockReplGoodsService cgrepgoods;//éœ€é‡‡è´­å•†å“service
+	CgStockReplGoodsService cgrepgoods;//Ğè²É¹ºÉÌÆ·service
 	@Autowired
-	KcGoodsInformationService kcgoodsinfo;//åº“å­˜å•†å“ä¿¡æ¯service
+	KcGoodsInformationService kcgoodsinfo;//¿â´æÉÌÆ·ĞÅÏ¢service
 	@Autowired
-	CgStockPurchaseOrderService cgpurorder;//é‡‡è´­å•†å“è®¢å•service
+	CgStockPurchaseOrderService cgpurorder;//²É¹ºÉÌÆ·¶©µ¥service
 	@Autowired
-	CgStockDetailOrderService cgdetailorder;//é‡‡è´­è®¢å•è¯¦æƒ…service
+	CgStockDetailOrderService cgdetailorder;//²É¹º¶©µ¥ÏêÇéservice
 	
-	@MyLog("æŸ¥å¯»éœ€è¡¥è´§äº§å“")
+	@MyLog("²éÑ°Ğè²¹»õ²úÆ·")
 	@RequestMapping("/selectcgrep.do")
 	public ModelAndView selectcgrep(ModelAndView mav,
 			@RequestParam(defaultValue="1")Integer pageNum,
 			@RequestParam(defaultValue="10")Integer pageSize,
 			CgStockReplenishmentGoods repgoods,
 			KcGoodsInformation goods){
-		System.out.println("è¿›å…¥æŸ¥å¯»éœ€è¡¥è´§äº§å“æ–¹æ³•");
+		System.out.println("½øÈë²éÑ°Ğè²¹»õ²úÆ··½·¨");
 		PageInfo<CgStockReplenishmentGoods> page = cgrepgoods.selectcgrep(pageNum, pageSize, repgoods);
 		
 		mav.addObject("repgoods", repgoods);
@@ -52,14 +52,14 @@ public class CgStockRepGoodsController {
 		return mav;
 	}
 	
-	@MyLog("æŸ¥å¯»éœ€è¡¥è´§äº§å“")
+	@MyLog("²éÑ°Ğè²¹»õ²úÆ·")
 	@RequestMapping("/selectkcgoods.do")
 	public ModelAndView selectkcgoods(ModelAndView mav,
 			@RequestParam(defaultValue="1")Integer pageNum,
 			@RequestParam(defaultValue="10")Integer pageSize,
 			CgStockReplenishmentGoods repgoods,
 			KcGoodsInformation goods){
-		System.out.println("æŸ¥å¯»éœ€è¡¥è´§äº§å“");
+		System.out.println("²éÑ°Ğè²¹»õ²úÆ·");
 		
 		
 		PageInfo<KcGoodsInformation> pageInfo = kcgoodsinfo.selectrepgoods(pageNum, pageSize, goods);
@@ -68,11 +68,11 @@ public class CgStockRepGoodsController {
 		mav.addObject("page", pageInfo);
 		return mav;
 	}
-	@MyLog("è¿›æ·»åŠ éœ€è¡¥è´§äº§å“é¡µé¢")
+	@MyLog("½øÌí¼ÓĞè²¹»õ²úÆ·Ò³Ãæ")
 	@RequestMapping("/goaddrepgoods.do")
 	public ModelAndView goaddrepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
 			KcGoodsInformation goods){
-		System.out.println("è¿›å…¥å»æ·»åŠ é¡µé¢çš„æ§åˆ¶å™¨");
+		System.out.println("½øÈëÈ¥Ìí¼ÓÒ³ÃæµÄ¿ØÖÆÆ÷");
 		System.out.println("@@@@@@@@@@----------@@@@@@@@@@");
 		
 		mav.setViewName("cg/cgrepgoods-add");
@@ -81,31 +81,31 @@ public class CgStockRepGoodsController {
 		
 	}
 	
-	//æ·»åŠ è¿›å…¥éœ€é‡‡è´­å•
-	@MyLog("æ·»åŠ éœ€è¡¥è´§äº§å“")
+	//Ìí¼Ó½øÈëĞè²É¹ºµ¥
+	@MyLog("Ìí¼ÓĞè²¹»õ²úÆ·")
 	@RequestMapping("/addrepgoods.do")
 	@ResponseBody
 	public Message addrepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
 			KcGoodsInformation goods){
-		System.out.println("è¿›å…¥æ·»åŠ çš„æ§åˆ¶å™¨");
+		System.out.println("½øÈëÌí¼ÓµÄ¿ØÖÆÆ÷");
 		System.out.println("-----@@###$$$%%%^^&&**-------");
 		cgrepgoods.addcgrep(repgoods);
 		
 		mav.setViewName("redirect:cg/cgrepgoods-list.jsp");
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 		
 	}
 	
 	
-	//æŠŠéœ€é‡‡è´­å•æ·»åŠ è¿›é‡‡è´­è¯¦æƒ…å•
+	//°ÑĞè²É¹ºµ¥Ìí¼Ó½ø²É¹ºÏêÇéµ¥
 	/*@RequestMapping("/goadddetorder.do")
-	public ModelAndView addpurorder(ModelAndView mav,CgStockReplenishmentGoods repgoods,//éœ€é‡‡è´­å•†å“
-			KcGoodsInformation goods,CgStockPurchaseOrder purorder,//è®¢å•è¡¨
-			CgStockDetailOrder detorder,//è¯¦æƒ…è¡¨
+	public ModelAndView addpurorder(ModelAndView mav,CgStockReplenishmentGoods repgoods,//Ğè²É¹ºÉÌÆ·
+			KcGoodsInformation goods,CgStockPurchaseOrder purorder,//¶©µ¥±í
+			CgStockDetailOrder detorder,//ÏêÇé±í
 			@RequestParam(defaultValue="1")Integer pageNum,
 			@RequestParam(defaultValue="10")Integer pageSize){
-		System.out.println("å»æŠŠéœ€é‡‡è´­å•æ·»åŠ è¿›é‡‡è´­å•å¾—é¡µé¢");
-		System.out.println("-----@@###$$å»æŠŠéœ€é‡‡è´­å•æ·»åŠ è¿›é‡‡è´­å•å¾—é¡µé¢%%^^&&**-------");
+		System.out.println("È¥°ÑĞè²É¹ºµ¥Ìí¼Ó½ø²É¹ºµ¥µÃÒ³Ãæ");
+		System.out.println("-----@@###$$È¥°ÑĞè²É¹ºµ¥Ìí¼Ó½ø²É¹ºµ¥µÃÒ³Ãæ%%^^&&**-------");
 		
 		PageInfo<CgStockDetailOrder> info = cgdetailorder.selectcgdetailorder(pageSize, pageNum, detorder);
 		
@@ -117,41 +117,41 @@ public class CgStockRepGoodsController {
 		
 	}*/
 	
-	/*//æ·»åŠ è¿›å…¥é‡‡è´­è¯¦æƒ…å•
+	/*//Ìí¼Ó½øÈë²É¹ºÏêÇéµ¥
 		@RequestMapping("/adddetorder.do")
 		@ResponseBody
 		public Message adddetorder(ModelAndView mav,CgStockReplenishmentGoods repgoods,
 				KcGoodsInformation goods,CgStockDetailOrder detorder){
-			System.out.println("æ·»åŠ è¿›å…¥é‡‡è´­è¯¦æƒ…å•");
+			System.out.println("Ìí¼Ó½øÈë²É¹ºÏêÇéµ¥");
 			System.out.println("-----@@###$$$%%%^^&&**-------");
 			
 			cgdetailorder.addcgdetailorder(detorder);
 			
 			mav.setViewName("redirect:cg/cgdetailorder-list.jsp");
 			
-			return new Message("1","success","æˆåŠŸ");
+			return new Message("1","success","³É¹¦");
 		}*/
 		
 	
 		
-	//åˆ é™¤
-	@MyLog("åˆ é™¤éœ€è¡¥è´§äº§å“")
+	//É¾³ı
+	@MyLog("É¾³ıĞè²¹»õ²úÆ·")
 		@RequestMapping("/deleterepgoods.do")
 		@ResponseBody
 		public Message deleterepgoods(CgStockReplenishmentGoods repgoods){
-			System.out.println("è¿›å…¥åˆ é™¤æ–¹æ³•äº†");
+			System.out.println("½øÈëÉ¾³ı·½·¨ÁË");
 			
 			cgrepgoods.deletecgrep(repgoods.getId());
 			
-			return new Message("1","success","æˆåŠŸ");
+			return new Message("1","success","³É¹¦");
 			
 		}
-		//æ‰¹é‡åˆ é™¤
-	@MyLog("æ‰¹é‡åˆ é™¤éœ€è¡¥è´§äº§å“")
+		//ÅúÁ¿É¾³ı
+	@MyLog("ÅúÁ¿É¾³ıĞè²¹»õ²úÆ·")
 		@RequestMapping("/deleterepgoodsall.do")
 		@ResponseBody
 		public String deleterepgoodsall(Long[] ids){
-			System.out.println("è¿›å…¥æ‰¹é‡åˆ é™¤æ–¹æ³•äº†");
+			System.out.println("½øÈëÅúÁ¿É¾³ı·½·¨ÁË");
 			
 			if(ids!=null&&ids.length>0){
 				for (Long id : ids) {
@@ -163,12 +163,12 @@ public class CgStockRepGoodsController {
 			
 		}
 		
-		//è¿›å…¥ä¿®æ”¹é¡µé¢
-	@MyLog("å»ä¿®æ”¹éœ€è¡¥è´§äº§å“")
+		//½øÈëĞŞ¸ÄÒ³Ãæ
+	@MyLog("È¥ĞŞ¸ÄĞè²¹»õ²úÆ·")
 		@RequestMapping("/goupdaterepgoods.do")
 		public ModelAndView goupdaterepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
 				KcGoodsInformation goods){
-			System.out.println("è¿›å…¥å»ä¿®æ”¹é¡µé¢çš„æ§åˆ¶å™¨");
+			System.out.println("½øÈëÈ¥ĞŞ¸ÄÒ³ÃæµÄ¿ØÖÆÆ÷");
 			System.out.println("@@@@@@@@@@----------@@@@@@@@@@");
 			
 			if(repgoods.getId()!=null){
@@ -183,37 +183,37 @@ public class CgStockRepGoodsController {
 		}
 		
 		
-		//æ‰§è¡Œä¿®æ”¹
-		@MyLog("ä¿®æ”¹éœ€è¡¥è´§äº§å“")
+		//Ö´ĞĞĞŞ¸Ä
+		@MyLog("ĞŞ¸ÄĞè²¹»õ²úÆ·")
 		@RequestMapping("/updaterepgoods.do")
 		@ResponseBody
 		public Message updaterepgoods(ModelAndView mav,CgStockReplenishmentGoods repgoods,
 				KcGoodsInformation goods){
-			System.out.println("è¿›å…¥ä¿®æ”¹çš„æ§åˆ¶å™¨");
+			System.out.println("½øÈëĞŞ¸ÄµÄ¿ØÖÆÆ÷");
 			System.out.println("-----@@###$$$%%%^^&&**-------");
 			if(repgoods.getId()!=null){
 				cgrepgoods.updatecgrep(repgoods);
 			}
 			
 			mav.setViewName("redirect:cg/cgrepgoods-list.jsp");
-			return new Message("1","success","æˆåŠŸ");
+			return new Message("1","success","³É¹¦");
 			
 		}
 		
 		
-		//æ”¹å˜çŠ¶æ€
-		@MyLog("æ”¹å˜çŠ¶æ€ä¿¡æ¯")
+		//¸Ä±ä×´Ì¬
+		@MyLog("¸Ä±ä×´Ì¬ĞÅÏ¢")
 		@RequestMapping("/updatestate.do")
 		@ResponseBody
 		public Message updatepaystate(CgStockReplenishmentGoods repgoods){
-			System.out.println("&&^æ”¹å˜çŠ¶æ€^$$");
+			System.out.println("&&^¸Ä±ä×´Ì¬^$$");
 			
 			if(repgoods.getId()!=null){
 				CgStockReplenishmentGoods repl=cgrepgoods.getcgrep(repgoods.getId());
 				repl.setState(repgoods.getState());
 				cgrepgoods.updatecgrep(repl);
 			}
-			return new Message("1","success","æˆåŠŸ");
+			return new Message("1","success","³É¹¦");
 			
 		}
 

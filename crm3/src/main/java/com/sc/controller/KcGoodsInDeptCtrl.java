@@ -1,121 +1,121 @@
  package com.sc.controller;
 
-import java.math.BigDecimal;
-import java.util.List;
+ import java.math.BigDecimal;
+ import java.util.List;
 
-import javax.servlet.http.HttpSession;
+ import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Controller;
+ import org.springframework.web.bind.annotation.RequestMapping;
+ import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.ResponseBody;
+ import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.PageInfo;
-import com.sc.annotation.MyLog;
-import com.sc.entity.KcDepositoryInformation;
-import com.sc.entity.KcGoodsInformation;
-import com.sc.entity.Message;
-import com.sc.service.KcGoodsInformationService;
+ import com.github.pagehelper.PageInfo;
+ import com.sc.annotation.MyLog;
+ import com.sc.entity.KcDepositoryInformation;
+ import com.sc.entity.KcGoodsInformation;
+ import com.sc.entity.Message;
+ import com.sc.service.KcGoodsInformationService;
 
-@Controller
+ @Controller
 
-@RequestMapping("/goodsindept")
-public class KcGoodsInDeptCtrl {
-	
-	@Autowired
-	KcGoodsInformationService kcgoods;
-	
-	
-	//ÈÄöËøá‰ªìÂ∫ìÁºñÂè∑ÊâæËØ•‰ªìÂ∫ì‰∏ãÈù¢ÁöÑÂïÜÂìÅ
-	@MyLog("‰ªìÂ∫ìÁºñÂè∑ÊâæËØ•‰ªìÂ∫ì‰∏ãÈù¢ÁöÑÂïÜÂìÅ")
-	   @RequestMapping("/selectdepogoods.do")
-		public ModelAndView selectDeptgoods(ModelAndView mav,
-				@RequestParam(defaultValue="1") Integer pageNum,
-				@RequestParam(defaultValue="10")Integer pageSize,Long depositoryId,
-				KcDepositoryInformation dept, HttpSession session,KcGoodsInformation goods){
-			System.out.println("@@########$$$$$");
-			
-			session.setAttribute("getdepoid", dept.getDepositoryId());
-			
-			KcGoodsInformation good=new KcGoodsInformation();
-			good.setDepositoryId(dept.getDepositoryId());
-			
-			PageInfo<KcGoodsInformation> info = kcgoods.selectrepgoodsbyid(pageNum, pageSize, depositoryId);
-			
-			mav.addObject("deptgoods", info);
-			
-			mav.addObject("dept", dept);
-			
-			mav.addObject("g", goods);
-			
-			mav.setViewName("kc/kcdeptgoods-list");
-			
-			return mav;
-		}
-	   
-	  //Âú®Ë∑≥ËøáÂéªÁöÑÈ°µÈù¢Ê∑ªÂä†ÂïÜÂìÅ‰ø°ÊÅØ
-	@MyLog("Ë∑≥ËøáÂéªÊ∑ªÂä†ÂïÜÂìÅ‰ø°ÊÅØÁöÑÈ°µÈù¢")
-	   @RequestMapping("/goaddgoodsindept.do")
-		public ModelAndView goaddgoods(ModelAndView mav,KcGoodsInformation goods,KcDepositoryInformation dept){
-			System.out.println("ËøõÂÖ•Ê∑ªÂä†È°µÈù¢");
-			
-			if(goods.getGoodsId()!=null){
-				goods=kcgoods.getgoods(goods.getGoodsId());
-			}
-			
-			//‰øÆÊîπ ÊääÈÄöËøáidÊü•Âà∞ÁöÑ‰ø°ÊÅØÁªôgoods
-			mav.addObject("goods", goods);
-			mav.setViewName("kc/godeptgoods-add");
-			
-			return mav;
-		}
-	
-	@MyLog("Âú®Ë∑≥ËøáÂéªÁöÑÈ°µÈù¢Ê∑ªÂä†ÂïÜÂìÅ‰ø°ÊÅØ")
-	   @RequestMapping("/addgoodsindept.do")
-		@ResponseBody
-		public Message addgoods(KcGoodsInformation goods){
-			System.out.println("ËøõÂÖ•Ê∑ªÂä†ÊñπÊ≥ï‰∫Ü");
-			
-			if(goods.getGoodsId()!=null){
-				kcgoods.updatekcgoods(goods);
-			}else{
-				kcgoods.addkcgoods(goods);
-				System.out.println("@@Ê∑ªÂä†ÊàêÂäüÂï¶##");
-			}
-			
-			return new Message("1","success","ÊàêÂäü"); 
-			
-		}
-		
-	@MyLog("Âà†Èô§ÂïÜÂìÅ‰ø°ÊÅØ")
-		@RequestMapping("/deletegoodsindept.do")
-		@ResponseBody
-		public Message deletegoods(KcGoodsInformation goods){
-			System.out.println("ËøõÂÖ•Âà†Èô§ÊñπÊ≥ï‰∫Ü");
-			
-			kcgoods.deletekcgoods(goods.getGoodsId());
-			
-			return new Message("1","success","ÊàêÂäü");
-			
-		}
-		@MyLog("ÊâπÈáèÂà†Èô§ÂïÜÂìÅ‰ø°ÊÅØ")
-		@RequestMapping("/deletegoodsindeptall.do")
-		public String deletegoodsall(BigDecimal[] ids){
-			System.out.println("ËøõÂÖ•ÊâπÈáèÂà†Èô§ÊñπÊ≥ï‰∫Ü");
-			
-			if(ids!=null&&ids.length>0){
-				for (BigDecimal id : ids) {
-					kcgoods.deletekcgoods(id);
-				}
+ @RequestMapping("/goodsindept")
+ public class KcGoodsInDeptCtrl {
+ 	
+ 	@Autowired
+ 	KcGoodsInformationService kcgoods;
+ 	
+ 	
+ 	//Õ®π˝≤÷ø‚±‡∫≈’“∏√≤÷ø‚œ¬√Êµƒ…Ã∆∑
+ 	@MyLog("≤÷ø‚±‡∫≈’“∏√≤÷ø‚œ¬√Êµƒ…Ã∆∑")
+ 	   @RequestMapping("/selectdepogoods.do")
+ 		public ModelAndView selectDeptgoods(ModelAndView mav,
+ 				@RequestParam(defaultValue="1") Integer pageNum,
+ 				@RequestParam(defaultValue="10")Integer pageSize,Long depositoryId,
+ 				KcDepositoryInformation dept, HttpSession session,KcGoodsInformation goods){
+ 			System.out.println("@@########$$$$$");
+ 			
+ 			session.setAttribute("getdepoid", dept.getDepositoryId());
+ 			
+ 			KcGoodsInformation good=new KcGoodsInformation();
+ 			good.setDepositoryId(dept.getDepositoryId());
+ 			
+ 			PageInfo<KcGoodsInformation> info = kcgoods.selectrepgoodsbyid(pageNum, pageSize, depositoryId);
+ 			
+ 			mav.addObject("deptgoods", info);
+ 			
+ 			mav.addObject("dept", dept);
+ 			
+ 			mav.addObject("g", goods);
+ 			
+ 			mav.setViewName("kc/kcdeptgoods-list");
+ 			
+ 			return mav;
+ 		}
+ 	   
+ 	  //‘⁄Ã¯π˝»•µƒ“≥√ÊÃÌº”…Ã∆∑–≈œ¢
+ 	@MyLog("Ã¯π˝»•ÃÌº”…Ã∆∑–≈œ¢µƒ“≥√Ê")
+ 	   @RequestMapping("/goaddgoodsindept.do")
+ 		public ModelAndView goaddgoods(ModelAndView mav,KcGoodsInformation goods,KcDepositoryInformation dept){
+ 			System.out.println("Ω¯»ÎÃÌº”“≥√Ê");
+ 			
+ 			if(goods.getGoodsId()!=null){
+ 				goods=kcgoods.getgoods(goods.getGoodsId());
+ 			}
+ 			
+ 			//–ﬁ∏ƒ ∞—Õ®π˝id≤ÈµΩµƒ–≈œ¢∏¯goods
+ 			mav.addObject("goods", goods);
+ 			mav.setViewName("kc/godeptgoods-add");
+ 			
+ 			return mav;
+ 		}
+ 	
+ 	@MyLog("‘⁄Ã¯π˝»•µƒ“≥√ÊÃÌº”…Ã∆∑–≈œ¢")
+ 	   @RequestMapping("/addgoodsindept.do")
+ 		@ResponseBody
+ 		public Message addgoods(KcGoodsInformation goods){
+ 			System.out.println("Ω¯»ÎÃÌº”∑Ω∑®¡À");
+ 			
+ 			if(goods.getGoodsId()!=null){
+ 				kcgoods.updatekcgoods(goods);
+ 			}else{
+ 				kcgoods.addkcgoods(goods);
+ 				System.out.println("@@ÃÌº”≥…π¶¿≤##");
+ 			}
+ 			
+ 			return new Message("1","success","≥…π¶"); 
+ 			
+ 		}
+ 		
+ 	@MyLog("…æ≥˝…Ã∆∑–≈œ¢")
+ 		@RequestMapping("/deletegoodsindept.do")
+ 		@ResponseBody
+ 		public Message deletegoods(KcGoodsInformation goods){
+ 			System.out.println("Ω¯»Î…æ≥˝∑Ω∑®¡À");
+ 			
+ 			kcgoods.deletekcgoods(goods.getGoodsId());
+ 			
+ 			return new Message("1","success","≥…π¶");
+ 			
+ 		}
+ 		@MyLog("≈˙¡ø…æ≥˝…Ã∆∑–≈œ¢")
+ 		@RequestMapping("/deletegoodsindeptall.do")
+ 		public String deletegoodsall(BigDecimal[] ids){
+ 			System.out.println("Ω¯»Î≈˙¡ø…æ≥˝∑Ω∑®¡À");
+ 			
+ 			if(ids!=null&&ids.length>0){
+ 				for (BigDecimal id : ids) {
+ 					kcgoods.deletekcgoods(id);
+ 				}
 
-			}
-			
-			return "redirect:selectgoods.do";
-			
-		}
-		
-	
+ 			}
+ 			
+ 			return "redirect:selectgoods.do";
+ 			
+ 		}
+ 		
+ 	
 
-}
+ }

@@ -24,29 +24,29 @@ import com.sc.service.KcGoodsInformationService;
 
 @Controller
 
-//é‡‡è´­è¯¦æƒ…å•æ§åˆ¶å™¨
+//²É¹ºÏêÇéµ¥¿ØÖÆÆ÷
 @RequestMapping("/cgdetailorder")
 public class CgStockDetailOrderController {
 	
 	@Autowired
-	CgStockPurchaseOrderService cgpurorder;//é‡‡è´­å•service
+	CgStockPurchaseOrderService cgpurorder;//²É¹ºµ¥service
 	@Autowired
-	CgStockDetailOrderService cgdetailorder;//é‡‡è´­è¯¦æƒ…è¡¨service
+	CgStockDetailOrderService cgdetailorder;//²É¹ºÏêÇé±íservice
 	@Autowired
-	CgStockReplGoodsService cgrepgoods;//éœ€é‡‡è´­å•service
+	CgStockReplGoodsService cgrepgoods;//Ğè²É¹ºµ¥service
 	@Autowired
 	KcGoodsInformationService kcgoods;
 	
-	//æŸ¥è¯¢è®¢å•è¯¦æƒ…è¡¨
-	@MyLog("æŸ¥è¯¢è®¢å•è¯¦æƒ…è¡¨")
+	//²éÑ¯¶©µ¥ÏêÇé±í
+	@MyLog("²éÑ¯¶©µ¥ÏêÇé±í")
 	@RequestMapping("/selectcgdetail.do")
 	public ModelAndView selectcgdetail(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10") Integer pageSize
 			,CgStockDetailOrder detorder,
 			CgStockPurchaseOrder purorder,BigDecimal purchaseOrderId){
-		System.out.println("@@##$$æŸ¥è¯¢è®¢å•è¯¦æƒ…è¡¨");
-		//æŸ¥è¯¢è®¢å•è¯¦æƒ…è¡¨
+		System.out.println("@@##$$²éÑ¯¶©µ¥ÏêÇé±í");
+		//²éÑ¯¶©µ¥ÏêÇé±í
 		PageInfo<CgStockDetailOrder> info = cgdetailorder.selectcgdetailorder(pageSize, pageNum, detorder);
 		mav.addObject("detorder", detorder);
 		mav.addObject("p", info);
@@ -60,18 +60,18 @@ public class CgStockDetailOrderController {
 	
 	
 	
-	//è¿›å…¥æ·»åŠ è¯¦æƒ…é‡‡è´­å•çš„é¡µé¢
-	@MyLog("è¿›å…¥æ·»åŠ è¯¦æƒ…é‡‡è´­å•çš„é¡µé¢")
+	//½øÈëÌí¼ÓÏêÇé²É¹ºµ¥µÄÒ³Ãæ
+	@MyLog("½øÈëÌí¼ÓÏêÇé²É¹ºµ¥µÄÒ³Ãæ")
 	@RequestMapping("/goadddetail.do")
 	public ModelAndView goadddetail(ModelAndView mav,CgStockDetailOrder detorder,
 			KcGoodsInformation goods){
-		System.out.println("@@è¿›å…¥æ·»åŠ è¯¦æƒ…é‡‡è´­å•çš„é¡µé¢%%");
+		System.out.println("@@½øÈëÌí¼ÓÏêÇé²É¹ºµ¥µÄÒ³Ãæ%%");
 		
 		if(detorder.getPurchaseOrderDetailId()!=null){
 			detorder=cgdetailorder.getcgdetailorder(detorder.getPurchaseOrderDetailId());
 		}
 		
-		//ä»éœ€é‡‡è´­è¡¨ä¸­æŸ¥å‡ºå•†å“ä¿¡æ¯
+		//´ÓĞè²É¹º±íÖĞ²é³öÉÌÆ·ĞÅÏ¢
 		List<CgStockReplenishmentGoods> list = cgrepgoods.selectall();
 		mav.addObject("list", list);
 		
@@ -81,13 +81,13 @@ public class CgStockDetailOrderController {
 		return mav;
 	}
 	
-	//æ·»åŠ è¯¦æƒ…é‡‡è´­å•
-	@MyLog("æ·»åŠ è¯¦æƒ…é‡‡è´­å•")
+	//Ìí¼ÓÏêÇé²É¹ºµ¥
+	@MyLog("Ìí¼ÓÏêÇé²É¹ºµ¥")
 	@RequestMapping("/adddetail.do")
 	@ResponseBody
 	public Message adddetail(CgStockDetailOrder detorder,ModelAndView mav){
 		
-		System.out.println("@@#æ·»åŠ è¯¦æƒ…é‡‡è´­å•#$$");
+		System.out.println("@@#Ìí¼ÓÏêÇé²É¹ºµ¥#$$");
 		
 		if(detorder.getPurchaseOrderDetailId()!=null){
 			cgdetailorder.updatecgdetailorder(detorder);
@@ -96,27 +96,27 @@ public class CgStockDetailOrderController {
 		}
 		mav.setViewName("redirect:cg/cgdetailorder-list");
 		
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 	}
 	
 	
-	@MyLog("åˆ é™¤è¯¦æƒ…é‡‡è´­å•")
+	@MyLog("É¾³ıÏêÇé²É¹ºµ¥")
 	@RequestMapping("/deletedetorder.do")
 	@ResponseBody
 	public Message deletedetorder(CgStockDetailOrder detorder){
-		System.out.println("è¿›å…¥åˆ é™¤æ–¹æ³•äº†");
+		System.out.println("½øÈëÉ¾³ı·½·¨ÁË");
 		
 		cgdetailorder.deletecgdetailorder(detorder.getPurchaseOrderDetailId());
 		
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 		
 	}
 	
-	@MyLog("æ‰¹é‡åˆ é™¤è¯¦æƒ…é‡‡è´­å•")
+	@MyLog("ÅúÁ¿É¾³ıÏêÇé²É¹ºµ¥")
 	@RequestMapping("/deletedetorderall.do")
 	@ResponseBody
 	public String deletedetorderall(BigDecimal[] ids){
-		System.out.println("è¿›å…¥æ‰¹é‡åˆ é™¤æ–¹æ³•äº†");
+		System.out.println("½øÈëÅúÁ¿É¾³ı·½·¨ÁË");
 		
 		if(ids!=null&&ids.length>0){
 			for (BigDecimal id : ids) {
@@ -128,12 +128,12 @@ public class CgStockDetailOrderController {
 		
 	}
 	
-	//æ”¹å˜å…¥åº“çŠ¶æ€
-	@MyLog("æ”¹å˜å…¥åº“çŠ¶æ€")
+	//¸Ä±äÈë¿â×´Ì¬
+	@MyLog("¸Ä±äÈë¿â×´Ì¬")
 		@RequestMapping("/updatestorage.do")
 		@ResponseBody
 		public Message updatestorage(CgStockDetailOrder detorder,KcGoodsInformation goods){
-			System.out.println("&&^æ”¹å˜å…¥åº“çŠ¶æ€^$$");
+			System.out.println("&&^¸Ä±äÈë¿â×´Ì¬^$$");
 			
 			if(detorder.getPurchaseOrderDetailId()!=null){
 				CgStockDetailOrder det=cgdetailorder.getcgdetailorder(detorder.getPurchaseOrderDetailId());
@@ -142,19 +142,19 @@ public class CgStockDetailOrderController {
 				
 			}
 			
-			return new Message("1","success","æˆåŠŸ");
+			return new Message("1","success","³É¹¦");
 			
 		}
 		
-		//å…¥åº“
-	@MyLog("å…¥åº“")
+		//Èë¿â
+	@MyLog("Èë¿â")
 		@RequestMapping("/updategoodsNum.do")
 		@ResponseBody
 		public Message updategoodsNum(CgStockDetailOrder detorder,KcGoodsInformation goods,
 				@RequestParam(defaultValue="1") Integer pageNum,
 				@RequestParam(defaultValue="10") Integer pageSize,
 				BigDecimal goodsId){
-			System.out.println("&&^æ·»åŠ è´­ä¹°æ•°é‡è¿›åº“å­˜^$$");
+			System.out.println("&&^Ìí¼Ó¹ºÂòÊıÁ¿½ø¿â´æ^$$");
 			
 			if(detorder.getPurchaseOrderDetailId()!=null){
 				CgStockDetailOrder det=cgdetailorder.getcgdetailorder(detorder.getPurchaseOrderDetailId());
@@ -177,7 +177,7 @@ public class CgStockDetailOrderController {
 				
 			}
 			
-			return new Message("1","success","æˆåŠŸ");
+			return new Message("1","success","³É¹¦");
 			
 		}
 

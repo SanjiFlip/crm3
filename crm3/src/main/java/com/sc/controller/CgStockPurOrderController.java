@@ -31,13 +31,13 @@ public class CgStockPurOrderController {
 	@Autowired
 	CgStockDetailOrderService cgdetail;
 	
-	@MyLog("æŸ¥è¯¢é‡‡è´­å•ä¿¡æ¯")
+	@MyLog("²éÑ¯²É¹ºµ¥ĞÅÏ¢")
 	@RequestMapping("/selectpur.do") 
 	public ModelAndView selectpur(ModelAndView mav,
 			   @RequestParam(defaultValue="1") Integer pageNum,
 			   @RequestParam(defaultValue="10") Integer pageSize,
 			   CgStockPurchaseOrder purorder){
-		System.out.println("æŸ¥è¯¢é‡‡è´­å•ä¿¡æ¯");
+		System.out.println("²éÑ¯²É¹ºµ¥ĞÅÏ¢");
 		
 		PageInfo<CgStockPurchaseOrder> pageInfo = cgpurorder.selectcgpurorder(pageSize, pageNum, purorder);
 		
@@ -52,14 +52,14 @@ public class CgStockPurOrderController {
 		return mav;
 	}
 	
-	//è¿›å…¥æ·»åŠ é‡‡è´­ä¿¡æ¯é¡µé¢
-	@MyLog("è¿›å…¥æ·»åŠ é‡‡è´­ä¿¡æ¯é¡µé¢")
+	//½øÈëÌí¼Ó²É¹ºĞÅÏ¢Ò³Ãæ
+	@MyLog("½øÈëÌí¼Ó²É¹ºĞÅÏ¢Ò³Ãæ")
 	@RequestMapping("/goaddpur.do")
 	public ModelAndView goaddpur(ModelAndView mav,
 			 CgStockPurchaseOrder purorder
 			,CgStockReplenishmentGoods repgoods){
 		
-		System.out.println("è¿›å…¥æ·»åŠ é‡‡è´­ä¿¡æ¯é¡µé¢");
+		System.out.println("½øÈëÌí¼Ó²É¹ºĞÅÏ¢Ò³Ãæ");
 		
 		if(purorder.getPurchaseOrderId()!=null){
 			purorder=cgpurorder.getcgpurorder(purorder.getPurchaseOrderId());
@@ -73,29 +73,29 @@ public class CgStockPurOrderController {
 		return mav;
 	}
 	
-	//æ·»åŠ é‡‡è´­ä¿¡æ¯
-	@MyLog("æ·»åŠ é‡‡è´­ä¿¡æ¯")
+	//Ìí¼Ó²É¹ºĞÅÏ¢
+	@MyLog("Ìí¼Ó²É¹ºĞÅÏ¢")
 		@RequestMapping("/addpurchase.do")
 		@ResponseBody
 		public Message addpurchase(CgStockPurchaseOrder purorder,ModelAndView mav){
 			
-			System.out.println("@@#æ·»åŠ é‡‡è´­ä¿¡æ¯#$$");
+			System.out.println("@@#Ìí¼Ó²É¹ºĞÅÏ¢#$$");
 			
 			if(purorder.getPurchaseOrderId()!=null){
-				//ä¿®æ”¹
+				//ĞŞ¸Ä
 				cgpurorder.updatecgpurorder(purorder);
 			}else{
-				//æ·»åŠ 
+				//Ìí¼Ó
 				cgpurorder.addcgpurorder(purorder);
 			}
 			mav.setViewName("redirect:cg/cgdetailorder-list.jsp");
 			
-			return new Message("1","success","æˆåŠŸ");
+			return new Message("1","success","³É¹¦");
 		}
 	
 	
-		//é€šè¿‡è®¢å•ç¼–å·æŸ¥çœ‹è¯¦æƒ…å•
-	@MyLog("æŸ¥è¯¢å¯¹åº”å¾—è®¢å•è¯¦æƒ…è¡¨")
+		//Í¨¹ı¶©µ¥±àºÅ²é¿´ÏêÇéµ¥
+	@MyLog("²éÑ¯¶ÔÓ¦µÃ¶©µ¥ÏêÇé±í")
 	@RequestMapping("/goselectdetail.do")
 	public ModelAndView goselectdetail(ModelAndView mav
 			,CgStockPurchaseOrder purorder,
@@ -103,7 +103,7 @@ public class CgStockPurOrderController {
 			@RequestParam(defaultValue="1") Integer pageNum,
 			   @RequestParam(defaultValue="10") Integer pageSize,
 			   HttpSession session,BigDecimal purchaseOrderId){
-		System.out.println("@@##$$æŸ¥è¯¢å¯¹åº”å¾—è®¢å•è¯¦æƒ…è¡¨"+purorder);
+		System.out.println("@@##$$²éÑ¯¶ÔÓ¦µÃ¶©µ¥ÏêÇé±í"+purorder);
 		
 		session.setAttribute("purorderid", purorder.getPurchaseOrderId());
 		
@@ -118,24 +118,24 @@ public class CgStockPurOrderController {
 		return mav;
 	}
 	
-	@MyLog("åˆ é™¤è®¢å•ä¿¡æ¯")
+	@MyLog("É¾³ı¶©µ¥ĞÅÏ¢")
 	@RequestMapping("/deletepurchase.do")
 	@ResponseBody
 	public Message deletesupplier(ModelAndView mav,CgStockPurchaseOrder purorder){
 		
-		System.out.println("&&^è¿›å…¥åˆ é™¤è®¢å•ä¿¡æ¯æ§åˆ¶å™¨^$$"+purorder);
+		System.out.println("&&^½øÈëÉ¾³ı¶©µ¥ĞÅÏ¢¿ØÖÆÆ÷^$$"+purorder);
 		cgpurorder.deletecgpurorder(purorder.getPurchaseOrderId());
 		
 			
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 	}
 	
-	//æ‰¹é‡åˆ é™¤
-	@MyLog("æ‰¹é‡åˆ é™¤è®¢å•ä¿¡æ¯")
+	//ÅúÁ¿É¾³ı
+	@MyLog("ÅúÁ¿É¾³ı¶©µ¥ĞÅÏ¢")
 	@RequestMapping("/deletepurchaseall.do")
 	@ResponseBody
 	public String deleteall(BigDecimal[] ids){
-		System.out.println("&&^è¿›å…¥æ‰¹é‡åˆ æ”¹è®¢å•ä¿¡æ¯æ§åˆ¶å™¨^$$");
+		System.out.println("&&^½øÈëÅúÁ¿É¾¸Ä¶©µ¥ĞÅÏ¢¿ØÖÆÆ÷^$$");
 		
 		if(ids!=null&&ids.length>0){
 			for (BigDecimal id : ids) {
@@ -147,19 +147,19 @@ public class CgStockPurOrderController {
 		
 	}
 	
-	//æ”¹å˜æ”¯ä»˜çŠ¶æ€
-	@MyLog("æ”¹å˜æ”¯ä»˜çŠ¶æ€")
+	//¸Ä±äÖ§¸¶×´Ì¬
+	@MyLog("¸Ä±äÖ§¸¶×´Ì¬")
 	@RequestMapping("/updatepaystate.do")
 	@ResponseBody
 	public Message updatepaystate(CgStockPurchaseOrder purorder){
-		System.out.println("&&^æ”¹å˜æ”¯ä»˜çŠ¶æ€^$$");
+		System.out.println("&&^¸Ä±äÖ§¸¶×´Ì¬^$$");
 		
 		if(purorder.getPurchaseOrderId()!=null){
 			CgStockPurchaseOrder pur=cgpurorder.getcgpurorder(purorder.getPurchaseOrderId());
 			pur.setPaymentStatus(purorder.getPaymentStatus());
 			cgpurorder.updatecgpurorder(pur);
 		}
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 		
 	}
 	

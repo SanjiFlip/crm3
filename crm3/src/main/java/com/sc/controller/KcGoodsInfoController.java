@@ -27,13 +27,13 @@ public class KcGoodsInfoController {
 	@Autowired
 	KcDepositoryInformationService kcdeptservice;
 	
-	@MyLog("æŸ¥è¯¢åº“å­˜å•†å“ä¿¡æ¯")
+	@MyLog("²éÑ¯¿â´æÉÌÆ·ĞÅÏ¢")
 	@RequestMapping("/selectgoods.do")
 	public ModelAndView selectgoods(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			KcGoodsInformation goods){
-		System.out.println("æŸ¥è¯¢åº“å­˜å•†å“ä¿¡æ¯"+goods);
+		System.out.println("²éÑ¯¿â´æÉÌÆ·ĞÅÏ¢"+goods);
 		
 		System.out.println("@@@@@@@@dd"+goods.getDatemax());
 		
@@ -48,10 +48,10 @@ public class KcGoodsInfoController {
 		return mav;
 	}
 	
-	@MyLog("å»æ·»åŠ åº“å­˜å•†å“ä¿¡æ¯")
+	@MyLog("È¥Ìí¼Ó¿â´æÉÌÆ·ĞÅÏ¢")
 	@RequestMapping("/goaddgoods.do")
 	public ModelAndView goaddgoods(ModelAndView mav,KcGoodsInformation goods,KcDepositoryInformation dept){
-		System.out.println("è¿›å…¥æ·»åŠ é¡µé¢");
+		System.out.println("½øÈëÌí¼ÓÒ³Ãæ");
 		List <KcDepositoryInformation> dept1 = kcdeptservice.selectAll();
 		System.out.println("@@@@@@@@@@@@@@"+dept1);
 		
@@ -60,18 +60,18 @@ public class KcGoodsInfoController {
 		}
 		
 		mav.addObject("dept", dept1);
-		//ä¿®æ”¹ æŠŠé€šè¿‡idæŸ¥åˆ°çš„ä¿¡æ¯ç»™goods
+		//ĞŞ¸Ä °ÑÍ¨¹ıid²éµ½µÄĞÅÏ¢¸øgoods
 		mav.addObject("goods", goods);
 		mav.setViewName("kc/kcgoods-add");
 		
 		return mav;
 	}
 	
-	@MyLog("æ·»åŠ åº“å­˜å•†å“ä¿¡æ¯")
+	@MyLog("Ìí¼Ó¿â´æÉÌÆ·ĞÅÏ¢")
 	@RequestMapping("/addgoods.do")
 	@ResponseBody
 	public Message addgoods(KcGoodsInformation goods){
-		System.out.println("è¿›å…¥æ·»åŠ æ–¹æ³•äº†");
+		System.out.println("½øÈëÌí¼Ó·½·¨ÁË");
 		
 		if(goods.getGoodsId()!=null){
 			kcgoodsservice.updatekcgoods(goods);
@@ -79,26 +79,26 @@ public class KcGoodsInfoController {
 			kcgoodsservice.addkcgoods(goods);
 		}
 		
-		return new Message("1","success","æˆåŠŸ"); 
+		return new Message("1","success","³É¹¦"); 
 		
 	}
 	
-	@MyLog("åˆ é™¤åº“å­˜å•†å“ä¿¡æ¯")
+	@MyLog("É¾³ı¿â´æÉÌÆ·ĞÅÏ¢")
 	@RequestMapping("/deletegoods.do")
 	@ResponseBody
 	public Message deletegoods(KcGoodsInformation goods){
-		System.out.println("è¿›å…¥åˆ é™¤æ–¹æ³•äº†");
+		System.out.println("½øÈëÉ¾³ı·½·¨ÁË");
 		
 		kcgoodsservice.deletekcgoods(goods.getGoodsId());
 		
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 		
 	}
 	
-	@MyLog("åˆ é™¤æ‰€æœ‰åº“å­˜å•†å“ä¿¡æ¯")
+	@MyLog("É¾³ıËùÓĞ¿â´æÉÌÆ·ĞÅÏ¢")
 	@RequestMapping("/deletegoodsall.do")
 	public String deletegoodsall(BigDecimal[] ids){
-		System.out.println("è¿›å…¥æ‰¹é‡åˆ é™¤æ–¹æ³•äº†");
+		System.out.println("½øÈëÅúÁ¿É¾³ı·½·¨ÁË");
 		
 		if(ids!=null&&ids.length>0){
 			for (BigDecimal id : ids) {

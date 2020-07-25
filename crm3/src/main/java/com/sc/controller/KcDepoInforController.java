@@ -29,13 +29,13 @@ public class KcDepoInforController {
 	@Autowired
 	KcGoodsInformationService kcgoods;
 	
-	@MyLog("æŸ¥è¯¢ä»“åº“æ–¹æ³• ")
+	@MyLog("²éÑ¯²Ö¿â·½·¨ ")
 	@RequestMapping("/selectdepo.do")
 	public ModelAndView selectDept(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10")Integer pageSize,
 			KcDepositoryInformation dept){
-		System.out.println("è¿›å…¥æŸ¥è¯¢ä»“åº“æ–¹æ³•äº†");
+		System.out.println("½øÈë²éÑ¯²Ö¿â·½·¨ÁË");
 		
 		PageInfo<KcDepositoryInformation> selectDept = kcdeposervice.selectDept(dept, pageNum, pageSize);
 		
@@ -49,13 +49,13 @@ public class KcDepoInforController {
 		return mav;
 	}
 	
-	@MyLog("è¿›å…¥ä»“åº“æ·»åŠ é¡µé¢")
+	@MyLog("½øÈë²Ö¿âÌí¼ÓÒ³Ãæ")
 	   @RequestMapping("/goadddepo.do")
 	   public ModelAndView goadddept(ModelAndView mav,KcDepositoryInformation dept){
 		   
-		   System.out.println("è¿›å…¥æ·»åŠ é¡µé¢ ");
+		   System.out.println("½øÈëÌí¼ÓÒ³Ãæ ");
 		   
-		   //ä¿®æ”¹
+		   //ÐÞ¸Ä
 		   if(dept.getDepositoryId()!=null){
 			   dept=kcdeposervice.getDept(dept.getDepositoryId());
 		   }
@@ -67,38 +67,38 @@ public class KcDepoInforController {
 		   return mav;
 	   }
 	   
-	   //æ·»åŠ å®Œäº†å°±æŠŠå±‚å…³äº†ï¼Œä¸éœ€è¦è¿”å›žä»»ä½•ä¸œè¥¿ï¼Œè¿™é‡Œä½¿ç”¨Ajaxæäº¤
-	@MyLog("è¿›å…¥ä»“åº“æ·»åŠ ")
+	   //Ìí¼ÓÍêÁË¾Í°Ñ²ã¹ØÁË£¬²»ÐèÒª·µ»ØÈÎºÎ¶«Î÷£¬ÕâÀïÊ¹ÓÃAjaxÌá½»
+	@MyLog("½øÈë²Ö¿âÌí¼Ó")
 	   @RequestMapping("/adddepo.do")
 	   @ResponseBody
 	   public Message adddept(ModelAndView mav,KcDepositoryInformation dept){
 		   
-		   System.out.println("è¿›å…¥æ·»åŠ æ–¹æ³• "+dept);
-		 //ä¿®æ”¹
+		   System.out.println("½øÈëÌí¼Ó·½·¨ "+dept);
+		 //ÐÞ¸Ä
 		   if(dept.getDepositoryId()!=null){
 			     kcdeposervice.updateDept(dept);
 		   }else{
 		        kcdeposervice.addDept(dept);
 		   }
-		   return new Message("1","success","æˆåŠŸ");
+		   return new Message("1","success","³É¹¦");
 		   
 	   }
 	   
-	@MyLog("åˆ é™¤ä»“åº“ä¿¡æ¯")
+	@MyLog("É¾³ý²Ö¿âÐÅÏ¢")
 	   @RequestMapping("/deletedepo.do")
 	   @ResponseBody
 	   public Message deletedepo(ModelAndView mav,KcDepositoryInformation dept){
 		   
-		   System.out.println("è¿›å…¥åˆ é™¤æ–¹æ³• "+dept);
+		   System.out.println("½øÈëÉ¾³ý·½·¨ "+dept);
 		   kcdeposervice.deleteDept(dept.getDepositoryId());
 		   
-		   return new Message("1","success","æˆåŠŸ");
+		   return new Message("1","success","³É¹¦");
 	   }
 	   
-	@MyLog("æ‰¹é‡åˆ é™¤ä»“åº“ä¿¡æ¯")
+	@MyLog("ÅúÁ¿É¾³ý²Ö¿âÐÅÏ¢")
 	   @RequestMapping("/deletedepoall.do")
 		public String deletedepoall(Long[] ids){
-			System.out.println("è¿›å…¥æ‰¹é‡åˆ é™¤æ–¹æ³•äº†");
+			System.out.println("½øÈëÅúÁ¿É¾³ý·½·¨ÁË");
 			
 			if(ids!=null&&ids.length>0){
 				for (Long id : ids) {

@@ -18,22 +18,22 @@ import com.sc.service.CgStockSupplierInfoService;
 
 @Controller
 
-@RequestMapping("/cgsupplier")//ä¾›åº”å•†æ§åˆ¶å™¨
+@RequestMapping("/cgsupplier")//¹©Ó¦ÉÌ¿ØÖÆÆ÷
 public class CgSupplierInfoController {
 
 	@Autowired
-	CgStockSupplierInfoService cgsupplier;//ä¾›åº”å•†service
+	CgStockSupplierInfoService cgsupplier;//¹©Ó¦ÉÌservice
 	
-	@MyLog("æŸ¥è¯¢ä¾›åº”å•†ä¿¡æ¯")
+	@MyLog("²éÑ¯¹©Ó¦ÉÌĞÅÏ¢")
 	@RequestMapping("/selectsupp.do")
 	public ModelAndView selectsupp(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			CgStockSupplierInformation cgsup){
 		
-		System.out.println("&&^è¿›å…¥æŸ¥è¯¢ä¾›åº”å•†ä¿¡æ¯æ§åˆ¶å™¨^$$");
+		System.out.println("&&^½øÈë²éÑ¯¹©Ó¦ÉÌĞÅÏ¢¿ØÖÆÆ÷^$$");
 		
-		//è°ƒç”¨æŸ¥è¯¢æ–¹æ³•æŸ¥è¯¢æ•°æ®åº“ä¾›åº”å•†ä¿¡æ¯
+		//µ÷ÓÃ²éÑ¯·½·¨²éÑ¯Êı¾İ¿â¹©Ó¦ÉÌĞÅÏ¢
 		PageInfo<CgStockSupplierInformation> info = cgsupplier.selectcgsup(pageNum, pageSize, cgsup);
 		
 		mav.addObject("supplier", info);
@@ -44,15 +44,15 @@ public class CgSupplierInfoController {
 		return mav;
 	}
 	
-	//æ·»åŠ ä¿¡æ¯é¡µé¢
-	@MyLog("æ·»åŠ ä¾›åº”å•†ä¿¡æ¯é¡µé¢")
+	//Ìí¼ÓĞÅÏ¢Ò³Ãæ
+	@MyLog("Ìí¼Ó¹©Ó¦ÉÌĞÅÏ¢Ò³Ãæ")
 	@RequestMapping("/goaddsupplier.do")
 	public ModelAndView goaddspuulier(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			 CgStockSupplierInformation cgsup){
 		
-		System.out.println("&&^è¿›å…¥æ·»åŠ ä¾›åº”å•†ä¿¡æ¯é¡µé¢æ§åˆ¶å™¨^$$");
+		System.out.println("&&^½øÈëÌí¼Ó¹©Ó¦ÉÌĞÅÏ¢Ò³Ãæ¿ØÖÆÆ÷^$$");
 		
 		if(cgsup.getSupplierId()!=null){
 		cgsup=cgsupplier.getcgsup(cgsup.getSupplierId());
@@ -63,8 +63,8 @@ public class CgSupplierInfoController {
 		return mav;
 	}
 	
-	//æ·»åŠ ä¾›åº”å•†ä¿¡æ¯
-	@MyLog("æ·»åŠ ä¾›åº”å•†ä¿¡æ¯")
+	//Ìí¼Ó¹©Ó¦ÉÌĞÅÏ¢
+	@MyLog("Ìí¼Ó¹©Ó¦ÉÌĞÅÏ¢")
 	@RequestMapping("/addsupplier.do")
 	@ResponseBody
 	public Message addsupplier(ModelAndView mav,CgStockSupplierInformation cgsup){
@@ -73,28 +73,28 @@ public class CgSupplierInfoController {
 		
 		if(cgsup.getSupplierId()!=null){
 			cgsupplier.updatecgsup(cgsup);
-			System.out.println("&&^è¿›å…¥ä¿®æ”¹ä¾›åº”å•†ä¿¡æ¯æ§åˆ¶å™¨^$$");
+			System.out.println("&&^½øÈëĞŞ¸Ä¹©Ó¦ÉÌĞÅÏ¢¿ØÖÆÆ÷^$$");
 		}else{
 			cgsupplier.addcgsup(cgsup);
 		}
 			
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 	}
 	
-	@MyLog("åˆ é™¤ä¾›åº”å•†ä¿¡æ¯")
+	@MyLog("É¾³ı¹©Ó¦ÉÌĞÅÏ¢")
 	@RequestMapping("/deletesupplier.do")
 	@ResponseBody
 	public Message deletesupplier(ModelAndView mav,CgStockSupplierInformation cgsup){
 		
-		System.out.println("&&^è¿›å…¥åˆ æ”¹ä¾›åº”å•†ä¿¡æ¯æ§åˆ¶å™¨^$$"+cgsup);
+		System.out.println("&&^½øÈëÉ¾¸Ä¹©Ó¦ÉÌĞÅÏ¢¿ØÖÆÆ÷^$$"+cgsup);
 		cgsupplier.deletecgsup(cgsup.getSupplierId());
 		
 			
-		return new Message("1","success","æˆåŠŸ");
+		return new Message("1","success","³É¹¦");
 	}
 	
-	//æ‰¹é‡åˆ é™¤
-	@MyLog("æ‰¹é‡åˆ é™¤ä¾›åº”å•†ä¿¡æ¯")
+	//ÅúÁ¿É¾³ı
+	@MyLog("ÅúÁ¿É¾³ı¹©Ó¦ÉÌĞÅÏ¢")
 	@RequestMapping("/deletesupplierall.do")
 	@ResponseBody
 	public String deleteall(Long[] ids){
