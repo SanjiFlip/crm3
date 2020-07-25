@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.KcDepositoryInformation;
 import com.sc.entity.KcGoodsInformation;
 import com.sc.entity.Message;
@@ -26,6 +27,7 @@ public class KcGoodsInfoController {
 	@Autowired
 	KcDepositoryInformationService kcdeptservice;
 	
+	@MyLog("查询库存商品信息")
 	@RequestMapping("/selectgoods.do")
 	public ModelAndView selectgoods(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
@@ -46,6 +48,7 @@ public class KcGoodsInfoController {
 		return mav;
 	}
 	
+	@MyLog("去添加库存商品信息")
 	@RequestMapping("/goaddgoods.do")
 	public ModelAndView goaddgoods(ModelAndView mav,KcGoodsInformation goods,KcDepositoryInformation dept){
 		System.out.println("进入添加页面");
@@ -64,6 +67,7 @@ public class KcGoodsInfoController {
 		return mav;
 	}
 	
+	@MyLog("添加库存商品信息")
 	@RequestMapping("/addgoods.do")
 	@ResponseBody
 	public Message addgoods(KcGoodsInformation goods){
@@ -79,6 +83,7 @@ public class KcGoodsInfoController {
 		
 	}
 	
+	@MyLog("删除库存商品信息")
 	@RequestMapping("/deletegoods.do")
 	@ResponseBody
 	public Message deletegoods(KcGoodsInformation goods){
@@ -90,6 +95,7 @@ public class KcGoodsInfoController {
 		
 	}
 	
+	@MyLog("删除所有库存商品信息")
 	@RequestMapping("/deletegoodsall.do")
 	public String deletegoodsall(BigDecimal[] ids){
 		System.out.println("进入批量删除方法了");

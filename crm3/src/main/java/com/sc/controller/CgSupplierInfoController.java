@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.CgStockSupplierInformation;
 import com.sc.entity.KcDepositoryInformation;
 import com.sc.entity.Message;
@@ -23,6 +24,7 @@ public class CgSupplierInfoController {
 	@Autowired
 	CgStockSupplierInfoService cgsupplier;//供应商service
 	
+	@MyLog("查询供应商信息")
 	@RequestMapping("/selectsupp.do")
 	public ModelAndView selectsupp(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
@@ -43,6 +45,7 @@ public class CgSupplierInfoController {
 	}
 	
 	//添加信息页面
+	@MyLog("添加供应商信息页面")
 	@RequestMapping("/goaddsupplier.do")
 	public ModelAndView goaddspuulier(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
@@ -61,6 +64,7 @@ public class CgSupplierInfoController {
 	}
 	
 	//添加供应商信息
+	@MyLog("添加供应商信息")
 	@RequestMapping("/addsupplier.do")
 	@ResponseBody
 	public Message addsupplier(ModelAndView mav,CgStockSupplierInformation cgsup){
@@ -77,6 +81,7 @@ public class CgSupplierInfoController {
 		return new Message("1","success","成功");
 	}
 	
+	@MyLog("删除供应商信息")
 	@RequestMapping("/deletesupplier.do")
 	@ResponseBody
 	public Message deletesupplier(ModelAndView mav,CgStockSupplierInformation cgsup){
@@ -89,6 +94,7 @@ public class CgSupplierInfoController {
 	}
 	
 	//批量删除
+	@MyLog("批量删除供应商信息")
 	@RequestMapping("/deletesupplierall.do")
 	@ResponseBody
 	public String deleteall(Long[] ids){

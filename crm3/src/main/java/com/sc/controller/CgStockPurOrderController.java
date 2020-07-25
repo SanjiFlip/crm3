@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.CgStockDetailOrder;
 import com.sc.entity.CgStockPurchaseOrder;
 import com.sc.entity.CgStockReplenishmentGoods;
@@ -30,6 +31,7 @@ public class CgStockPurOrderController {
 	@Autowired
 	CgStockDetailOrderService cgdetail;
 	
+	@MyLog("查询采购单信息")
 	@RequestMapping("/selectpur.do") 
 	public ModelAndView selectpur(ModelAndView mav,
 			   @RequestParam(defaultValue="1") Integer pageNum,
@@ -51,6 +53,7 @@ public class CgStockPurOrderController {
 	}
 	
 	//进入添加采购信息页面
+	@MyLog("进入添加采购信息页面")
 	@RequestMapping("/goaddpur.do")
 	public ModelAndView goaddpur(ModelAndView mav,
 			 CgStockPurchaseOrder purorder
@@ -71,6 +74,7 @@ public class CgStockPurOrderController {
 	}
 	
 	//添加采购信息
+	@MyLog("添加采购信息")
 		@RequestMapping("/addpurchase.do")
 		@ResponseBody
 		public Message addpurchase(CgStockPurchaseOrder purorder,ModelAndView mav){
@@ -91,6 +95,7 @@ public class CgStockPurOrderController {
 	
 	
 		//通过订单编号查看详情单
+	@MyLog("查询对应得订单详情表")
 	@RequestMapping("/goselectdetail.do")
 	public ModelAndView goselectdetail(ModelAndView mav
 			,CgStockPurchaseOrder purorder,
@@ -113,7 +118,7 @@ public class CgStockPurOrderController {
 		return mav;
 	}
 	
-	
+	@MyLog("删除订单信息")
 	@RequestMapping("/deletepurchase.do")
 	@ResponseBody
 	public Message deletesupplier(ModelAndView mav,CgStockPurchaseOrder purorder){
@@ -126,6 +131,7 @@ public class CgStockPurOrderController {
 	}
 	
 	//批量删除
+	@MyLog("批量删除订单信息")
 	@RequestMapping("/deletepurchaseall.do")
 	@ResponseBody
 	public String deleteall(BigDecimal[] ids){
@@ -142,6 +148,7 @@ public class CgStockPurOrderController {
 	}
 	
 	//改变支付状态
+	@MyLog("改变支付状态")
 	@RequestMapping("/updatepaystate.do")
 	@ResponseBody
 	public Message updatepaystate(CgStockPurchaseOrder purorder){

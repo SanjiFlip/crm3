@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
+import com.sc.annotation.MyLog;
 import com.sc.entity.KcDepositoryInformation;
 import com.sc.entity.KcGoodsInformation;
 import com.sc.entity.Message;
@@ -28,6 +29,7 @@ public class KcDepoInforController {
 	@Autowired
 	KcGoodsInformationService kcgoods;
 	
+	@MyLog("查询仓库方法 ")
 	@RequestMapping("/selectdepo.do")
 	public ModelAndView selectDept(ModelAndView mav,
 			@RequestParam(defaultValue="1") Integer pageNum,
@@ -47,6 +49,7 @@ public class KcDepoInforController {
 		return mav;
 	}
 	
+	@MyLog("进入仓库添加页面")
 	   @RequestMapping("/goadddepo.do")
 	   public ModelAndView goadddept(ModelAndView mav,KcDepositoryInformation dept){
 		   
@@ -65,6 +68,7 @@ public class KcDepoInforController {
 	   }
 	   
 	   //添加完了就把层关了，不需要返回任何东西，这里使用Ajax提交
+	@MyLog("进入仓库添加")
 	   @RequestMapping("/adddepo.do")
 	   @ResponseBody
 	   public Message adddept(ModelAndView mav,KcDepositoryInformation dept){
@@ -80,6 +84,7 @@ public class KcDepoInforController {
 		   
 	   }
 	   
+	@MyLog("删除仓库信息")
 	   @RequestMapping("/deletedepo.do")
 	   @ResponseBody
 	   public Message deletedepo(ModelAndView mav,KcDepositoryInformation dept){
@@ -90,7 +95,7 @@ public class KcDepoInforController {
 		   return new Message("1","success","成功");
 	   }
 	   
-	   
+	@MyLog("批量删除仓库信息")
 	   @RequestMapping("/deletedepoall.do")
 		public String deletedepoall(Long[] ids){
 			System.out.println("进入批量删除方法了");
