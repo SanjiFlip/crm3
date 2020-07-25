@@ -1,6 +1,5 @@
 package com.sc.controller;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -169,9 +168,11 @@ public class XtRoleController {
 		//权限中一些选中属性
 		for (XtPermissionInfo info1 : list2) {
 				for (XtPermissionInfo obj : list3) {
-					if(info1.getPermissonId() == obj.getPermissonId()) {
-						info1.setCheckstate(true);
-						break;
+					if(obj != null) {
+						if(info1.getPermissonId() == obj.getPermissonId()) {
+							info1.setCheckstate(true);
+							break;
+						}
 					}
 				}
 		}
